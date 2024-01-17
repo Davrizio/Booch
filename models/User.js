@@ -5,6 +5,8 @@ const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
+  theme: { type: String },
+  remember: { type: String }
 });
 
 // Password hash middleware.

@@ -11,12 +11,36 @@
         <h2>Add a post</h2>
         <form action="/post/createPost" enctype="multipart/form-data" method="POST">
           <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
           </div>
           <div class="mb-3">
-            <label for="caption" class="form-label">Caption</label>
-            <textarea class="form-control" id="caption" name="caption"></textarea>
+            <label for="note" class="form-label">Note</label>
+            <textarea class="form-control" id="note" name="note"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="tea" class="form-label">Tea</label>
+            <textarea class="form-control" id="tea" name="tea"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="avgTemp" class="form-label">Ambient Temp</label>
+            <textarea class="form-control" id="avgTemp" name="avgTemp"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="rating" class="form-label">Ambient Temp</label>
+            <textarea class="form-control" id="rating" name="rating"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="firstFerment" class="form-label">1st ferment date</label>
+            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="firstFerment" name="firstFerment" />
+          </div>
+          <div class="mb-3">
+            <label for="secondFerment" class="form-label">2nd ferment date</label>
+            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="secondFerment" name="secondFerment" />
+          </div>
+          <div class="mb-3">
+            <label for="thirdFerment" class="form-label">3rd ferment date</label>
+            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="thirdFerment" name="thirdFerment" />
           </div>
           <div class="mb-3">
             <label for="imgUpload" class="form-label">Image</label>
@@ -31,7 +55,7 @@
         <% for(var i=0; i<brews.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
           <a href="/post/<%= brews[i]._id%>">
-            <h2><%= brews[i].title%></h2>
+            <h2><%= brews[i].name%></h2>
             <img class="img-fluid" src="<%= brews[i].image%>">
           </a>
         </li>

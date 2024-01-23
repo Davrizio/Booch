@@ -5,7 +5,7 @@
       <h2><%= brew.name %></h2>
       <img class="img-fluid" src="<%= brew.image%>" />
       <div class="row justify-content-between">
-        <form class="col-1" action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST">
+        <form class="col-1" action="/brew/likeBrew/<%= brew.id %>?_method=PUT" method="POST">
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
         <h3 class="col-3">Likes: <%= brew.rating %></h3>

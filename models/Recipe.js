@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const BrewSchema = new mongoose.Schema({
+const RecipeSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -18,11 +18,11 @@ const BrewSchema = new mongoose.Schema({
     required: true
   },
   ingredients: {
-    type: String,
+    type: Array,
     required: true
   },
   steps: {
-    type: String,
+    type: Array,
     required: true
   },
   rating: {
@@ -39,4 +39,4 @@ const BrewSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Brew", BrewSchema);
+module.exports = mongoose.model("Recipe", RecipeSchema);

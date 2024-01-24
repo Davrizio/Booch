@@ -2,14 +2,9 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-6">
-      <div>
-        <p><strong>User Name</strong>: <%= user.userName %></p>
-        <p><strong>Email</strong>: <%= user.email %></p>
-        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-      </div>
       <div class="mt-5">
         <h2>Add a post</h2>
-        <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+        <form action="/recipe/createRecipe" enctype="multipart/form-data" method="POST">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name">
@@ -19,28 +14,20 @@
             <textarea class="form-control" id="note" name="note"></textarea>
           </div>
           <div class="mb-3">
-            <label for="tea" class="form-label">Tea</label>
-            <textarea class="form-control" id="tea" name="tea"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="avgTemp" class="form-label">Ambient Temp</label>
-            <textarea class="form-control" id="avgTemp" name="avgTemp"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="rating" class="form-label">Ambient Temp</label>
+            <label for="rating" class="form-label">Rating</label>
             <textarea class="form-control" id="rating" name="rating"></textarea>
           </div>
           <div class="mb-3">
-            <label for="firstFerment" class="form-label">1st ferment date</label>
-            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="firstFerment" name="firstFerment" />
+            <label for="ingredient" class="form-label">Ingredients</label>
+            <textarea class="form-control" id="ingredient" name="ingredient"></textarea>
           </div>
           <div class="mb-3">
-            <label for="secondFerment" class="form-label">2nd ferment date</label>
-            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="secondFerment" name="secondFerment" />
+            <label for="measurement" class="form-label">Measurement</label>
+            <textarea class="form-control" id="measurement" name="measurement"></textarea>
           </div>
           <div class="mb-3">
-            <label for="thirdFerment" class="form-label">3rd ferment date</label>
-            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="thirdFerment" name="thirdFerment" />
+            <label for="steps" class="form-label">Instructions</label>
+            <textarea class="form-control" id="steps" name="steps"></textarea>
           </div>
           <div class="mb-3">
             <label for="imgUpload" class="form-label">Image</label>
@@ -52,11 +39,11 @@
     </div>
     <div class="col-6">
       <ul class="row list-unstyled">
-        <% for(var i=0; i<brews.length; i++) {%>
+        <% for(var i=0; i<recipes.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
-          <a href="/brew/<%= brews[i]._id%>">
-            <h2><%= brews[i].name%></h2>
-            <img class="img-fluid" src="<%= brews[i].image%>">
+          <a href="/recipe/<%= recipes[i]._id%>">
+            <h2><%= recipes[i].name%></h2>
+            <img class="img-fluid" src="<%= recipes[i].image%>">
           </a>
         </li>
         <% } %>

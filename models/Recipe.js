@@ -29,6 +29,14 @@ const RecipeSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  ingredientCount: {
+    type: Number,
+    required: true
+  },
+  instructionCount: {
+    type: Number,
+    required: true
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"

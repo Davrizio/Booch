@@ -3,31 +3,11 @@
   <div class="row mt-5">
     <div class="col-6">
       <div class="mt-5">
-        <h2>Add a post</h2>
+        <h2>Add a recipe</h2>
         <form action="/recipe/createRecipe" enctype="multipart/form-data" method="POST">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name">
-          </div>
-          <div class="mb-3">
-            <label for="note" class="form-label">Note</label>
-            <textarea class="form-control" id="note" name="note"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="rating" class="form-label">Rating</label>
-            <textarea class="form-control" id="rating" name="rating"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="ingredient" class="form-label">Ingredients</label>
-            <textarea class="form-control" id="ingredient" name="ingredient"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="measurement" class="form-label">Measurement</label>
-            <textarea class="form-control" id="measurement" name="measurement"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="steps" class="form-label">Instructions</label>
-            <textarea class="form-control" id="steps" name="steps"></textarea>
           </div>
           <div class="mb-3">
             <label for="imgUpload" class="form-label">Image</label>
@@ -39,11 +19,11 @@
     </div>
     <div class="col-6">
       <ul class="row list-unstyled">
-        <% for(var i=0; i<recipes.length; i++) {%>
+        <% for(i=0; i<recipe.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
-          <a href="/recipe/<%= recipes[i]._id%>">
-            <h2><%= recipes[i].name%></h2>
-            <img class="img-fluid" src="<%= recipes[i].image%>">
+          <a href="/recipe/<%= recipe[i]._id%>">
+            <h2><%= recipe[i].name%></h2>
+            <img class="img-fluid" src="<%= recipe[i].image%>">
           </a>
         </li>
         <% } %>

@@ -19,6 +19,10 @@ router.post(
 //Enables user to like post. In controller, uses POST model to update likes by 1
 router.put("/rateRecipe/:id", recipesController.rateRecipe);
 
+router.put("/addIngredient", recipesController.addIngredient);
+
+router.put("/addInstruction/:id", recipesController.addInstruction);
+
 //Enables user to delete post. In controller, uses POST model to delete post from MongoDB collection
 router.delete("/deleteRecipe/:id", recipesController.deleteRecipe);
 

@@ -44,6 +44,7 @@ module.exports = {
         instructionCount: 1,
         ingredients: [],
         steps: [],
+        status: "new",
         user: req.user.id
       });
       console.log("Brew card has been added!");
@@ -149,7 +150,7 @@ module.exports = {
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
       await Recipe.remove({ _id: req.params.id });
-      console.log("Deleted Post");
+      console.log("Deleted Recipe");
       res.redirect("/recipes");
     } catch (err) {
       res.redirect("/recipes");

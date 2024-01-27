@@ -22,8 +22,8 @@ module.exports = {
       //http://localhost:2121/post/631a7f59a3e56acfc7da286f
       //id === 631a7f59a3e56acfc7da286f
       const recipe = await Recipe.findById(req.params.id);
-      console.log(recipe);
       res.render("recipe.ejs", { recipe: recipe, user: req.user });
+      console.log(recipe);
     } catch (err) {
       console.log(err);
     }
@@ -54,23 +54,21 @@ module.exports = {
   },
   updateRecipe: async (req, res) => {
     try {
-      // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
 
-      //media is stored on cloudainary - the above request responds with url to media and the media id that you will need when deleting content
       await Recipe.create({
         name: req.body.name,
         image: result.secure_url,
         cloudinaryId: result.public_id,
         note: req.body.note,
         rating: 0,
-        ingredientCount: 1,
-        instructionCount: 1,
+        ingredientCount: 0,
+        instructionCount: 0,
         ingredients: [req.body.ingredients, req.body.measurement],
         steps: [req.body.steps],
         user: req.user.id
       });
-      console.log("Brew card has been added!");
+      console.log("Recipe has been updated!");
       res.redirect(`/recipe/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -95,10 +93,9 @@ module.exports = {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { rating: 1 }
+          $inc: { ingredientCount: 1 }
         }
       );
-      console.log("Likes +1");
       res.redirect(`/recipe/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -109,13 +106,39 @@ module.exports = {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { rating: 1 }
+          $inc: { instructionCount: 1 }
         }
       );
       console.log("Likes +1");
       res.redirect(`/recipe/${req.params.id}`);
     } catch (err) {
       console.log(err);
+    }
+  },
+  subtractIngredient: async (req, res) => {
+    try {
+      await Recipe.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $inc: { ingredientCount: -1 }
+        }
+      );
+      res.redirect(`/recipe/${req.params.id}`);
+    } catch (err) {
+      res.redirect(`/recipe/${req.params.id}`);
+    }
+  },
+  subtractInstruction: async (req, res) => {
+    try {
+      await Recipe.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $inc: { instructionCount: -1 }
+        }
+      );
+      res.redirect(`/recipe/${req.params.id}`);
+    } catch (err) {
+      res.redirect(`/recipe/${req.params.id}`);
     }
   },
   deleteRecipe: async (req, res) => {

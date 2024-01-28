@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Brew = require("../models/Brew");
 const Recipe = require("../models/Recipe");
+const fs = require("fs");
 
 module.exports = {
   getRecipes: async (req, res) => {
@@ -29,10 +30,13 @@ module.exports = {
     }
   },
   createRecipe: async (req, res) => {
+    let result;
     try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
-
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload("./default_recipe.jpeg");
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       //media is stored on cloudainary - the above request responds with url to media and the media id that you will need when deleting content
       await Recipe.create({
         name: req.body.name,

@@ -31,11 +31,11 @@ const RecipeSchema = new mongoose.Schema({
   },
   ingredientCount: {
     type: Number,
-    required: true
+    required: false
   },
   instructionCount: {
     type: Number,
-    required: true
+    required: false
   },
   status: {
     type: String,

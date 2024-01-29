@@ -28,10 +28,15 @@ module.exports = {
     }
   },
   createBrew: async (req, res) => {
+    let result;
     try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
-
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_brew.png"
+        );
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       //media is stored on cloudainary - the above request responds with url to media and the media id that you will need when deleting content
       await Brew.create({
         name: req.body.name,

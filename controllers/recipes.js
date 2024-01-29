@@ -6,11 +6,7 @@ const fs = require("fs");
 module.exports = {
   getRecipes: async (req, res) => {
     try {
-      //Since we have a session each request (req) contains the logged-in users info: req.user
-      //console.log(req.user) to see everything
-      //Grabbing just the posts of the logged-in user
       const recipe = await Recipe.find({ user: req.user.id });
-      //Sending post data from mongodb and user data to ejs template
       res.render("recipes.ejs", { recipe: recipe, user: req.user });
     } catch (err) {
       console.log(err);
@@ -18,10 +14,6 @@ module.exports = {
   },
   getRecipe: async (req, res) => {
     try {
-      //id parameter comes from the post routes
-      //router.get("/:id", ensureAuth, postsController.getPost);
-      //http://localhost:2121/post/631a7f59a3e56acfc7da286f
-      //id === 631a7f59a3e56acfc7da286f
       const recipe = await Recipe.findById(req.params.id);
       res.render("recipe.ejs", { recipe: recipe, user: req.user });
       console.log(recipe);
@@ -33,11 +25,12 @@ module.exports = {
     let result;
     try {
       if (req.file === undefined) {
-        result = await cloudinary.uploader.upload("./default_recipe.jpeg");
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_recipe.png"
+        );
       } else {
         result = await cloudinary.uploader.upload(req.file.path);
       }
-      //media is stored on cloudainary - the above request responds with url to media and the media id that you will need when deleting content
       await Recipe.create({
         name: req.body.name,
         image: result.secure_url,
@@ -57,22 +50,28 @@ module.exports = {
       console.log(err);
     }
   },
-  updateRecipe: async (req, res) => {
+  editRecipe: async (req, res) => {
     try {
-      const result = await cloudinary.uploader.upload(req.file.path);
-
-      await Recipe.create({
-        name: req.body.name,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
-        note: req.body.note,
-        rating: 0,
-        ingredientCount: 0,
-        instructionCount: 0,
-        ingredients: [req.body.ingredients, req.body.measurement],
-        steps: [req.body.steps],
-        user: req.user.id
-      });
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_recipe.png"
+        );
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
+      await Recipe.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          name: req.body.name,
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          note: req.body.note,
+          rating: 0,
+          ingredients: [req.body.ingredients, req.body.measurement],
+          steps: [req.body.steps],
+          user: req.user.id
+        }
+      );
       console.log("Recipe has been updated!");
       res.redirect(`/recipe/${req.params.id}`);
     } catch (err) {

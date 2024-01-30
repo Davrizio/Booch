@@ -33,7 +33,7 @@ const RecipeSchema = new mongoose.Schema({
     type: Number,
     required: false
   },
-  instructionCount: {
+  stepCount: {
     type: Number,
     required: false
   },

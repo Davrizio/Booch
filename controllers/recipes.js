@@ -38,19 +38,20 @@ module.exports = {
         note: " ",
         rating: 0,
         ingredientCount: 1,
-        instructionCount: 1,
+        stepCount: 1,
         ingredients: [],
         steps: [],
         status: "new",
         user: req.user.id
       });
-      console.log("Brew card has been added!");
+      console.log("Recipe card has been added!");
       res.redirect("/recipes");
     } catch (err) {
       console.log(err);
     }
   },
   editRecipe: async (req, res) => {
+    console.log(req.body);
     try {
       if (req.file === undefined) {
         result = await cloudinary.uploader.upload(
@@ -67,9 +68,25 @@ module.exports = {
           cloudinaryId: result.public_id,
           note: req.body.note,
           rating: 0,
-          ingredients: [req.body.ingredients, req.body.measurement],
+          ingredients: [req.body.ingredient, req.body.measurement],
           steps: [req.body.steps],
+          status: req.body.status,
           user: req.user.id
+        }
+      );
+      console.log("Recipe has been updated!");
+      res.redirect(`/recipe/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  editRecipeStatus: async (req, res) => {
+    console.log(req.body);
+    try {
+      await Recipe.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          status: req.body.status
         }
       );
       console.log("Recipe has been updated!");
@@ -100,17 +117,17 @@ module.exports = {
           $inc: { ingredientCount: 1 }
         }
       );
-      res.redirect(`/recipe/${req.params.id}`);
+      res.redirect("back");
     } catch (err) {
       console.log(err);
     }
   },
-  addInstruction: async (req, res) => {
+  addStep: async (req, res) => {
     try {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { instructionCount: 1 }
+          $inc: { stepCount: 1 }
         }
       );
       console.log("Likes +1");
@@ -132,12 +149,12 @@ module.exports = {
       res.redirect(`/recipe/${req.params.id}`);
     }
   },
-  subtractInstruction: async (req, res) => {
+  subtractStep: async (req, res) => {
     try {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { instructionCount: -1 }
+          $inc: { stepCount: -1 }
         }
       );
       res.redirect(`/recipe/${req.params.id}`);

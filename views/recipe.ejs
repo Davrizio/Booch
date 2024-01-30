@@ -2,7 +2,6 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
-      <h2><%= recipe.name %></h2>
       <img class="img-fluid" src="<%= recipe.image%>" />
       <div class="row justify-content-between">
         <form class="col-1" action="/recipe/rateRecipe/<%= recipe.id %>?_method=PUT" method="POST">
@@ -16,20 +15,16 @@
         <%}%>
       </div>
     </div>
+    <%# New recipe entry %>
     <div class="col-6">
       <% if (recipe.status === "new") { %>
         <div class="mt-5">
           <h2>Fill out some details for <%= recipe.name %></h2>
-          <form action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+          <form action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="POST">
             <div class="mb-3">
               <label for="note" class="form-label">Note</label>
               <textarea class="form-control" id="note" name="note"></textarea>
             </div>
-            <div class="mb-3">
-              <label for="rating" class="form-label">Rating</label>
-              <textarea class="form-control" id="rating" name="rating"></textarea>
-            </div>
-            <% for (i=0; i<recipe.ingredientCount; i++) { %>
             <div class="mb-3">
               <label for="ingredient" class="form-label">Ingredients</label>
               <textarea class="form-control" id="ingredient" name="ingredient"></textarea>
@@ -38,119 +33,157 @@
               <label for="measurement" class="form-label">Measurement</label>
               <textarea class="form-control" id="measurement" name="measurement"></textarea>
             </div>
+            <% for (i=1; i<recipe.ingredientCount; i++) { %>
+              <div class="mb-3">
+                <label for="ingredient" class="form-label">Ingredients</label>
+                <textarea class="form-control" id="ingredient" name="ingredient"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="measurement" class="form-label">Measurement</label>
+                <textarea class="form-control" id="measurement" name="measurement"></textarea>
+              </div>
             <%}%>
-            <% for (i=0; i<recipe.instructionCount; i++) { %>
             <div class="mb-3">
-              <label for="steps" class="form-label">Instructions</label>
+              <label for="steps" class="form-label">Steps</label>
               <textarea class="form-control" id="steps" name="steps"></textarea>
             </div>
+            <% for (i=1; i<recipe.stepCount; i++) { %>
+              <div class="mb-3">
+                <label for="steps" class="form-label">Steps</label>
+                <textarea class="form-control" id="steps" name="steps"></textarea>
+              </div>
             <%}%>
             <input type="hidden" class="form-control" id="status" name="status" value="done">
+            <input type="hidden" class="form-control" id="name" name="name" value="<%= recipe.name %>">
             <button type="submit" class="btn btn-primary" value="Upload">Save</button>
           </form>
+          <div>
+            <form class="col-1" action="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" method="POST">
+              <button type="submit" class="btn btn-primary">Add Ingredient</button>
+            </form>
+          </div>
+          <div>
+            <form class="col-1" action="/recipe/subtractIngredient/<%= recipe._id %>?_method=PUT" method="POST">
+              <button type="submit" class="btn btn-primary">Subtract Ingredient</button>
+            </form>
+          </div>
         </div>
         <div>
-          <form class="col-1" action="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Add Ingredient</button>
+          <div>
+            <form class="col-1" action="/recipe/addStep/<%= recipe._id %>?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-primary">Add Step</button>
           </form>
         </div>
         <div>
-          <form class="col-1" action="/recipe/subtractIngredient/<%= recipe._id %>?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Subtract Ingredient</button>
-          </form>
-        </div>
-        <div>
-          <form class="col-1" action="/recipe/addInstruction/<%= recipe._id %>?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Add Step</button>
-          </form>
-        </div>
-        <div>
-          <form class="col-1" action="/recipe/subtractInstruction/<%= recipe._id %>?_method=PUT" method="POST">
+          <form class="col-1" action="/recipe/subtractStep/<%= recipe._id %>?_method=PUT" method="POST">
             <button type="submit" class="btn btn-primary">Subtract Step</button>
           </form>
         </div>
-        <%}%>
+      <%}%>
+      <%# View recipe entry %>
       <% if (recipe.status === "done") { %>
         <h1><%= recipe.name %></h1>
         <h2><%= recipe.note %></h2>
-        <% for (i=0; i<recipe.ingredientCount; i++) { %>
-        <h3><%= recipe[i].ingredient %></h3>
+        <% if (recipe.ingredientCount === 1) { %>
+          <h3><%= recipe.ingredients[0] %></h3>
+          <h3><%= recipe.ingredients[1] %></h3>
+        <% } else {%>
+          <% for (i=0; i<recipe.ingredientCount; i++) { %>
+            <h3><%= recipe.ingredients[0][i] %></h3>
+            <h3><%= recipe.ingredients[1][i] %></h3>
+          <%}%>
         <% } %>
-        <% for (i=0; i<recipe.instructionCount; i++) { %>
-        <h3><%= recipe[i].instruction %></h3>
-        <% } %>
+        <% if (recipe.stepCount === 1) { %>
+          <h3><%= recipe.steps %></h3>
+        <% } else {%>
+          <% for (i=0; i<recipe.stepCount; i++) { %>
+            <h3><%= recipe.steps[0][i] %></h3>
+          <%}%>
+        <%}%>
         <div>
-          <form class="col-1" action="/recipe/editRecipe/<%= recipe._id %>?_method=PUT" method="POST">
+          <form class="col-1" action="/recipe/editRecipeStatus/<%= recipe._id %>?_method=PUT" method="POST">
             <input type="hidden" class="form-control" id="status" name="status" value="edit">
             <button type="submit" class="btn btn-primary">EDIT</button>
           </form>
         </div>
-        <% } %>
-        <% if (recipe.status === "edit") { %>
+      <%}%>
+      <%# EDIT recipe %>
+      <% if (recipe.status === "edit") { %>
         <div class="mt-5">
-          <h2>Fill out details for <%= recipe.name %></h2>
-          <form action="/recipe/updateRecipe" enctype="multipart/form-data" method="POST">
+          <h2>Edit <%= recipe.name %></h2>
+          <form action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="POST">
             <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <label for="name" class="form-label">Edit Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
             </div>
             <div class="mb-3">
               <label for="note" class="form-label">Note</label>
-              <textarea class="form-control" id="note" name="note"></textarea>
+              <input class="form-control" id="note" name="note" value="<%= recipe.note %>" placeholder="<%= recipe.note %>"></input>
             </div>
-            <div class="mb-3">
-              <label for="rating" class="form-label">Rating</label>
-              <textarea class="form-control" id="rating" name="rating"></textarea>
-            </div>
-            <% for (i=0; i<recipe.ingredientCount; i++) { %>
-            <div class="mb-3">
-              <label for="ingredient" class="form-label">Ingredients</label>
-              <textarea class="form-control" id="ingredient" name="ingredient"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="measurement" class="form-label">Measurement</label>
-              <textarea class="form-control" id="measurement" name="measurement"></textarea>
-            </div>
+            <% if (recipe.ingredientCount === 1) { %>
+              <div class="mb-3">
+                <label for="ingredient" class="form-label">Ingredients</label>
+                <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[0] %>" placeholder="<%= recipe.ingredients[0] %>"></input>
+              </div>
+              <div class="mb-3">
+                <label for="measurement" class="form-label">Measurement</label>
+                <input class="form-control" id="measurement" name="measurement" value="<%= recipe.ingredients[1] %>" placeholder="<%= recipe.ingredients[1] %>"></input>
+              </div>
+            <% } else { %>
+              <% for (i=0; i<recipe.ingredientCount; i++) { %>
+                <div class="mb-3">
+                  <label for="ingredient" class="form-label">Ingredients</label>
+                  <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[0][i] %>" placeholder="<%= recipe.ingredients[0][i] %>"></input>
+                </div>
+                <div class="mb-3">
+                  <label for="measurement" class="form-label">Measurement</label>
+                  <input class="form-control" id="measurement" name="measurement" value="<%= recipe.ingredients[1][i] %>" placeholder="<%= recipe.ingredients[1][i] %>"></input>
+                </div>
+              <%}%>
             <%}%>
-            <% for (i=0; i<recipe.instructionCount; i++) { %>
-            <div class="mb-3">
-              <label for="steps" class="form-label">Instructions</label>
-              <textarea class="form-control" id="steps" name="steps"></textarea>
-            </div>
+            <% if (recipe.stepCount === 1) { %>
+              <div class="mb-3">
+                <label for="steps" class="form-label">Steps</label>
+                <input class="form-control" id="steps" name="steps" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
+              </div>
+            <% } else { %>
+              <% for (i=0; i<recipe.stepCount; i++) { %>
+                <div class="mb-3">
+                  <label for="steps" class="form-label">Steps</label>
+                  <input class="form-control" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
+                </div>
+              <%}%>
             <%}%>
             <div class="mb-3">
-              <label for="imgUpload" class="form-label">Image</label>
+              <label for="imgUpload" class="form-label">Replace Image</label>
               <input type="file" class="form-control" id="imageUpload" name="file">
             </div>
-            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            <input type="hidden" class="form-control" id="status" name="status" value="done">
+            <button type="submit" class="btn btn-primary" value="Upload">Save</button>
+          </form>
+          <div>
+            <form class="col-1" action="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" method="POST">
+              <button type="submit" class="btn btn-primary">Add Ingredient</button>
+            </form>
+          </div>
+          <div>
+            <form class="col-1" action="/recipe/subtractIngredient/<%= recipe._id %>?_method=PUT" method="POST">
+              <button type="submit" class="btn btn-primary">Subtract Ingredient</button>
+            </form>
+          </div>
+        </div>
+        <div>
+          <div>
+            <form class="col-1" action="/recipe/addStep/<%= recipe._id %>?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-primary">Add Step</button>
           </form>
         </div>
         <div>
-          <form class="col-1" action="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Add Ingredient</button>
-          </form>
-        </div>
-        <div>
-          <form class="col-1" action="/recipe/subtractIngredient/<%= recipe._id %>?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Subtract Ingredient</button>
-          </form>
-        </div>
-        <div>
-          <form class="col-1" action="/recipe/addInstruction/<%= recipe._id %>?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Add Step</button>
-          </form>
-        </div>
-        <div>
-          <form class="col-1" action="/recipe/subtractInstruction/<%= recipe._id %>?_method=PUT" method="POST">
+          <form class="col-1" action="/recipe/subtractStep/<%= recipe._id %>?_method=PUT" method="POST">
             <button type="submit" class="btn btn-primary">Subtract Step</button>
           </form>
         </div>
-      </div>
-      <div class="col-3 mt-5">
-        <p><%= recipe.note %></p>
-      </div>
-    </div>
-    <% } %>
+      <%}%>
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/recipes">Return to Recipes</a>
       <a class="btn btn-primary" href="/profile">Return to Home</a>

@@ -20,13 +20,15 @@ router.put("/rateRecipe/:id", recipesController.rateRecipe);
 
 router.put("/addIngredient/:id", recipesController.addIngredient);
 
-router.put("/addInstruction/:id", recipesController.addInstruction);
+router.put("/addStep/:id", recipesController.addStep);
 
 router.put("/subtractIngredient/:id", recipesController.subtractIngredient);
 
-router.put("/subtractInstruction/:id", recipesController.subtractInstruction);
+router.put("/subtractStep/:id", recipesController.subtractStep);
 
 router.put("/editRecipe/:id", recipesController.editRecipe);
+
+router.put("/editRecipeStatus/:id", recipesController.editRecipeStatus);
 
 router.delete("/deleteRecipe/:id", recipesController.deleteRecipe);
 

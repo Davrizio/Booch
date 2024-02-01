@@ -40,8 +40,9 @@ module.exports = {
         ingredientCount: 1,
         stepCount: 1,
         ingredients: [],
+        measurements: [],
         steps: [],
-        status: "new",
+        status: "edit",
         user: req.user.id
       });
       console.log("Recipe card has been added!");
@@ -52,6 +53,7 @@ module.exports = {
   },
   editRecipe: async (req, res) => {
     console.log(req.body);
+    let result;
     try {
       if (req.file === undefined) {
         result = await cloudinary.uploader.upload(
@@ -68,25 +70,11 @@ module.exports = {
           cloudinaryId: result.public_id,
           note: req.body.note,
           rating: 0,
-          ingredients: [req.body.ingredient, req.body.measurement],
+          ingredients: req.body.ingredient,
+          measurements: req.body.measurement,
           steps: [req.body.steps],
           status: req.body.status,
-          user: req.user.id
-        }
-      );
-      console.log("Recipe has been updated!");
-      res.redirect(`/recipe/${req.params.id}`);
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  editRecipeStatus: async (req, res) => {
-    console.log(req.body);
-    try {
-      await Recipe.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          status: req.body.status
+          user: req.user.id,
         }
       );
       console.log("Recipe has been updated!");
@@ -103,17 +91,35 @@ module.exports = {
           $inc: { rating: 1 }
         }
       );
-      console.log("Likes +1");
       res.redirect(`/recipe/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
   },
   addIngredient: async (req, res) => {
+    console.log(req.body)
+    let result;
     try {
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_recipe.png"
+        );
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
+          name: req.body.name,
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          note: req.body.note,
+          rating: 0,
+          ingredients: req.body.ingredient,
+          measurements: req.body.measurement,
+          steps: req.body.steps,
+          status: "edit",
+          user: req.user.id,
           $inc: { ingredientCount: 1 }
         }
       );
@@ -123,43 +129,96 @@ module.exports = {
     }
   },
   addStep: async (req, res) => {
+    let result;
     try {
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_recipe.png"
+        );
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
+          name: req.body.name,
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          note: req.body.note,
+          rating: 0,
+          ingredients: req.body.ingredient,
+          measurements: req.body.measurement,
+          steps: req.body.steps,
+          status: "edit",
+          user: req.user.id,
           $inc: { stepCount: 1 }
         }
       );
-      console.log("Likes +1");
-      res.redirect(`/recipe/${req.params.id}`);
+      res.redirect("back");
     } catch (err) {
       console.log(err);
     }
   },
   subtractIngredient: async (req, res) => {
+    let result;
     try {
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_recipe.png"
+        );
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
+          name: req.body.name,
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          note: req.body.note,
+          rating: 0,
+          ingredients: req.body.ingredient,
+          measurements: req.body.measurement,
+          steps: req.body.steps,
+          status: "edit",
+          user: req.user.id,
           $inc: { ingredientCount: -1 }
         }
       );
-      res.redirect(`/recipe/${req.params.id}`);
+      res.redirect("back");
     } catch (err) {
-      res.redirect(`/recipe/${req.params.id}`);
+      res.redirect("back");
     }
   },
   subtractStep: async (req, res) => {
+    let result;
     try {
+      if (req.file === undefined) {
+        result = await cloudinary.uploader.upload(
+          "./public/imgs/default_recipe.png"
+        );
+      } else {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
+          name: req.body.name,
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          note: req.body.note,
+          rating: 0,
+          ingredients: req.body.ingredient,
+          measurements: req.body.measurement,
+          steps: req.body.steps,
+          status: "edit",
+          user: req.user.id,
           $inc: { stepCount: -1 }
         }
       );
-      res.redirect(`/recipe/${req.params.id}`);
+      res.redirect("back");
     } catch (err) {
-      res.redirect(`/recipe/${req.params.id}`);
+      res.redirect("back");
     }
   },
   deleteRecipe: async (req, res) => {

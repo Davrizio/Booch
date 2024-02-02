@@ -79,14 +79,22 @@
           <%}%>
         <% } %>    
         <button type="submit" class="btn btn-primary" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT">Add Ingredient</button>
-        <% for (i=0; i<recipe.stepCount; i++) { %>
+        <% if (recipe.stepCount === 1) { %>
           <div class="mb-3">
             <label for="steps" class="form-label">Steps</label>
-            <input class="form-control" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
+            <input class="form-control" id="steps" name="steps" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
           </div>
-        <%}%>
+        <% } %>
+        <% if (recipe.stepCount > 1) { %>
+          <% for (i=0; i<recipe.stepCount; i++) { %>
+            <div class="mb-3">
+              <label for="steps" class="form-label">Steps</label>
+              <input class="form-control" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
+            </div>
+            <button type="submit" class="btn btn-primary" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Step</button>
+          <%}%>
+        <% } %>
         <button type="submit" class="btn btn-primary" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT">Add Step</button>
-        <button type="submit" class="btn btn-primary" formaction="/recipe/subtractStep/<%= recipe._id %>?_method=PUT">Subtract Step</button>
         <div class="mb-3">
           <label for="imgUpload" class="form-label">Replace Image</label>
           <input type="file" class="form-control" id="imageUpload" name="file">

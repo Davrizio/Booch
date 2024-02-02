@@ -24,7 +24,7 @@ router.put("/addStep/:id", recipesController.addStep);
 
 router.put("/subtractIngredient/:id/:num", recipesController.subtractIngredient);
 
-router.put("/subtractStep/:id", recipesController.subtractStep);
+router.put("/subtractStep/:id/:num", recipesController.subtractStep);
 
 router.put("/editRecipe/:id", recipesController.editRecipe);
 

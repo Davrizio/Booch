@@ -54,8 +54,8 @@
         <div class="mb-3">
           <label for="note" class="form-label">Note</label>
           <input class="form-control" id="note" name="note" value="<%= recipe.note %>" placeholder="<%= recipe.note %>"></input>
-        </div>      
-        <% for (i=0; i<recipe.ingredientCount; i++) { %>
+        </div> 
+        <% if (recipe.ingredientCount === 1) { %>
           <div class="mb-3">
             <label for="ingredient" class="form-label">Ingredients</label>
             <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
@@ -64,9 +64,21 @@
             <label for="measurement" class="form-label">Measurement</label>
             <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
           </div>
-        <%}%>
+        <% } %>
+        <% if (recipe.ingredientCount > 1) { %>
+          <% for (i=0; i<recipe.ingredientCount; i++) { %>
+            <div class="mb-3">
+              <label for="ingredient" class="form-label">Ingredients</label>
+              <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
+            </div>
+            <div class="mb-3">
+              <label for="measurement" class="form-label">Measurement</label>
+              <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
+            </div>
+            <button type="submit" class="btn btn-primary" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Ingredient</button>
+          <%}%>
+        <% } %>    
         <button type="submit" class="btn btn-primary" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT">Add Ingredient</button>
-        <button type="submit" class="btn btn-primary" formaction="/recipe/subtractIngredient/<%= recipe._id %>?_method=PUT">Subtract Ingredient</button>
         <% for (i=0; i<recipe.stepCount; i++) { %>
           <div class="mb-3">
             <label for="steps" class="form-label">Steps</label>

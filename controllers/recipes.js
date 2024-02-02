@@ -160,6 +160,9 @@ module.exports = {
     }
   },
   subtractIngredient: async (req, res) => {
+    console.log(req.params.num)
+    let ingredientList = req.body.ingredient.filter((el,idx,arr) => idx != req.params.num);
+    let measurementList = req.body.measurement.filter((el,idx,arr) => idx != req.params.num);
     let result;
     try {
       if (req.file === undefined) {
@@ -177,8 +180,8 @@ module.exports = {
           cloudinaryId: result.public_id,
           note: req.body.note,
           rating: 0,
-          ingredients: req.body.ingredient,
-          measurements: req.body.measurement,
+          ingredients: ingredientList,
+          measurements: measurementList,
           steps: req.body.steps,
           status: "edit",
           user: req.user.id,

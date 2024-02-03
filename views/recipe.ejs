@@ -20,12 +20,12 @@
       <h1><%= recipe.name %></h1>
       <h2><%= recipe.note %></h2>
     <% if (recipe.ingredientCount === 1) { %>
-      <h3><%= recipe.ingredients[0] %></h3>
-      <h3><%= recipe.ingredients[1] %></h3>
+      <h3><%= recipe.ingredients[i] %></h3>
+      <h3><%= recipe.measurements[i] %></h3>
     <% } else {%>
       <% for (i=0; i<recipe.ingredientCount; i++) { %>
-        <h3><%= recipe.ingredients[0][i] %></h3>
-        <h3><%= recipe.ingredients[1][i] %></h3>
+        <h3><%= recipe.ingredients[i] %></h3>
+        <h3><%= recipe.measurements[i] %></h3>
       <%}%>
     <% } %>
     <% if (recipe.stepCount === 1) { %>

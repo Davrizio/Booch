@@ -63,7 +63,7 @@ module.exports = {
       await Brew.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { rating: 1 }
+          rating: req.body.rating
         }
       );
       console.log("Likes +1");

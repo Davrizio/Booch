@@ -1,0 +1,39 @@
+.rate button, .rate button:hover ~ button {
+  color: #222;
+  text-shadow: none;
+  transition: color 200ms,
+              text-shadow 200ms;
+  transition-delay: 0;
+}
+
+.rate:hover button {
+  color: #fc0;
+  text-shadow: #fc0 0 0 20px;
+}
+
+.rate:hover button:nth-child(2) {
+  transition-delay: 30ms;
+}
+
+.rate:hover button:nth-child(3) {
+  transition-delay: 60ms;
+}
+
+.rate:hover button:nth-child(4) {
+  transition-delay: 90ms;
+}
+
+.rate:hover button:nth-child(5) {
+  transition-delay: 120ms;
+}
+
+#rated {
+  color: #fc0;
+  text-shadow: #fc0 0 0 20px;
+}
+
+/* Miscellaneous styles. */
+.rate button {
+  cursor: pointer;
+  font-style: normal;
+}

@@ -1,13 +1,59 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-6">
+    <div class="col-6">Recipe
       <img class="img-fluid" src="<%= recipe.image%>" />
       <div class="row justify-content-between">
         <form class="col-1" action="/recipe/rateRecipe/<%= recipe.id %>?_method=PUT" method="POST">
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          <div class="rate">
+            <% let ratedRecipeOne = "rate" %>
+            <% let ratedRecipeTwo = "rate" %>
+            <% let ratedRecipeThree = "rate" %>
+            <% let ratedRecipeFour = "rate" %>
+            <% let ratedRecipeFive = "rate" %>
+
+            <% if (recipe.rating === 5) { %>
+              <% ratedRecipeFive = "rated" %>
+              <% ratedRecipeFour = "rated" %>
+              <% ratedRecipeThree = "rated" %>
+              <% ratedRecipeTwo = "rated" %>
+              <% ratedRecipeOne = "rated" %>
+            <% } %>
+            <% if (recipe.rating === 4) { %>
+              <% ratedRecipeFive = "" %>
+              <% ratedRecipeFour = "rated" %>
+              <% ratedRecipeThree = "rated" %>
+              <% ratedRecipeTwo = "rated" %>
+              <% ratedRecipeOne = "rated" %>
+            <% } %>
+            <% if (recipe.rating === 3) { %>
+              <% ratedRecipeFive = "" %>
+              <% ratedRecipeFour = "" %>
+              <% ratedRecipeThree = "rated" %>
+              <% ratedRecipeTwo = "rated" %>
+              <% ratedRecipeOne = "rated" %>
+            <% } %>
+            <% if (recipe.rating === 2) { %>
+              <% ratedRecipeFive = "" %>
+              <% ratedRecipeFour = "" %>
+              <% ratedRecipeThree = "" %>
+              <% ratedRecipeTwo = "rated" %>
+              <% ratedRecipeOne = "rated" %>
+            <% } %>
+            <% if (recipe.rating === 1) { %>
+              <% ratedRecipeFive = "" %>
+              <% ratedRecipeFour = "" %>
+              <% ratedRecipeThree = "" %>
+              <% ratedRecipeTwo = "" %>
+              <% ratedRecipeOne = "rated" %>
+            <% } %>
+            <button type="submit" value="1" name="rating" class="btn btn-med" id="<%= ratedRecipeOne %>">★</button>
+            <button type="submit" value="2" name="rating" class="btn btn-med" id="<%= ratedRecipeTwo %>">★</button>
+            <button type="submit" value="3" name="rating" class="btn btn-med" id="<%= ratedRecipeThree %>">★</button>
+            <button type="submit" value="4" name="rating" class="btn btn-med" id="<%= ratedRecipeFour %>">★</button>
+            <button type="submit" value="5" name="rating" class="btn btn-med" id="<%= ratedRecipeFive %>">★</button>
+          </div>
         </form>
-        <h3 class="col-3">Likes: <%= recipe.rating %></h3>
         <%if(recipe.user == user.id){ %>
         <form action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE" method="POST" class="col-3">
           <button class="btn btn-primary fa fa-trash" type="submit"></button>

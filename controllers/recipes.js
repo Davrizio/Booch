@@ -87,7 +87,7 @@ module.exports = {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { rating: 1 }
+          rating: req.body.rating
         }
       );
       res.redirect(`/recipe/${req.params.id}`);

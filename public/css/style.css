@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .rate button, .rate button:hover ~ button {
   color: #222;
   text-shadow: none;

@@ -27,6 +27,10 @@ app.set("view engine", "ejs");
 //Static Folder
 app.use(express.static("public"));
 
+app.get('/flowbite.min.js', function(req, res) {
+  res.sendFile(__dirname + '/node_modules/flowbite/dist/flowbite.min.js');
+})
+
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

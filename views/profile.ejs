@@ -5,9 +5,9 @@
       <div>
         <p><strong>User Name</strong>: <%= user.userName %></p>
         <p><strong>Email</strong>: <%= user.email %></p>
-        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        <a href="/logout" class="relative z-0 h-12 rounded-full bg-blue-500 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-blue-500 hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500">Logout</a>
       </div>
-      <div class="mt-5">
+      <div class="mt-24">
         <h2>Add a brew</h2>
         <form action="/brew/createBrew" enctype="multipart/form-data" method="POST">
           <div class="mb-3">
@@ -27,20 +27,8 @@
             <textarea class="form-control" id="avgTemp" name="avgTemp"></textarea>
           </div>
           <div class="mb-3">
-            <label for="rating" class="form-label">Ambient Temp</label>
-            <textarea class="form-control" id="rating" name="rating"></textarea>
-          </div>
-          <div class="mb-3">
             <label for="firstFerment" class="form-label">1st ferment date</label>
             <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="firstFerment" name="firstFerment" />
-          </div>
-          <div class="mb-3">
-            <label for="secondFerment" class="form-label">2nd ferment date</label>
-            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="secondFerment" name="secondFerment" />
-          </div>
-          <div class="mb-3">
-            <label for="thirdFerment" class="form-label">3rd ferment date</label>
-            <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered w-full" id="thirdFerment" name="thirdFerment" />
           </div>
           <div class="mb-3">
             <label for="imgUpload" class="form-label">Image</label>
@@ -62,7 +50,7 @@
         <% } %>
       </ul>
     </div>
-    <div class="col-6 mt-5">
+    <div class="col-6 mt-24">
       <a class="btn btn-primary" href="/recipes">Recipes</a>
     </div>
   </div>

@@ -65,6 +65,22 @@ exports.getSignup = (req, res) => {
   });
 };
 
+let result;
+
+async function createImage(){
+  try {
+    if (req.file === undefined) {
+      result = await cloudinary.uploader.upload(
+        "./public/imgs/default_brew.png"
+      );
+    } else {
+      result = await cloudinary.uploader.upload(req.file.path);
+    };
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 exports.postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -84,10 +100,14 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
+  createImage();
+
   const user = new User({
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    image: result.secure_url,
+    cloudinaryId: result.public_id,
   });
 
   User.findOne(

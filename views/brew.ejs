@@ -1,122 +1,108 @@
   <%- include('partials/header') -%>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-6">
-        <h2><%= brew.name %></h2>
-        <img class="img-fluid" src="<%= brew.image%>" />
-        <div class="row justify-content-between">
-          <form class="col-1" action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST">
-            <div class="rate">
-              <% let ratedOne = "rate" %>
-              <% let ratedTwo = "rate" %>
-              <% let ratedThree = "rate" %>
-              <% let ratedFour = "rate" %>
-              <% let ratedFive = "rate" %>
-
-              <% if (brew.rating === 5) { %>
-                <% ratedFive = "rated" %>
-                <% ratedFour = "rated" %>
-                <% ratedThree = "rated" %>
-                <% ratedTwo = "rated" %>
-                <% ratedOne = "rated" %>
-              <% } %>
-              <% if (brew.rating === 4) { %>
-                <% ratedFive = "" %>
-                <% ratedFour = "rated" %>
-                <% ratedThree = "rated" %>
-                <% ratedTwo = "rated" %>
-                <% ratedOne = "rated" %>
-              <% } %>
-              <% if (brew.rating === 3) { %>
-                <% ratedFive = "" %>
-                <% ratedFour = "" %>
-                <% ratedThree = "rated" %>
-                <% ratedTwo = "rated" %>
-                <% ratedOne = "rated" %>
-              <% } %>
-              <% if (brew.rating === 2) { %>
-                <% ratedFive = "" %>
-                <% ratedFour = "" %>
-                <% ratedThree = "" %>
-                <% ratedTwo = "rated" %>
-                <% ratedOne = "rated" %>
-              <% } %>
-              <% if (brew.rating === 1) { %>
-                <% ratedFive = "" %>
-                <% ratedFour = "" %>
-                <% ratedThree = "" %>
-                <% ratedTwo = "" %>
-                <% ratedOne = "rated" %>
-              <% } %>
-              <button type="submit" value="1" name="rating" class="btn btn-med" id="<%= ratedOne %>">★</button>
-              <button type="submit" value="2" name="rating" class="btn btn-med" id="<%= ratedTwo %>">★</button>
-              <button type="submit" value="3" name="rating" class="btn btn-med" id="<%= ratedThree %>">★</button>
-              <button type="submit" value="4" name="rating" class="btn btn-med" id="<%= ratedFour %>">★</button>
-              <button type="submit" value="5" name="rating" class="btn btn-med" id="<%= ratedFive %>">★</button>
+  <div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">      
+      <div class="grid grid-cols-1 grid-rows-2 place-items-center rounded">
+        <div class="flex md:h-96 md:min-w-full flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <img class="object-cover w-full rounded-t-lg h-96 md:h-full md:w-64 md:rounded-none md:rounded-s-lg" src="<%= brew.image %>" alt="brew image">
+          <div class="flex flex-col justify-between p-4 leading-normal">
+            <h1 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brew.name %></h1>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brew.tea %></h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brew.avgTemp %></h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= brew.note %></p>
+            <div class="flex items-center  mb-5">
+              <form action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST">
+                <div class="rate">
+                  <% let ratedOne = "rate" %>
+                  <% let ratedTwo = "rate" %>
+                  <% let ratedThree = "rate" %>
+                  <% let ratedFour = "rate" %>
+                  <% let ratedFive = "rate" %>
+      
+                  <% if (brew.rating === 5) { %>
+                    <% ratedFive = "rated" %>
+                    <% ratedFour = "rated" %>
+                    <% ratedThree = "rated" %>
+                    <% ratedTwo = "rated" %>
+                    <% ratedOne = "rated" %>
+                  <% } %>
+                  <% if (brew.rating === 4) { %>
+                    <% ratedFive = "" %>
+                    <% ratedFour = "rated" %>
+                    <% ratedThree = "rated" %>
+                    <% ratedTwo = "rated" %>
+                    <% ratedOne = "rated" %>
+                  <% } %>
+                  <% if (brew.rating === 3) { %>
+                    <% ratedFive = "" %>
+                    <% ratedFour = "" %>
+                    <% ratedThree = "rated" %>
+                    <% ratedTwo = "rated" %>
+                    <% ratedOne = "rated" %>
+                  <% } %>
+                  <% if (brew.rating === 2) { %>
+                    <% ratedFive = "" %>
+                    <% ratedFour = "" %>
+                    <% ratedThree = "" %>
+                    <% ratedTwo = "rated" %>
+                    <% ratedOne = "rated" %>
+                  <% } %>
+                  <% if (brew.rating === 1) { %>
+                    <% ratedFive = "" %>
+                    <% ratedFour = "" %>
+                    <% ratedThree = "" %>
+                    <% ratedTwo = "" %>
+                    <% ratedOne = "rated" %>
+                  <% } %>
+                  <button type="submit" value="1" name="rating" class="btn btn-med" >
+                    <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedOne %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  </button>
+                  <button type="submit" value="2" name="rating" class="btn btn-med">
+                    <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedTwo %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  </button>
+                  <button type="submit" value="3" name="rating" class="btn btn-med">
+                    <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedThree %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  </button>
+                  <button type="submit" value="4" name="rating" class="btn btn-med">
+                    <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedFour %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  </button>
+                  <button type="submit" value="5" name="rating" class="btn btn-med">
+                    <svg class="w-6 h-6 ms-2" id="<%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
           <%if(brew.user == user.id){ %>
-          <form action="/brew/deleteBrew/<%= brew.id %>?_method=DELETE" method="POST" class="col-3">
-            <button class="btn btn-primary fa fa-trash" type="submit"></button>
-          </form>
+            <form action="/brew/deleteBrew/<%= brew.id %>?_method=DELETE" method="POST" class="col-3">
+              <button class="btn btn-primary fa fa-trash" type="submit"></button>
+            </form>
           <%}%>
         </div>
-      </div>
-      <div class="col-3 mt-5">
-        <p><%= brew.note %></p>
-        <h3><%= brew.tea %></h3>
-        <h3><%= brew.avgTemp %></h3>
-        <h3><%= brew.firstFerment %></h3>
-        <h3><%= brew.secondFerment %></h3>
-        <h3><%= brew.thirdFerment %></h3>
-<%# have previous ferment dates display DONE! after date has passed %>
-        
-        <div class="col-6 mt-5">
-          <a class="btn btn-primary" href="/profile">Return to Profile</a>
+        <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <form class="space-y-6" action="#">
+              <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
+              <div>
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                  <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+              </div>
+              <div>
+                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                  <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+              </div>
+              <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+          </form>
         </div>
-      </div>
-      <div>
-        <div>
-          <h2>Edit Brew</h2>
-        </div>
-        <form action="/brew/editBrew/<%= brew._id %>?_method=PUT" method="POST">
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="<%= brew.name %>" placeholder="<%= brew.name %>">
-          </div>
-          <div class="mb-3">
-            <label for="note" class="form-label">Note</label>
-            <textarea class="form-control" id="note" name="note" value="<%= brew.note %>" placeholder="<%= brew.note %>"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="tea" class="form-label">Tea</label>
-            <textarea class="form-control" id="tea" name="tea" value="<%= brew.tea %>" placeholder="<%= brew.tea %>"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="avgTemp" class="form-label">Ambient Temp</label>
-            <textarea class="form-control" id="avgTemp" name="avgTemp" value="<%= brew.avgTemp %>" placeholder="<%= brew.avgTemp %>"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="firstFerment" class="form-label">1st ferment date</label>
-            <input type="datetime-local" placeholder="<%= brew.firstFerment %>" class="input input-bordered w-full" id="firstFerment" name="firstFerment" />
-          </div>
-          <div class="mb-3">
-            <label for="secondFerment" class="form-label">2nd ferment date</label>
-            <input type="datetime-local" placeholder="<%= brew.secondFerment %>" class="input input-bordered w-full" id="secondFerment" name="secondFerment" />
-          </div>
-          <div class="mb-3">
-            <label for="thirdFerment" class="form-label">3rd ferment date</label>
-            <input type="datetime-local" placeholder="<%= brew.thirdFerment %>" class="input input-bordered w-full" id="thirdFerment" name="thirdFerment" />
-          </div>
-          <div class="mb-3">
-            <label for="imgUpload" class="form-label">Replace photo</label>
-            <input type="file" class="form-control" id="imageUpload" name="file">
-          </div>
-          <button type="submit" class="btn btn-primary" value="Upload">Save</button>
-        </form>
-      </div>
       </div>
     </div>
   </div>
-
   <%- include('partials/footer') -%>

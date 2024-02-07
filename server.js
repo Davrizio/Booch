@@ -27,8 +27,14 @@ app.set("view engine", "ejs");
 //Static Folder
 app.use(express.static("public"));
 
+//Flowbite
 app.get('/flowbite.min.js', function(req, res) {
   res.sendFile(__dirname + '/node_modules/flowbite/dist/flowbite.min.js');
+})
+
+//Flowbite DatePicker
+app.get('/datepicker.js', function(req, res) {
+  res.sendFile(__dirname + '/node_modules/flowbite/dist/datepicker.js');
 })
 
 //Body Parsing

@@ -3,13 +3,13 @@
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">      
       <div class="flex flex-col items-center justify-center rounded">
         <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg mb-12 shadow md:flex-row md:h-96 md:w-5/6 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <img class="object-cover w-full rounded-t-lg h-96 md:h-full md:w-96 md:rounded-none md:rounded-s-lg" src="<%= brew.image %>" alt="brew image">
-          <div class="flex flex-col justify-between p-4 leading-normal">
+          <img class="object-cover w-full rounded-t-lg h-96 md:w-48 lg:w-96 md:rounded-none md:rounded-s-lg" src="<%= brew.image %>" alt="brew image">
+          <div class="flex flex-col w-full justify-between p-4 leading-normal">
             <h1 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brew.name %></h1>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Tea type: <%= brew.tea %></h5>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Average temp <%= brew.avgTemp %>°</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= brew.note %></p>
-            <div class="flex items-center mb-5">
+            <p class="mb-6 h-24 font-normal text-gray-700 dark:text-gray-400"><%= brew.note %></p>
+            <div class="flex items-center my-4">
               <form action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST">
                 <div class="rate">
                   <% let ratedOne = "rate" %>
@@ -53,27 +53,27 @@
                     <% ratedTwo = "" %>
                     <% ratedOne = "rated" %>
                   <% } %>
-                  <button type="submit" value="1" name="rating" class="btn btn-med" >
+                  <button type="submit" value="1" name="rating">
                     <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedOne %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
                   </button>
-                  <button type="submit" value="2" name="rating" class="btn btn-med">
+                  <button type="submit" value="2" name="rating">
                     <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedTwo %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
                   </button>
-                  <button type="submit" value="3" name="rating" class="btn btn-med">
+                  <button type="submit" value="3" name="rating">
                     <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedThree %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
                   </button>
-                  <button type="submit" value="4" name="rating" class="btn btn-med">
+                  <button type="submit" value="4" name="rating">
                     <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedFour %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
                   </button>
-                  <button type="submit" value="5" name="rating" class="btn btn-med">
+                  <button type="submit" value="5" name="rating">
                     <svg class="w-6 h-6 ms-2" id="<%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
@@ -81,12 +81,11 @@
                 </div>
               </form>
             </div>
-          </div>
-          <%if(brew.user == user.id){ %>
-            <form action="/brew/deleteBrew/<%= brew.id %>?_method=DELETE" method="POST" class="col-3">
-              <button class="btn btn-primary fa fa-trash" type="submit"></button>
+            <form action="/brew/deleteBrew/<%= brew.id %>?_method=DELETE" method="post" class="place-self-end mt-4">
+              <button class="btn fa fa-trash" type="submit"></button>
             </form>
-          <%}%>
+          </div>
+         
         </div>
         <div class=" w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 md:max-w-2xl dark:bg-gray-800 dark:border-gray-700">
           <div class="mb-4">

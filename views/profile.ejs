@@ -1,29 +1,27 @@
 <%- include('partials/header') -%>
 <div class="p-4 sm:ml-64">
-  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">      
-    <div class="flex justify-center min-h-screen mb-4 rounded bg-gray-50 dark:bg-gray-800">
-      <div class="grid grid-flow-row grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-4">
-        <% for(var i=0; i<brews.length; i++) {%> 
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="/brew/<%= brews[i]._id%>">
-              <img class="rounded-t-lg" src="<%= brews[i].image%>" alt="brew image" />
-          </a>
-          <div class="p-5">
-              <a href="/brew/<%= brews[i]._id%>">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brews[i].name%></h5>
-              </a>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= brews[i].note%></p>
-              <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Read more
-                   <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                  </svg>
-              </a>
+  <div class="grid grid-flow-row grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-4 p-4 mt-14">      
+        <% for(var i=0; i<brews.length; i++) {%>
+          <div class="group w-96 h-96 perspective-1000">
+            <div class="relative w-full h-full transition-all duration-700 transform-style-3d group-hover:rotate-y-180"> 
+              <div class="flex flex-col justify-center absolute w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div class="absolute border-red-600">
+                  <img class="h-full w-full object-cover" src="<%= brews[i].image%>" alt="brew image" />
+                </div>
+                <div class="">
+                    <a href="/brew/<%= brews[i]._id%>">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brews[i].name%></h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= brews[i].note%></p>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center absolute backface-hidden w-full h-full rotate-y-180 bg-red-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <p>BACK</p>
+                <p>Leave Me</p>
+              </div>
+            </div>
           </div>
-        </div>
         <% } %>
-      </div>
-    </div>      
   </div>
 </div>
 <%- include('partials/footer') -%>

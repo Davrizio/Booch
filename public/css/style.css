@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; 
 
+/* For rating animation and style */
 .rate button, .rate button:hover ~ button {
   color: #222;
   text-shadow: none;
@@ -36,7 +37,6 @@
   text-shadow: #fc0 0 0 20px;
 }
 
-/* Miscellaneous styles. */
 .rate button {
   cursor: pointer;
   font-style: normal;

@@ -1,158 +1,177 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">Recipe
-      <img class="img-fluid" src="<%= recipe.image%>" />
-      <div class="row justify-content-between">
-        <form class="col-1" action="/recipe/rateRecipe/<%= recipe.id %>?_method=PUT" method="POST">
-          <div class="rate">
-            <% let ratedRecipeOne = "rate" %>
-            <% let ratedRecipeTwo = "rate" %>
-            <% let ratedRecipeThree = "rate" %>
-            <% let ratedRecipeFour = "rate" %>
-            <% let ratedRecipeFive = "rate" %>
-
-            <% if (recipe.rating === 5) { %>
-              <% ratedRecipeFive = "rated" %>
-              <% ratedRecipeFour = "rated" %>
-              <% ratedRecipeThree = "rated" %>
-              <% ratedRecipeTwo = "rated" %>
-              <% ratedRecipeOne = "rated" %>
-            <% } %>
-            <% if (recipe.rating === 4) { %>
-              <% ratedRecipeFive = "" %>
-              <% ratedRecipeFour = "rated" %>
-              <% ratedRecipeThree = "rated" %>
-              <% ratedRecipeTwo = "rated" %>
-              <% ratedRecipeOne = "rated" %>
-            <% } %>
-            <% if (recipe.rating === 3) { %>
-              <% ratedRecipeFive = "" %>
-              <% ratedRecipeFour = "" %>
-              <% ratedRecipeThree = "rated" %>
-              <% ratedRecipeTwo = "rated" %>
-              <% ratedRecipeOne = "rated" %>
-            <% } %>
-            <% if (recipe.rating === 2) { %>
-              <% ratedRecipeFive = "" %>
-              <% ratedRecipeFour = "" %>
-              <% ratedRecipeThree = "" %>
-              <% ratedRecipeTwo = "rated" %>
-              <% ratedRecipeOne = "rated" %>
-            <% } %>
-            <% if (recipe.rating === 1) { %>
-              <% ratedRecipeFive = "" %>
-              <% ratedRecipeFour = "" %>
-              <% ratedRecipeThree = "" %>
-              <% ratedRecipeTwo = "" %>
-              <% ratedRecipeOne = "rated" %>
-            <% } %>
-            <button type="submit" value="1" name="rating" class="btn btn-med" id="<%= ratedRecipeOne %>">★</button>
-            <button type="submit" value="2" name="rating" class="btn btn-med" id="<%= ratedRecipeTwo %>">★</button>
-            <button type="submit" value="3" name="rating" class="btn btn-med" id="<%= ratedRecipeThree %>">★</button>
-            <button type="submit" value="4" name="rating" class="btn btn-med" id="<%= ratedRecipeFour %>">★</button>
-            <button type="submit" value="5" name="rating" class="btn btn-med" id="<%= ratedRecipeFive %>">★</button>
+<div class="p-4 sm:ml-64">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">      
+    <div class="flex flex-col items-center justify-center rounded">
+      <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg mb-12 shadow md:flex-row md:h-96 md:w-5/6 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <img class="object-cover w-full rounded-t-lg h-96 md:w-48 lg:w-96 md:rounded-none md:rounded-s-lg" src="<%= recipe.image %>" alt="brew image">
+        <div class="flex flex-col w-full justify-between p-4 leading-normal">
+          <h1 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white"><%= recipe.name %></h1>
+          <p class="mb-6 h-24 font-normal text-gray-700 dark:text-gray-400"><%= recipe.note %></p>
+          <div class="flex items-center my-4">
+            <form action="/brew/rateBrew/<%= recipe.id %>?_method=PUT" method="POST">
+              <div class="rate">
+                <% let ratedOne = "rate" %>
+                <% let ratedTwo = "rate" %>
+                <% let ratedThree = "rate" %>
+                <% let ratedFour = "rate" %>
+                <% let ratedFive = "rate" %>
+    
+                <% if (recipe.rating === 5) { %>
+                  <% ratedFive = "rated" %>
+                  <% ratedFour = "rated" %>
+                  <% ratedThree = "rated" %>
+                  <% ratedTwo = "rated" %>
+                  <% ratedOne = "rated" %>
+                <% } %>
+                <% if (recipe.rating === 4) { %>
+                  <% ratedFive = "" %>
+                  <% ratedFour = "rated" %>
+                  <% ratedThree = "rated" %>
+                  <% ratedTwo = "rated" %>
+                  <% ratedOne = "rated" %>
+                <% } %>
+                <% if (recipe.rating === 3) { %>
+                  <% ratedFive = "" %>
+                  <% ratedFour = "" %>
+                  <% ratedThree = "rated" %>
+                  <% ratedTwo = "rated" %>
+                  <% ratedOne = "rated" %>
+                <% } %>
+                <% if (recipe.rating === 2) { %>
+                  <% ratedFive = "" %>
+                  <% ratedFour = "" %>
+                  <% ratedThree = "" %>
+                  <% ratedTwo = "rated" %>
+                  <% ratedOne = "rated" %>
+                <% } %>
+                <% if (recipe.rating === 1) { %>
+                  <% ratedFive = "" %>
+                  <% ratedFour = "" %>
+                  <% ratedThree = "" %>
+                  <% ratedTwo = "" %>
+                  <% ratedOne = "rated" %>
+                <% } %>
+                <button type="submit" value="1" name="rating">
+                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedOne %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                </button>
+                <button type="submit" value="2" name="rating">
+                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedTwo %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                </button>
+                <button type="submit" value="3" name="rating">
+                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedThree %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                </button>
+                <button type="submit" value="4" name="rating">
+                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedFour %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                </button>
+                <button type="submit" value="5" name="rating">
+                  <svg class="w-6 h-6 ms-2" id="<%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  </svg>
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-        <%if(recipe.user == user.id){ %>
-        <form action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE" method="POST" class="col-3">
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
+          <div>
+            <form class="col-1" action="/recipe/editRecipeStatus/<%= recipe._id %>?_method=PUT" method="POST">
+              <input type="hidden" class="form-control" id="status" name="status" value="edit">
+              <button type="submit" class="btn btn-primary">EDIT</button>
+            </form>
+          </div>
+          <form action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE" method="post" class="place-self-end mt-4">
+            <button class="btn fa fa-trash" type="submit"></button>
+          </form>
+        </div>
+      </div>
+      <div class=" w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 md:max-w-2xl dark:bg-gray-800 dark:border-gray-700">
+          <% if (recipe.status === "edit") { %>
+            <div class="mt-5">
+              <h2>Edit <%= recipe.name %></h2>
+              <form class="grid grid-flow-col md:grid-flow-row grid-rows-12 gap-2 md:grid-rows-6 grid-cols-1 md:grid-cols-2" action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Edit Name</label>
+                  <input type="text" class="form-control" id="name" name="name" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
+                </div>
+                <div class="mb-3">
+                  <label for="note" class="form-label">Note</label>
+                  <input class="form-control" id="note" name="note" value="<%= recipe.note %>" placeholder="<%= recipe.note %>"></input>
+                </div> 
+                <% if (recipe.ingredientCount === 1) { %>
+                  <div class="mb-3">
+                    <label for="ingredient" class="form-label">Ingredients</label>
+                    <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
+                  </div>
+                  <div class="mb-3">
+                    <label for="measurement" class="form-label">Measurement</label>
+                    <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
+                  </div>
+                <% } %>
+                <% if (recipe.ingredientCount > 1) { %>
+                  <% for (i=0; i<recipe.ingredientCount; i++) { %>
+                    <div class="mb-3">
+                      <label for="ingredient" class="form-label">Ingredients</label>
+                      <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
+                    </div>
+                    <div class="mb-3">
+                      <label for="measurement" class="form-label">Measurement</label>
+                      <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Ingredient</button>
+                  <%}%>
+                <% } %>    
+                <button type="submit" class="btn btn-primary" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT">Add Ingredient</button>
+                <% if (recipe.stepCount === 1) { %>
+                  <div class="mb-3">
+                    <label for="steps" class="form-label">Steps</label>
+                    <input class="form-control" id="steps" name="steps" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
+                  </div>
+                <% } %>
+                <% if (recipe.stepCount > 1) { %>
+                  <% for (i=0; i<recipe.stepCount; i++) { %>
+                    <div class="mb-3">
+                      <label for="steps" class="form-label">Steps</label>
+                      <input class="form-control" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
+                    </div>
+                    <button type="submit" class="btn btn-primary" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Step</button>
+                  <%}%>
+                <% } %>
+                <button type="submit" class="btn btn-primary" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT">Add Step</button>
+                <div class="mb-3">
+                  <label for="imgUpload" class="form-label">Replace Image</label>
+                  <input type="file" class="form-control" id="imageUpload" name="file">
+                </div>
+                <input type="hidden" class="form-control" id="status" name="status" value="done">
+                <button type="submit" class="btn btn-primary" value="Upload">Save</button>
+              </form>
+            </div>
+          <%}%>
+          <% if (recipe.status === "done") { %>
+          <% if (recipe.ingredientCount === 1) { %>
+            <h3><%= recipe.ingredients[i] %></h3>
+            <h3><%= recipe.measurements[i] %></h3>
+          <% } else {%>
+            <% for (i=0; i<recipe.ingredientCount; i++) { %>
+              <h3><%= recipe.ingredients[i] %></h3>
+              <h3><%= recipe.measurements[i] %></h3>
+            <%}%>
+          <% } %>
+          <% if (recipe.stepCount === 1) { %>
+            <h3><%= recipe.steps %></h3>
+          <% } else {%>
+            <% for (i=0; i<recipe.stepCount; i++) { %>
+              <h3><%= recipe.steps[0][i] %></h3>
+            <%}%>
+          <%}%>
         <%}%>
       </div>
     </div>
-<%# View recipe entry %>
-  <% if (recipe.status === "done") { %>
-      <h1><%= recipe.name %></h1>
-      <h2><%= recipe.note %></h2>
-    <% if (recipe.ingredientCount === 1) { %>
-      <h3><%= recipe.ingredients[i] %></h3>
-      <h3><%= recipe.measurements[i] %></h3>
-    <% } else {%>
-      <% for (i=0; i<recipe.ingredientCount; i++) { %>
-        <h3><%= recipe.ingredients[i] %></h3>
-        <h3><%= recipe.measurements[i] %></h3>
-      <%}%>
-    <% } %>
-    <% if (recipe.stepCount === 1) { %>
-      <h3><%= recipe.steps %></h3>
-    <% } else {%>
-      <% for (i=0; i<recipe.stepCount; i++) { %>
-        <h3><%= recipe.steps[0][i] %></h3>
-      <%}%>
-    <%}%>
-    <div>
-      <form class="col-1" action="/recipe/editRecipeStatus/<%= recipe._id %>?_method=PUT" method="POST">
-        <input type="hidden" class="form-control" id="status" name="status" value="edit">
-        <button type="submit" class="btn btn-primary">EDIT</button>
-      </form>
-    </div>
-  <%}%>
-  <%# EDIT recipe %>
-  <% if (recipe.status === "edit") { %>
-    <div class="mt-5">
-      <h2>Edit <%= recipe.name %></h2>
-      <form action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="POST">
-        <div class="mb-3">
-          <label for="name" class="form-label">Edit Name</label>
-          <input type="text" class="form-control" id="name" name="name" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
-        </div>
-        <div class="mb-3">
-          <label for="note" class="form-label">Note</label>
-          <input class="form-control" id="note" name="note" value="<%= recipe.note %>" placeholder="<%= recipe.note %>"></input>
-        </div> 
-        <% if (recipe.ingredientCount === 1) { %>
-          <div class="mb-3">
-            <label for="ingredient" class="form-label">Ingredients</label>
-            <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
-          </div>
-          <div class="mb-3">
-            <label for="measurement" class="form-label">Measurement</label>
-            <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
-          </div>
-        <% } %>
-        <% if (recipe.ingredientCount > 1) { %>
-          <% for (i=0; i<recipe.ingredientCount; i++) { %>
-            <div class="mb-3">
-              <label for="ingredient" class="form-label">Ingredients</label>
-              <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
-            </div>
-            <div class="mb-3">
-              <label for="measurement" class="form-label">Measurement</label>
-              <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
-            </div>
-            <button type="submit" class="btn btn-primary" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Ingredient</button>
-          <%}%>
-        <% } %>    
-        <button type="submit" class="btn btn-primary" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT">Add Ingredient</button>
-        <% if (recipe.stepCount === 1) { %>
-          <div class="mb-3">
-            <label for="steps" class="form-label">Steps</label>
-            <input class="form-control" id="steps" name="steps" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
-          </div>
-        <% } %>
-        <% if (recipe.stepCount > 1) { %>
-          <% for (i=0; i<recipe.stepCount; i++) { %>
-            <div class="mb-3">
-              <label for="steps" class="form-label">Steps</label>
-              <input class="form-control" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
-            </div>
-            <button type="submit" class="btn btn-primary" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Step</button>
-          <%}%>
-        <% } %>
-        <button type="submit" class="btn btn-primary" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT">Add Step</button>
-        <div class="mb-3">
-          <label for="imgUpload" class="form-label">Replace Image</label>
-          <input type="file" class="form-control" id="imageUpload" name="file">
-        </div>
-        <input type="hidden" class="form-control" id="status" name="status" value="done">
-        <button type="submit" class="btn btn-primary" value="Upload">Save</button>
-      </form>
-    </div>
-  <%}%>
-  <div class="col-6 mt-5">
-    <a class="btn btn-primary" href="/recipes">Return to Recipes</a>
-    <a class="btn btn-primary" href="/profile">Return to Home</a>
   </div>
 </div>
 <%- include('partials/footer') -%>

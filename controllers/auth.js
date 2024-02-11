@@ -1,17 +1,20 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const cloudinary = require("../middleware/cloudinary");
+const bcrypt = require("bcrypt");
 
-exports.getLogin = (req, res) => {
+module.exports = {
+ getLogin: (req, res) => {
   if (req.user) {
     return res.redirect("/profile");
   }
   res.render("login", {
     title: "Login",
   });
-};
+ },
 
-exports.postLogin = (req, res, next) => {
+ postLogin: (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -24,7 +27,7 @@ exports.postLogin = (req, res, next) => {
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
-  });
+  }),
 
   passport.authenticate("local", (err, user, info) => {
     if (err) {
@@ -42,9 +45,9 @@ exports.postLogin = (req, res, next) => {
       res.redirect(req.session.returnTo || "/profile");
     });
   })(req, res, next);
-};
+},
 
-exports.logout = (req, res) => {
+logout: (req, res) => {
   req.logout(() => {
     console.log('User has logged out.')
   })
@@ -54,34 +57,18 @@ exports.logout = (req, res) => {
     req.user = null;
     res.redirect("/");
   });
-};
+},
 
-exports.getSignup = (req, res) => {
+getSignup: (req, res) => {
   if (req.user) {
     return res.redirect("/profile");
   }
   res.render("signup", {
     title: "Create Account",
   });
-};
+},
 
-let result;
-
-async function createImage(){
-  try {
-    if (req.file === undefined) {
-      result = await cloudinary.uploader.upload(
-        "./public/imgs/default_brew.png"
-      );
-    } else {
-      result = await cloudinary.uploader.upload(req.file.path);
-    };
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-exports.postSignup = (req, res, next) => {
+postSignup: async (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -100,7 +87,15 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  createImage();
+  let result;
+
+  if (req.file === undefined) {
+    result = await cloudinary.uploader.upload(
+      "./public/imgs/default_user.png"
+    );
+  } else {
+    result = await cloudinary.uploader.upload(req.file.path);
+  };
 
   const user = new User({
     userName: req.body.userName,
@@ -135,4 +130,50 @@ exports.postSignup = (req, res, next) => {
       });
     }
   );
-};
+},
+
+editUser: async (req, res, next) => {
+  (console.log(req.body))
+  const validationErrors = [];
+  if (!validator.isEmail(req.body.email))
+    validationErrors.push({ msg: "Please enter a valid email address." });
+  if (!validator.isLength(req.body.password, { min: 8 }))
+    validationErrors.push({
+      msg: "Password must be at least 8 characters long",
+    });
+  if (req.body.password !== req.body.confirmPassword)
+    validationErrors.push({ msg: "Passwords do not match" });
+
+  if (validationErrors.length) {
+    req.flash("errors", validationErrors);
+    return res.redirect("/profile");
+  }
+  req.body.email = validator.normalizeEmail(req.body.email, {
+    gmail_remove_dots: false,
+  });
+
+  let result;
+
+  if (req.file === undefined) {
+    result = await cloudinary.uploader.upload(
+      "./public/imgs/default_user.png"
+    );
+  } else {
+    result = await cloudinary.uploader.upload(req.file.path);
+  };
+
+  await User.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      userName: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      image: result.secure_url,
+      cloudinaryId: result.public_id,
+    }
+  );
+  console.log("User has been updated!");
+  res.redirect("/profile");
+}
+
+}

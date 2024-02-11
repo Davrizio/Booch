@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
 // Password hash middleware.
 
 UserSchema.pre("save", function save(next) {
+  console.log("userschemapreFunction")
   const user = this;
   if (!user.isModified("password")) {
     return next();
@@ -44,6 +45,19 @@ UserSchema.pre("save", function save(next) {
       next();
     });
   });
+});
+
+UserSchema.pre("findOneAndUpdate", async function (next) {
+  const update = this.getUpdate() // {password: "..."}
+  if (update.password) {
+    const passwordHash = await bcrypt.hash(update.password, 10);
+    this.setUpdate({ $set: { 
+       password: passwordHash, 
+       confirmpw: undefined 
+      } 
+    });
+  }
+  next()
 });
 
 // Helper method for validating user's password.

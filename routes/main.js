@@ -15,6 +15,7 @@ router.get("/recipes", ensureAuth, recipesController.getRecipes);
 //Routes for user login/signup
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
+router.post("/login/editUser/:id", authController.editUser);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);

@@ -82,6 +82,21 @@ module.exports = {
       console.log(err);
     }
   },
+  editRecipeStatus: async (req, res) => {
+    console.log(req.body);
+    try {
+      await Recipe.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          status: req.body.status
+        }
+      );
+      console.log("Recipe status has been updated!");
+      res.redirect(`/recipe/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   rateRecipe: async (req, res) => {
     try {
       await Recipe.findOneAndUpdate(

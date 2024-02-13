@@ -52,8 +52,11 @@ UserSchema.pre("findOneAndUpdate", async function (next) {
   if (update.password) {
     const passwordHash = await bcrypt.hash(update.password, 10);
     this.setUpdate({ $set: { 
-       password: passwordHash, 
-       confirmpw: undefined 
+      password: passwordHash,
+      userName: update.userName,
+      email: update.email,
+      image: update.image,
+      cloudinaryId: update.cloudinaryId, 
       } 
     });
   }

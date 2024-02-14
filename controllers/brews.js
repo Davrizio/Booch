@@ -6,17 +6,18 @@ module.exports = {
   getProfile: async (req, res) => {
     console.log(req.user)
     try {
-      const recipes = await Recipe.find({ user: req.user.id })
+      const recipe = await Recipe.find({ user: req.user.id })
       const brews = await Brew.find({ user: req.user.id });
-      res.render("profile.ejs", { brews: brews, recipes: recipes, user: req.user });
+      res.render("profile.ejs", { brews: brews, recipe: recipe, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
   getBrew: async (req, res) => {
     try {
+      const recipe = await Recipe.find({ user: req.user.id })
       const brew = await Brew.findById(req.params.id);
-      res.render("brew.ejs", { brew: brew, user: req.user });
+      res.render("brew.ejs", { brew: brew, recipe: recipe, user: req.user });
     } catch (err) {
       console.log(err);
     }

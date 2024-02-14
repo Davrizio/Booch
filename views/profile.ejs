@@ -1,18 +1,18 @@
 <%- include('partials/header') -%>
-<div class="absolute h-full w-full bg-neutral-900">
-  <div class="absolute inset-0 bg-fuchsia-400 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
+<div class="absolute h-full w-full bg-slate-400">
+  <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
 </div>
 <div class="p-4 sm:ml-64">
     <div class="grid grid-flow-row grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-4 p-4 mt-14">      
       <% for(var i=0; i<brews.length; i++) {%>
         <div class="group w-80 h-96 perspective-1000">
-          <div class="relative w-full h-full transition-all duration-700 transform-style-3d rounded-xl group-hover:rotate-y-180 bg-slate-950"> 
+          <div class="relative w-full h-full transition-all duration-700 transform-style-3d border-slate-400 border-2 rounded-xl group-hover:rotate-y-180 bg-slate-800"> 
             <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]">
               <div class="">
-                <img class=" object-cover h-48 w-80 rounded-t-xl" src="<%= brews[i].image%>" alt="brew image" />
+                <img class=" object-cover h-48 w-80 rounded-t-lg" src="<%= brews[i].image %>" alt="brew image" />
               </div>
               <div class="place-self-center mx-2">
-                <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= brews[i].name%></h5>
+                <h5 class="text-2xl font-bold tracking-tight text-slate-300"><%= brews[i].name.toUpperCase() %></h5>
               </div>
               <div class="flex flex-row place-self-center my-4">
                 <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-600";%>
@@ -51,20 +51,20 @@
                 </svg>
               </div>
               <div class="mb-2 ml-6">
-                <h5 class="text-xl tracking-tight text-gray-900 dark:text-white">Tea type: <%= brews[i].tea %></h5>
+                <h5 class="text-xl tracking-tight text-slate-300">Tea type: <%= brews[i].tea %></h5>
               </div>
               <div class="ml-6">
-                <h5 class="text-xl tracking-tight text-gray-900 dark:text-white">Average temp <%= brews[i].avgTemp %>°</h5>
+                <h5 class="text-xl tracking-tight text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>
               </div>
             </div>
             <div class="absolute backface-hidden w-full h-full rotate-y-180 rounded-xl shadow bg-slate-950">
               <div class="absolute flex flex-col w-full h-full rounded-xl bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]">
-                <div class=" my-4 h-64 w-72 place-self-center border-2 border-fuchsia-600 rounded-xl">
-                  <p class="p-2 font-normal text-white"><%= brews[i].note%></p>
+                <div class=" my-4 h-64 w-72 place-self-center border-2 border-slate-600 rounded-xl">
+                  <p class="p-2 font-normal text-slate-300"><%= brews[i].note%></p>
                 </div>
                 <a class="place-self-end mt-6 mr-2" href="/brew/<%= brews[i]._id%>">
-                  <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-slate-400 rounded-lg group bg-gradient-to-br from-fuchsia-600 to-slate-500 group-hover:from-fuchsia-500 group-hover:to-slate-400 hover:text-slate-200 focus:ring-4 focus:outline-none focus:ring-fuchsia-300">
+                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
                     EDIT
                     </span>
                   </button>

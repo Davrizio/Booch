@@ -4403,6 +4403,11 @@ input:checked + .toggle-bg {
   border-color: rgb(203 213 225 / var(--tw-border-opacity));
 }
 
+.focus\:border-slate-800:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(30 41 59 / var(--tw-border-opacity));
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;

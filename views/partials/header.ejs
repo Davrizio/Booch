@@ -90,6 +90,7 @@
         </div>
       </aside>
     </header>
+
     <!--Add Recipe Modal-->
     <div id="add-recipe" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div class="relative p-4 w-full max-w-md max-h-full">
@@ -114,7 +115,7 @@
                   </div>
                   <div class="col-span-2">
                     <label class="block mt-6 mb-2 text-sm font-medium text-slate-200" for="user_avatar">Add A Picture</label>
-                    <input class="block text-sm text-slate-200 border border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_iamge_help" id="brew_image" type="file">
+                    <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_iamge_help" id="brew_image" type="file">
                     <div class="mt-1 text-sm text-slate-400" id="user_avatar_help">2mb max. png or jpg</div>
                   </div>
                   <button type="submit" class="group relative inline-flex mt-6 h-8 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-200">
@@ -127,11 +128,12 @@
           </div>
       </div>
   </div>  
+
   <!--Add Brew Modal-->
   <div id="add-brew" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <div class="relative bg-slate-700 border-2 border-slate-300 rounded-lg shadow-xl">
-            <div class="flex items-center justify-between p-4 md:p-5 border-b border-b-slate-200 rounded-t">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b-slate-200 rounded-t">
                 <h3 class="text-lg font-semibold text-slate-200">Add a Brew</h3>
                 <button type="button" class="text-slate-400 bg-transparent hover:bg-slate-300 hover:text-slate-800 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="add-brew">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -173,8 +175,8 @@
                     </select>
                   </div>
                   <div class="col-span-2">
-                    <label class="block mt-6 mb-2 text-sm font-medium text-slate-200 border-slate-600" for="brew_image">Add A Picture</label>
-                    <input class="block text-sm text-slate-200 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_image_help" id="brew_image" type="file">
+                    <label class="block mt-6 mb-2 text-sm font-medium text-slate-200" for="brew_image">Add A Picture</label>
+                    <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_image_help" id="brew_image" type="file">
                     <div class="mt-1 text-sm text-slate-400" id="brew_image_help">2mb max. png or jpg</div>
                   </div>
                   <div class="col-span-2">
@@ -196,10 +198,10 @@
   <%# User Edit Modal %>
   <div id="user-edit" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Edit</h3>
-              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+        <div class="relative bg-slate-700 border-2 border-slate-300 rounded-lg shadow">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b-slate-200 rounded-t">
+              <h3 class="text-lg font-semibold text-slate-200">Edit User Info</h3>
+              <button type="button" class="text-slate-400 bg-transparent hover:bg-slate-300 hover:text-slate-800 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="user-edit">
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                   </svg>
@@ -209,28 +211,35 @@
             <form action="/login/editUser/<%= user._id %>" method="post" class="p-4 md:p-5">
               <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Change Username</label>
-                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="<%= user.userName %>" value="<%= user.username %>">
+                    <label for="name" class="block mb-2 text-sm font-medium text-slate-200">Change Username</label>
+                    <input type="text" name="name" id="name" class="bg-slate-800 text-slate-200 border-slate-600 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" placeholder="<%= user.userName %>" value="<%= user.userName %>">
                 </div>
                 <div class="col-span-2">
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Change Email</label>
-                  <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="<%= user.email %>" value="<%= user.email %>">
+                  <label for="email" class="block mb-2 text-sm font-medium text-slate-200">Change Email</label>
+                  <input type="text" name="email" id="email" class="bg-slate-800 text-slate-200 border-slate-600 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" placeholder="<%= user.email %>" value="<%= user.email %>">
                 </div>
                 <div class="col-span-1">
-                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
-                  <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<%= user.password %>">
+                  <label for="password" class="block mb-2 text-sm font-medium text-slate-200">New Password</label>
+                  <input type="password" name="password" id="password" placeholder="••••••••" class="bg-slate-800 text-slate-200 border-slate-600 sm:text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
                 </div>
                 <div class="col-span-1">
-                  <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm New Password</label>
-                  <input type="confirm-password" name="confirmPassword" id="confirmPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <label for="confirmPassword" class="block mb-2 text-sm font-medium text-slate-200">Confirm New Password</label>
+                  <input type="password" name="confirmPassword" id="confirmPassword" placeholder="••••••••" class="bg-slate-800 text-slate-200 border-slate-600 sm:text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
                 </div>
                 <div class="col-span-2">
-                  <label class="block mt-6 mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Edit/Add photo</label>
-                  <input class="block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="file" name="file" type="file">
-                  <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">2mb 500x500 png,jpg</div>
+                  <label class="block mb-4 text-sm font-medium text-slate-200" for="user_avatar">Edit/Add photo</label>
+                  <input class="block text-sm text-slate-200 border-slate-600 border-2 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="user_avatar_help" id="file" name="file" type="file">
+                  <div class="mt-1 text-sm text-slate-400" id="brew_image_help">2mb max. png or jpg</div>
                 </div>  
               </div>
-              <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+              <button type="submit" class="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-200">
+                <div class="mr-0 w-0 -translate-x-[100%] opacity-0 transition-all duration-200 group-hover:mr-1 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                    <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span>Save</span>
+              </button>
             </form>
         </div>
     </div>

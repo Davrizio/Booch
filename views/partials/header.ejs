@@ -38,10 +38,9 @@
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
-                  <div> 
                     <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex items-center text-sm pe-1 font-medium text-slate-800 rounded-full" type="button">
                       <span class="sr-only">Open user menu</span>
-                      <img class="w-10 h-10 me-3 rounded-full" src="<%= user.image %>" alt="user photo">
+                      <img class="object-cover w-10 h-10 me-3 rounded-full" src="<%= user.image %>" alt="user photo">
                       <%= user.userName.toUpperCase() %>
                       <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
@@ -60,7 +59,6 @@
                         </a>
                       </div>
                     </div>
-                  </div>
                 </div>
             </div>
           </div>
@@ -71,20 +69,20 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-slate-700">
           <ul class="space-y-4 font-medium">
             <li class="flex justify-end">               
-             <button data-modal-target="add-brew" data-modal-toggle="add-brew" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-xl after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Brew</button>
+             <button data-modal-target="add-brew" data-modal-toggle="add-brew" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Brew</button>
             </li>
             <li class="flex justify-end">
-              <a href="/recipes" class="">
-                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-xl after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Past Recipes</button>
+              <a href="/recipes">
+                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Past Recipes</button>
               </a>
             </li>
             <li class="flex justify-end">
-              <a href="/recipes" class="">
-                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-xl after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Recipes</button>
+              <a href="/recipes">
+                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Recipes</button>
               </a>
             </li>
             <li class="flex justify-end">
-             <button data-modal-target="add-recipe" data-modal-toggle="add-recipe" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-xl after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Recipe</button>
+             <button data-modal-target="add-recipe" data-modal-toggle="add-recipe" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Recipe</button>
             </li>
           </ul>
         </div>

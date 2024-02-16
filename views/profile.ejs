@@ -6,16 +6,14 @@
     <div class="grid grid-flow-row grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-4 p-4 mt-14">      
       <% for(var i=0; i<brews.length; i++) {%>
         <div class="group w-80 h-96 perspective-1000">
-          <div class="relative w-full h-full transition-all duration-700 transform-style-3d border-slate-400 border-2 rounded-xl group-hover:rotate-y-180 bg-slate-800"> 
-            <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]">
-              <div class="">
-                <img class=" object-cover h-48 w-80 rounded-t-lg" src="<%= brews[i].image %>" alt="brew image" />
-              </div>
+          <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
+            <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
+              <img class="object-cover h-48 w-80 rounded-t-xl" src="<%= brews[i].image %>" alt="brew image" />
               <div class="place-self-center mx-2">
                 <h5 class="text-2xl font-bold tracking-tight text-slate-300"><%= brews[i].name.toUpperCase() %></h5>
               </div>
               <div class="flex flex-row place-self-center my-4">
-                <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-600";%>
+                <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-500";%>
                 <% switch (brews[i].rating) {
                     case 5:
                       ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-amber-400";
@@ -57,17 +55,13 @@
                 <h5 class="text-xl tracking-tight text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>
               </div>
             </div>
-            <div class="absolute backface-hidden w-full h-full rotate-y-180 rounded-xl shadow bg-slate-950">
-              <div class="absolute flex flex-col w-full h-full rounded-xl bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]">
-                <div class=" my-4 h-64 w-72 place-self-center border-2 border-slate-600 rounded-xl">
+            <div class="absolute backface-hidden w-full h-full rotate-y-180 rounded-xl shadow bg-slate-600 border-slate-200 border-2">
+              <div class="absolute flex flex-col w-full h-full rounded-xl">
+                <div class=" my-4 h-64 w-72 place-self-center border-2 border-slate-500 rounded-xl">
                   <p class="p-2 font-normal text-slate-300"><%= brews[i].note%></p>
                 </div>
                 <a class="place-self-end mt-6 mr-2" href="/brew/<%= brews[i]._id%>">
-                  <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-slate-400 rounded-lg group bg-gradient-to-br from-fuchsia-600 to-slate-500 group-hover:from-fuchsia-500 group-hover:to-slate-400 hover:text-slate-200 focus:ring-4 focus:outline-none focus:ring-fuchsia-300">
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
-                    EDIT
-                    </span>
-                  </button>
+                  <button class="relative z-0 h-12 rounded-md bg-slate-500 px-6 text-slate-300 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-md after:bg-slate-400 active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-400">Edit</button>
                 </a>
               </div>
             </div>

@@ -28,6 +28,8 @@ router.put("/subtractStep/:id/:num", recipesController.subtractStep);
 
 router.put("/editRecipe/:id", recipesController.editRecipe);
 
+router.put("/editRecipeStatus/:id", recipesController.editRecipeStatus);
+
 router.delete("/deleteRecipe/:id", recipesController.deleteRecipe);
 
 module.exports = router;

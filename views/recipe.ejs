@@ -1,16 +1,16 @@
 <%- include('partials/header') -%>
-<div class="absolute h-full w-full bg-slate-400">
+<div class="fixed h-screen w-full bg-slate-400">
   <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
 </div>
 <div class="relative p-4 sm:ml-64">
   <div class="p-4 mt-14">      
     <div class="flex flex-col items-center justify-center rounded">
-      <div class="flex flex-col items-center bg-slate-600 rounded-lg mb-12 shadow-xl md:flex-row md:h-96 md:w-5/6 hover:bg-slate-500">
-        <img class="object-cover w-full rounded-tl-lg rounded-bl-lg h-96 md:w-48 lg:w-96" src="<%= recipe.image %>" alt="brew image">
-        <div class="flex flex-col w-full justify-between p-4 leading-normal">
-          <h1 class="mb-2 text-5xl font-bold tracking-tight text-slate-300"><%= recipe.name %></h1>
-          <p class="mb-6 h-24 font-normal text-slate-300"><%= recipe.note %></p>
-          <div class="flex items-center my-4">
+      <div class="flex flex-col items-center bg-slate-600 rounded-lg mb-12 shadow-xl md:flex-row md:h-96 md:w-5/6">
+        <img class="object-cover w-full rounded-t-lg  md:rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none h-96 md:w-48 lg:w-96" src="<%= recipe.image %>" alt="brew image">
+        <div class="flex flex-col w-full justify-between p-4 space-y-2 leading-normal">
+          <h1 class="text-5xl font-bold tracking-tight text-slate-300"><%= recipe.name %></h1>
+          <p class="h-28 font-normal text-slate-300"><%= recipe.note %></p>
+          <div class="flex items-center">
             <form action="/brew/rateBrew/<%= recipe.id %>?_method=PUT" method="POST">
               <div class="rate">
                 <% let ratedOne = "rate" %>
@@ -82,100 +82,134 @@
               </div>
             </form>
           </div>
-          <div class="place-self-end mt-4">
+          <div class="place-self-end inline-flex space-x-2">
             <form class="col-1" action="/recipe/editRecipeStatus/<%= recipe._id %>?_method=PUT" method="POST">
+              <button type="submit" class="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
+                <span class="absolute h-0 w-0 rounded-full bg-slate-800 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
+                <span class="relative">EDIT</span>
+              </button>
               <input type="hidden" class="form-control" id="status" name="status" value="edit">
-              <button type="submit" class="btn btn-primary">EDIT</button>
             </form>
             <form action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE" method="post">
-              <button class="btn fa fa-trash" type="submit"></button>
+              <button type="submit" class="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
+                <span class="absolute h-0 w-0 rounded-full bg-red-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
+                <span class="relative">Delete</span>
+              </button>
             </form>
           </div>
         </div>
       </div>
-      <%# Edit Recipe %>
-      <div class=" w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 md:max-w-2xl dark:bg-gray-800 dark:border-gray-700">
-          <% if (recipe.status === "edit") { %>
-            <div class="mt-5">
-              <h2>Edit <%= recipe.name %></h2>
-              <form class="grid grid-flow-col md:grid-flow-row grid-rows-12 gap-2 md:grid-rows-6 grid-cols-1 md:grid-cols-2" action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="POST">
-                <div class="mb-3">
-                  <label for="name" class="form-label">Edit Name</label>
-                  <input type="text" class="form-control" id="name" name="name" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
+      <!--Recipe Edit -->
+      <div class=" w-full max-w-sm p-4 bg-slate-600 border-2 border-slate-300 rounded-lg shadow sm:p-6 md:p-8 md:max-w-2xl ">
+        <% if (recipe.status === "edit") { %>
+          <div class="mb-4">
+            <h5 class="text-xl font-medium text-slate-400">Edit Recipe</h5>
+          </div>
+          <form class="grid grid-flow-col md:grid-flow-row gap-2 grid-cols-1 md:grid-cols-2" action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="post">   
+              <div class="row-span-1 col-span-2">
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
                 </div>
-                <div class="mb-3">
-                  <label for="note" class="form-label">Note</label>
-                  <input class="form-control" id="note" name="note" value="<%= recipe.note %>" placeholder="<%= recipe.note %>"></input>
-                </div> 
+              </div>
+              <div class="flex flex-col col-span-2 gap-4">
                 <% if (recipe.ingredientCount === 1) { %>
-                  <div class="mb-3">
-                    <label for="ingredient" class="form-label">Ingredients</label>
-                    <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="measurement" class="form-label">Measurement</label>
-                    <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
+                  <div class="flex flex-row">
+                      <label for="measurement" class="form-label">Measurement</label>
+                      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
+                      <label for="ingredient" class="form-label">Ingredients</label>
+                      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
                   </div>
                 <% } %>
                 <% if (recipe.ingredientCount > 1) { %>
                   <% for (i=0; i<recipe.ingredientCount; i++) { %>
                     <div class="mb-3">
+                        <label for="measurement" class="form-label">Measurement</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
                       <label for="ingredient" class="form-label">Ingredients</label>
-                      <input class="form-control" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
+                      <input class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
                     </div>
-                    <div class="mb-3">
-                      <label for="measurement" class="form-label">Measurement</label>
-                      <input class="form-control" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
-                    </div>
-                    <button type="submit" class="btn btn-primary" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Ingredient</button>
+                    <button type="submit" class="" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Ingredient</button>
                   <%}%>
                 <% } %>    
-                <button type="submit" class="btn btn-primary" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT">Add Ingredient</button>
+                <button type="submit" class="" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT">Add Ingredient</button>
+              </div>
+              <div class="flex flex-col col-span-2 gap-4">
                 <% if (recipe.stepCount === 1) { %>
                   <div class="mb-3">
                     <label for="steps" class="form-label">Steps</label>
-                    <input class="form-control" id="steps" name="steps" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
+                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="steps" name="steps" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></textarea>
                   </div>
                 <% } %>
                 <% if (recipe.stepCount > 1) { %>
                   <% for (i=0; i<recipe.stepCount; i++) { %>
                     <div class="mb-3">
-                      <label for="steps" class="form-label">Steps</label>
-                      <input class="form-control" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
+                      <label for="steps" class="form-label">Step <% [i +1] %></label>
+                      <textarea class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="steps" name="steps" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Step</button>
+                    <button type="submit" class="" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT">Subtract Step</button>
                   <%}%>
                 <% } %>
-                <button type="submit" class="btn btn-primary" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT">Add Step</button>
-                <div class="mb-3">
-                  <label for="imgUpload" class="form-label">Replace Image</label>
-                  <input type="file" class="form-control" id="imageUpload" name="file">
-                </div>
-                <input type="hidden" class="form-control" id="status" name="status" value="done">
-                <button type="submit" class="btn btn-primary" value="Upload">Save</button>
-              </form>
-            </div>
-          <%}%>
+                <button type="submit" class="" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT">Add Step</button> 
+              </div>
+              <div class="col-span-2">
+                <label for="note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
+                <textarea id="note" name="note" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<%= recipe.note %>" placeholder="<%= recipe.note %>"><%= recipe.note %></textarea>
+              </div>
+              <div class="row-span-2 col-span-2">
+                <label class="block mt-6 mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Replace Photo</label>
+                <input class="block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">2mb 500x500 png,jpg</div>
+              </div>
+              <div class="row-span-1 col-span-1">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+              </div>
+          </form>
+        <%}%>
+          <!--Recipe View -->
           <% if (recipe.status === "done") { %>
-          <% if (recipe.ingredientCount === 1) { %>
-            <h3><%= recipe.ingredients[i] %></h3>
-            <h3><%= recipe.measurements[i] %></h3>
-          <% } else {%>
-            <% for (i=0; i<recipe.ingredientCount; i++) { %>
-              <h3><%= recipe.ingredients[i] %></h3>
-              <h3><%= recipe.measurements[i] %></h3>
-            <%}%>
-          <% } %>
-          <% if (recipe.stepCount === 1) { %>
-            <h3><%= recipe.steps %></h3>
-          <% } else {%>
-            <% for (i=0; i<recipe.stepCount; i++) { %>
-              <h3><%= recipe.steps[0][i] %></h3>
-            <%}%>
-          <%}%>
+            <div class="mb-4">
+              <span class="text-lg md:text-xl font-bold text-slate-300">Ingredients</span>
+            </div>
+          <div class="flex flex-col space-y-4">
+            <% if (recipe.ingredientCount === 1) { %>
+              <div class="flex items-center">
+                <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+              </div>
+              <h3><%= recipe.measurements[i] %> <%= recipe.ingredients[i] %></h3>
+            <% } else { %>
+              <% for (i=0; i<recipe.ingredientCount; i++) { %>
+                <div class="flex flex-row space-x-4">
+                  <input id="checkbox" type="checkbox" class="w-6 h-6 mt-0.5 text-slate-400 bg-slate-500 border-slate-300 rounded focus:ring-slate-400 focus:ring-2">
+                  <label for="checkbox" class="sr-only">checkbox</label>
+                  <h3 class="text-lg text-slate-300"><%= recipe.measurements[i] %></h3>
+                  <h3 class="text-lg text-slate-300"><%= recipe.ingredients[i] %></h3>
+                </div>
+              <% } %>
+            <% } %>
+          </div>
+          <div class="mt-8">
+            <span class="text-lg md:text-xl font-bold text-slate-300">Steps</span>
+          </div>
+          <div class="flex flex-col space-y-4">
+            <% if (recipe.stepCount === 1) { %>
+              <h3><%= recipe.steps %></h3>
+            <% } else {%>
+              <% for (i=0; i<recipe.stepCount; i++) { %>
+                <div class="flex flex-col space-y-1">
+                  <span class="text-sm md:text-lg text-slate-400">Step <%= [i + 1] %></span>
+                  <div class="border-2 border-slate-400 bg-slate-500 rounded-lg w-full">
+                    <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps[0][i] %></h3>
+                  </div>
+                </div>
+              <% } %>
+            <% } %>
+          </div>
         <%}%>
       </div>
     </div>
   </div>
 </div>
+
 <%- include('partials/footer') -%>

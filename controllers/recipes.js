@@ -1,13 +1,13 @@
 const cloudinary = require("../middleware/cloudinary");
 const Brew = require("../models/Brew");
 const Recipe = require("../models/Recipe");
-const fs = require("fs");
 
 module.exports = {
   getRecipes: async (req, res) => {
     try {
       const recipe = await Recipe.find({ user: req.user.id });
       res.render("recipes.ejs", { recipe: recipe, user: req.user });
+      console.log(recipe)
     } catch (err) {
       console.log(err);
     }
@@ -21,10 +21,11 @@ module.exports = {
       console.log(err);
     }
   },
+
   createRecipe: async (req, res) => {
     let result;
     try {
-      if (req.file === undefined) {
+      if (req.body.fileRecipe === undefined) {
         result = await cloudinary.uploader.upload(
           "./public/imgs/default_recipe.png"
         );
@@ -51,11 +52,12 @@ module.exports = {
       console.log(err);
     }
   },
+
   editRecipe: async (req, res) => {
     console.log(req.body);
     let result;
     try {
-      if (req.file === undefined) {
+      if (req.body.file === undefined) {
         result = await cloudinary.uploader.upload(
           "./public/imgs/default_recipe.png"
         );
@@ -83,7 +85,6 @@ module.exports = {
     }
   },
   editRecipeStatus: async (req, res) => {
-    console.log(req.body);
     try {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },

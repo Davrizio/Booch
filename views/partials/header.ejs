@@ -65,24 +65,24 @@
         </div>
       </nav>
 
-      <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-slate-700 border-r-2 border-slate-800 sm:translate-x-0" aria-label="Sidebar">
+      <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-slate-700 sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 pb-4 overflow-y-auto bg-slate-700">
           <ul class="space-y-4 font-medium">
             <li class="flex justify-end">               
-             <button data-modal-target="add-brew" data-modal-toggle="add-brew" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Brew</button>
+             <button data-modal-target="add-brew" data-modal-toggle="add-brew" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Brew</button>
             </li>
             <li class="flex justify-end">
               <a href="/recipes">
-                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Past Recipes</button>
+                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Past Recipes</button>
               </a>
             </li>
             <li class="flex justify-end">
               <a href="/recipes">
-                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Recipes</button>
+                <button role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Recipes</button>
               </a>
             </li>
             <li class="flex justify-end">
-             <button data-modal-target="add-recipe" data-modal-toggle="add-recipe" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-200 text-lg after:bg-slate-500 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Recipe</button>
+             <button data-modal-target="add-recipe" data-modal-toggle="add-recipe" role="link" class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Add A Recipe</button>
             </li>
           </ul>
         </div>
@@ -104,7 +104,7 @@
                       <span class="sr-only">Close modal</span>
                   </button>
               </div>
-              <form class="p-4 md:p-5">
+              <form action="/recipe/createRecipe" enctype="multipart/form-data" method="post" class="p-4 md:p-5">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-slate-200">Name</label>
@@ -113,8 +113,8 @@
                   </div>
                   <div class="col-span-2">
                     <label class="block mt-6 mb-2 text-sm font-medium text-slate-200" for="user_avatar">Add A Picture</label>
-                    <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_iamge_help" id="brew_image" type="file">
-                    <div class="mt-1 text-sm text-slate-400" id="user_avatar_help">2mb max. png or jpg</div>
+                    <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="recipe_iamge_help" id="recipe_image" name="file" type="file">
+                    <div class="mt-1 text-sm text-slate-400" id="recipe_image_help">2mb max. png or jpg</div>
                   </div>
                   <button type="submit" class="group relative inline-flex mt-6 h-8 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-200">
                     <div class="mr-0 w-0 -translate-x-[100%] opacity-0 transition-all duration-200 group-hover:mr-1 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100">
@@ -174,7 +174,7 @@
                   </div>
                   <div class="col-span-2">
                     <label class="block mt-6 mb-2 text-sm font-medium text-slate-200" for="brew_image">Add A Picture</label>
-                    <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_image_help" id="brew_image" type="file">
+                    <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_image_help" id="brew_image" name="fileBrew" type="file">
                     <div class="mt-1 text-sm text-slate-400" id="brew_image_help">2mb max. png or jpg</div>
                   </div>
                   <div class="col-span-2">

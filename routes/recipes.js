@@ -28,6 +28,8 @@ router.put("/subtractStep/:id/:num", recipesController.subtractStep);
 
 router.put("/editRecipe/:id", recipesController.editRecipe);
 
+router.post("/editPicture/:id", upload.single("file"), recipesController.editPicture);
+
 router.put("/editRecipeStatus/:id", recipesController.editRecipeStatus);
 
 router.delete("/deleteRecipe/:id", recipesController.deleteRecipe);

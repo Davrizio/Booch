@@ -40,9 +40,9 @@ module.exports = {
         rating: 0,
         ingredientCount: 1,
         stepCount: 1,
-        ingredients: [],
-        measurements: [],
-        steps: [],
+        ingredients: [ ],
+        measurements: [ ],
+        steps: [ ],
         status: "edit",
         user: req.user.id
       });
@@ -57,23 +57,14 @@ module.exports = {
     console.log(req.body);
     let result;
     try {
-      if (req.body.file === undefined) {
-        result = await cloudinary.uploader.upload(
-          "./public/imgs/default_recipe.png"
-        );
-      } else {
-        result = await cloudinary.uploader.upload(req.file.path);
-      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
           name: req.body.name,
-          image: result.secure_url,
-          cloudinaryId: result.public_id,
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
-          steps: [req.body.steps],
+          steps: req.body.step,
           status: req.body.status,
           user: req.user.id,
         }
@@ -84,6 +75,24 @@ module.exports = {
       console.log(err);
     }
   },
+
+  editPicture: async (req, res) => {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      await Recipe.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+        }
+      );
+      console.log("Recipe status has been updated!");
+      res.redirect(`/recipe/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   editRecipeStatus: async (req, res) => {
     try {
       await Recipe.findOneAndUpdate(
@@ -130,7 +139,7 @@ module.exports = {
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
-          steps: req.body.steps,
+          steps: req.body.step,
           status: "edit",
           user: req.user.id,
           $inc: { ingredientCount: 1 }
@@ -160,7 +169,7 @@ module.exports = {
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
-          steps: req.body.steps,
+          steps: req.body.step,
           status: "edit",
           user: req.user.id,
           $inc: { stepCount: 1 }

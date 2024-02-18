@@ -125,7 +125,7 @@
               </form>
           </div>
       </div>
-  </div>  
+    </div>  
 
   <!--Add Brew Modal-->
   <div id="add-brew" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -140,7 +140,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
-            <form action="/brew/createBrew" method="post" class="p-4 md:p-5">
+            <form action="/brew/createBrew" method="post" enctype="multipart/form-data" class="p-4 md:p-5">
               <div class="grid gap-4 mb-4 grid-cols-2">
                   <div class="col-span-2">
                       <label for="name" class="block mb-2 text-sm font-medium text-slate-200">Name Your Brew</label>
@@ -206,7 +206,7 @@
                   <span class="sr-only">Close modal</span>
               </button>
             </div>
-            <form action="/login/editUser/<%= user._id %>" method="post" class="p-4 md:p-5">
+            <form action="/login/editUser/<%= user._id %>" method="post" enctype="multipart/form-data" class="p-4 md:p-5">
               <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2">
                     <label for="name" class="block mb-2 text-sm font-medium text-slate-200">Change Username</label>

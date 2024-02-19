@@ -1443,6 +1443,10 @@ input:checked + .toggle-bg {
   margin-right: 1rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -3198,6 +3202,11 @@ input:checked + .toggle-bg {
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -4350,6 +4359,10 @@ input:checked + .toggle-bg {
   transform: none;
 }
 
+.\[button\:nth-child\(2\)\] {
+  button: nth-child(2);
+}
+
 /* For rating animation and style */
 
 .rate button, .rate button:hover ~ button {
@@ -4425,6 +4438,14 @@ input:checked + .toggle-bg {
       max-width: 1536px;
     }
   }
+}
+
+.\*\:fill-amber-400 > * {
+  fill: #fbbf24;
+}
+
+.\*\:fill-slate-500 > * {
+  fill: #64748b;
 }
 
 .file\:mr-5::file-selector-button {
@@ -4645,6 +4666,10 @@ input:checked + .toggle-bg {
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
+.hover\:fill-amber-400:hover {
+  fill: #fbbf24;
+}
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
@@ -4693,6 +4718,11 @@ input:checked + .toggle-bg {
   text-decoration-line: underline;
 }
 
+.hover\:shadow-amber-400:hover {
+  --tw-shadow-color: #fbbf24;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .hover\:ring-2:hover {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -4712,6 +4742,14 @@ input:checked + .toggle-bg {
   --tw-rotate-y: 180deg;
   --webkit-transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
   transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+}
+
+.hover\:\[button\:nth-child\(2\)\]:hover {
+  button: nth-child(2);
+}
+
+.\*\:hover\:fill-amber-400:hover > * {
+  fill: #fbbf24;
 }
 
 .hover\:file\:cursor-pointer::file-selector-button:hover {
@@ -4985,6 +5023,70 @@ input:checked + .toggle-bg {
   --tw-scale-x: 1.5;
   --tw-scale-y: 1.5;
   scale: var(--tw-scale-x) var(--tw-scale-y) var(--tw-scale-z);
+}
+
+.peer:target ~ .peer-target\:bg-amber-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
+.peer:target ~ .peer-target\:\*\:fill-amber-400 > * {
+  fill: #fbbf24;
+}
+
+.peer:hover ~ .peer-hover\:bg-amber-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
+.peer:hover ~ .peer-hover\:fill-amber-400 {
+  fill: #fbbf24;
+}
+
+.peer:hover ~ .peer-hover\:\*\:bg-amber-400 > * {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
+.peer:hover ~ .\*\:peer-hover\:bg-amber-400 > * {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
+.peer:hover ~ .\*\:peer-hover\:fill-amber-400 > * {
+  fill: #fbbf24;
+}
+
+:nth-of-type(1) .peer ~ .peer-\[\:nth-of-type\(1\)_\&\]\:fill-amber-400 {
+  fill: #fbbf24;
+}
+
+:nth-of-type(3) .peer ~ .peer-\[\:nth-of-type\(3\)_\&\]\:fill-amber-400 {
+  fill: #fbbf24;
+}
+
+:nth-of-type(4) .peer ~ .peer-\[\:nth-of-type\(4\)_\&\]\:fill-amber-400 {
+  fill: #fbbf24;
+}
+
+:nth-of-type(2) .peer ~ .peer-\[\:nth-of-type\(2\)_\&\]\:\*\:fill-amber-400 > * {
+  fill: #fbbf24;
+}
+
+:nth-of-type(2) .peer ~ .peer-\[\:nth-of-type\(2\)_\&\]\:hover\:fill-amber-400:hover {
+  fill: #fbbf24;
+}
+
+:nth-of-type(3) .peer ~ .peer-\[\:nth-of-type\(3\)_\&\]\:hover\:fill-amber-400:hover {
+  fill: #fbbf24;
+}
+
+:nth-of-type(4) .peer ~ .peer-\[\:nth-of-type\(4\)_\&\]\:hover\:fill-amber-400:hover {
+  fill: #fbbf24;
+}
+
+:nth-of-type(1) .peer ~ .peer-\[\:nth-of-type\(1\)_\&\]\:hover\:fill-amber-400:hover {
+  fill: #fbbf24;
 }
 
 :is(.dark .dark\:divide-gray-600) > :not([hidden]) ~ :not([hidden]) {

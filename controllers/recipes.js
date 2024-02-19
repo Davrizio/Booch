@@ -123,19 +123,10 @@ module.exports = {
   addIngredient: async (req, res) => {
     let result;
     try {
-      if (req.file === undefined) {
-        result = await cloudinary.uploader.upload(
-          "./public/imgs/default_recipe.png"
-        );
-      } else {
-        result = await cloudinary.uploader.upload(req.file.path);
-      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
           name: req.body.name,
-          image: result.secure_url,
-          cloudinaryId: result.public_id,
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
@@ -153,19 +144,10 @@ module.exports = {
   addStep: async (req, res) => {
     let result;
     try {
-      if (req.file === undefined) {
-        result = await cloudinary.uploader.upload(
-          "./public/imgs/default_recipe.png"
-        );
-      } else {
-        result = await cloudinary.uploader.upload(req.file.path);
-      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
           name: req.body.name,
-          image: result.secure_url,
-          cloudinaryId: result.public_id,
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
@@ -185,19 +167,10 @@ module.exports = {
     let measurementList = req.body.measurement.filter((el,idx,arr) => idx != req.params.num);
     let result;
     try {
-      if (req.file === undefined) {
-        result = await cloudinary.uploader.upload(
-          "./public/imgs/default_recipe.png"
-        );
-      } else {
-        result = await cloudinary.uploader.upload(req.file.path);
-      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
           name: req.body.name,
-          image: result.secure_url,
-          cloudinaryId: result.public_id,
           note: req.body.note,
           ingredients: ingredientList,
           measurements: measurementList,
@@ -216,19 +189,10 @@ module.exports = {
     let stepsList = req.body.steps.filter((el,idx,arr) => idx != req.params.num);
     let result;
     try {
-      if (req.file === undefined) {
-        result = await cloudinary.uploader.upload(
-          "./public/imgs/default_recipe.png"
-        );
-      } else {
-        result = await cloudinary.uploader.upload(req.file.path);
-      }
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
         {
           name: req.body.name,
-          image: result.secure_url,
-          cloudinaryId: result.public_id,
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,

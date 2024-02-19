@@ -12,75 +12,51 @@
           <h1 class="text-5xl font-bold tracking-tight text-slate-300"><%= recipe.name %></h1>
           <p class="h-28 font-normal text-slate-300"><%= recipe.note %></p>
           <div class="flex items-center">
-            <form action="/brew/rateBrew/<%= recipe.id %>?_method=PUT" method="POST">
-              <div class="rate">
-                <% let ratedOne = "rate" %>
-                <% let ratedTwo = "rate" %>
-                <% let ratedThree = "rate" %>
-                <% let ratedFour = "rate" %>
-                <% let ratedFive = "rate" %>
-    
-                <% if (recipe.rating === 5) { %>
-                  <% ratedFive = "rated" %>
-                  <% ratedFour = "rated" %>
-                  <% ratedThree = "rated" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (recipe.rating === 4) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "rated" %>
-                  <% ratedThree = "rated" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (recipe.rating === 3) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "" %>
-                  <% ratedThree = "rated" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (recipe.rating === 2) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "" %>
-                  <% ratedThree = "" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (recipe.rating === 1) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "" %>
-                  <% ratedThree = "" %>
-                  <% ratedTwo = "" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <button type="submit" value="1" name="rating">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedOne %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="2" name="rating">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedTwo %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="3" name="rating">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedThree %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="4" name="rating">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedFour %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="5" name="rating">
-                  <svg class="w-6 h-6 ms-2" id="<%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-              </div>
+            <form action="/recipe/rateRecipe/<%= recipe.id %>?_method=PUT" method="POST" class="flex flex-row-reverse place-self-center my-4">
+              <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-slate-500";%>
+              <% switch (recipe.rating) {
+                  case 5:
+                    ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-amber-400";
+                    break;
+                  case 4:
+                    ratedOne = ratedTwo = ratedThree = ratedFour = "*:fill-amber-400";
+                    break;
+                  case 3:
+                    ratedOne = ratedTwo = ratedThree = "*:fill-amber-400";
+                    break;
+                  case 2:
+                    ratedOne = ratedTwo = "*:fill-amber-400";
+                    break;
+                  case 1:
+                    ratedOne = "*:fill-amber-400";
+                    break;
+                  default:
+              } %>
+              <button type="submit" value="5" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedFive %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="4" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedFour %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="3" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedThree %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="2" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedTwo %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="1" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedOne %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
             </form>
           </div>
           <div class="place-self-end inline-flex space-x-2">
@@ -207,11 +183,12 @@
             </div>
           <div class="flex flex-col space-y-4">
             <% if (recipe.ingredientCount === 1) { %>
-              <div class="flex items-center">
-                <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+              <div class="flex flex-row space-x-4">
+                <input id="checkbox" type="checkbox" class="w-6 h-6 mt-0.5 text-slate-400 bg-slate-500 border-slate-300 rounded focus:ring-slate-400 focus:ring-2">
+                <label for="checkbox" class="sr-only">checkbox</label>
+                <h3 class="text-lg text-slate-300"><%= recipe.measurements %></h3>
+                <h3 class="text-lg text-slate-300"><%= recipe.ingredients %></h3>
               </div>
-              <h3><%= recipe.measurements[i] %> <%= recipe.ingredients[i] %></h3>
             <% } else { %>
               <% for (i=0; i<recipe.ingredientCount; i++) { %>
                 <div class="flex flex-row space-x-4">
@@ -223,18 +200,23 @@
               <% } %>
             <% } %>
           </div>
-          <div class="mt-8">
+          <div class="mt-8 mb-2">
             <span class="text-lg md:text-xl font-bold text-slate-300">Steps</span>
           </div>
           <div class="flex flex-col space-y-4">
             <% if (recipe.stepCount === 1) { %>
-              <h3><%= recipe.steps %></h3>
+              <div class="flex flex-col space-y-1">
+                <span class="text-sm md:text-lg text-slate-400">Step 1</span>
+                <div class="border-2 border-slate-400 bg-slate-500 rounded-lg w-full">
+                  <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps %></h3>
+                </div>
+              </div>
             <% } else {%>
               <% for (i=0; i<recipe.stepCount; i++) { %>
                 <div class="flex flex-col space-y-1">
                   <span class="text-sm md:text-lg text-slate-400">Step <%= [i + 1] %></span>
                   <div class="border-2 border-slate-400 bg-slate-500 rounded-lg w-full">
-                    <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps[0][i] %></h3>
+                    <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps[i] %></h3>
                   </div>
                 </div>
               <% } %>
@@ -268,7 +250,7 @@
                 <div class="mr-0 w-0 -translate-x-[100%] opacity-0 transition-all duration-200 group-hover:mr-1 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100">
                   <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                 </div>
-                <span>Upload</span>
+                <span>Save</span>
               </button>
             </form>
         </div>

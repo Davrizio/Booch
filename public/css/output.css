@@ -1386,6 +1386,18 @@ input:checked + .toggle-bg {
   margin-top: 2rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.ml-12 {
+  margin-left: 3rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1569,6 +1581,10 @@ input:checked + .toggle-bg {
   height: 9rem;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -1651,6 +1667,34 @@ input:checked + .toggle-bg {
 
 .w-full {
   width: 100%;
+}
+
+.w-1\/6 {
+  width: 16.666667%;
+}
+
+.w-3\/6 {
+  width: 50%;
+}
+
+.w-4\/6 {
+  width: 66.666667%;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.w-2\/6 {
+  width: 33.333333%;
 }
 
 .max-w-lg {
@@ -2221,6 +2265,10 @@ input:checked + .toggle-bg {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -4442,6 +4490,10 @@ input:checked + .toggle-bg {
     inset: 0px;
   }
 
+  .md\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
   .md\:me-24 {
     margin-inline-end: 6rem;
   }
@@ -4464,6 +4516,10 @@ input:checked + .toggle-bg {
 
   .md\:w-5\/6 {
     width: 83.333333%;
+  }
+
+  .md\:w-6 {
+    width: 1.5rem;
   }
 
   .md\:max-w-2xl {
@@ -4538,6 +4594,11 @@ input:checked + .toggle-bg {
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 

@@ -94,84 +94,134 @@
             <h5 class="text-xl font-medium text-slate-300">Edit Recipe</h5>
           </div>
           <form class="flex flex-col gap-2 " action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="post">   
-            <div class="col-span-2 grid-rows-1">
+            <div>
               <label for="name" class="block mb-2 text-sm font-medium text-slate-200">Name</label>
-              <input type="text" name="name" id="name" class="bg-slate-800 border border-slate-600 text-slate-200 mb-2 text-sm rounded-lg focus:ring-slate2000 focus:border-slate2000 block w-full p-2.5" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
+              <input type="text" name="name" id="name" class="bg-slate-800 border border-slate-600 text-slate-200 mb-2 text-sm md:text-base rounded-lg focus:ring-slate2000 focus:border-slate2000 block w-full p-2.5" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
             </div>
-            <div class="grid grid-flow-row grid-cols-5">
+            <div class="flex flex-col">
               <% if (recipe.ingredientCount === 1) { %>
-                <div class="col-span-1 mb-2">
-                  <label for="measurement" class="block mb-1 text-sm font-medium text-slate-200">Qty.</label>
-                  <input class="w-24 h-11 bg-slate-800 border border-gray-600 text-slate-200 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5" type="number" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
-                </div>
-                <div class="col-span-3 mb-2">
-                  <label for="ingredient" class="block mb-1 text-sm font-medium text-slate-200">Ingredients</label>
-                  <input class="w-full h-11 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm rounded-s-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5" type="text" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
-                </div>
-                <div class="col-span-1 h-11 inline-flex mt-6" role="group">
-                  <button type="submit" name="addIngredient" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border rounded-e-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300">
-                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-                    </svg>
-                  </button>
-                </div>
-              <% } %>
-              <% if (recipe.ingredientCount > 1) { %>
-                <% for (i=0; i<recipe.ingredientCount; i++) { %>
-                  <div class="col-span-1 mb-2">
-                    <label for="measurement" class="block mb-1 text-sm font-medium text-slate-200">Qty.</label>
-                    <input class="w-24 h-11 bg-slate-800 border border-gray-600 text-slate-200 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5" type="number" id="measurement" name="measurement" value="<%= recipe.measurements[i] %>" placeholder="<%= recipe.measurements[i] %>"></input>
+                <div class="flex flex-row">
+                  <div class="w-1/6 mb-2 mr-1">
+                    <select class="px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border rounded-e-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="quantity">
+                      <option class="disabled selected">Qty.</option>
+                      <option>1/8</option>
+                      <option>1/4</option>
+                      <option>1/3</option>
+                      <option>1/2</option>
+                      <option>2/3</option>
+                      <option>3/4</option>
+                      <% let wOptions = []; %>
+                      <% for(i=1; i<100; i++) {%>
+                          <option value='<%= i %>'><%= i %></option>
+                      <%}%>
+                    </select>
+                    <select class="px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border rounded-e-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="quantity">
+                      <option class="disabled selected">Qty.</option>
+                      <option>Tsp.</option>
+                      <option>TB.</option>
+                      <option>Cup</option>
+                      <option>Oz.</option>
+                      <option>Qt.</option>
+                      <option>Gl.</option>
+                    </select>
                   </div>
-                  <div class="col-span-3 mb-2">
+                  <div class="w-5/6 mb-2">
                     <label for="ingredient" class="block mb-1 text-sm font-medium text-slate-200">Ingredients</label>
-                    <input class="w-full h-11 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm rounded-s-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5" type="text" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
+                    <input class="w-full h-11 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm md:text-base rounded-s-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5" type="text" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
                   </div>
-                  <div class="col-span-1 h-11 inline-flex mt-6" role="group">
-                    <button type="submit" name="addIngredient" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300">
-                      <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <div class="h-11 inline-flex mt-6" role="group">
+                    <button type="submit" name="addIngredient" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border rounded-e-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300">
+                      <svg class="w-3 md:w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                       </svg>
                     </button>
-                    <button type="submit" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-slate-600 rounded-e-lg hover:bg-slate-700 hover:text-slate-300">
-                      <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/>
-                      </svg>
-                    </button>
+                  </div>
+                </div>
+              <% } %>
+              <% if (recipe.ingredientCount > 1) { %>
+                <% for (i=0; i < recipe.ingredientCount; i++) { %>
+                  <div class="flex flex-row">
+                    <div class="inline-flex">
+                      <div class="flex flex-col">
+                        <label for="quantity" class="block mb-1 text-sm font-medium text-slate-200">Ingredients</label>
+                        <select class="h-11 text-sm md:text-base font-medium text-slate-200 bg-slate-800 border rounded-s-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="quantity">
+                          <option class="disabled selected">Qty.</option>
+                          <option>1/8</option>
+                          <option>1/4</option>
+                          <option>1/3</option>
+                          <option>1/2</option>
+                          <option>2/3</option>
+                          <option>3/4</option>
+                          <% for(x=1; x<100; x++) {%>
+                              <option value='<%= x %>'><%= x %></option>
+                          <%}%>
+                        </select>
+                      </div>
+                      <select class="h-11 mt-6 text-sm md:text-base font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="measurement">
+                        <option class="disabled selected">M.</option>
+                        <option>Tsp.</option>
+                        <option>Tb.</option>
+                        <option>Cup</option>
+                        <option>Oz.</option>
+                        <option>Pt.</option>
+                        <option>Qt.</option>
+                        <option>Gal.</option>
+                      </select>
+                    </div>
+                    <div class="w-4/6 mb-2 mt-6">
+                      <input class="w-full h-11 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm md:text-base block p-2.5" type="text" id="ingredient" name="ingredient" value="<%= recipe.ingredients[i] %>" placeholder="<%= recipe.ingredients[i] %>"></input>
+                    </div>
+                    <div class="h-11 inline-flex mt-6" role="group">
+                      <button type="submit" name="addIngredient" formaction="/recipe/addIngredient/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300">
+                        <svg class="w-3 md:w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                        </svg>
+                      </button>
+                      <button type="submit" name="deleteIngredient" formaction="/recipe/subtractIngredient/<%= recipe._id %>/<%= i %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-slate-600 rounded-e-lg hover:bg-slate-700 hover:text-slate-300">
+                        <svg class="w-3 md:w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 <% } %>
               <% } %>
             </div>
-            <div class="grid grid-flow-row grid-cols-5">
+            <div class="flex flex-col">
               <% if (recipe.stepCount === 1) { %>
-                <div class="col-span-4">
-                  <label for="step" class="block mb-1 text-sm font-medium text-slate-200">Step 1</label>
-                  <input class="w-full h-11 mb-2 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm rounded-s-lg focus:border-slate-500 block p-2.5" id="step" name="step" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
-                </div>
-                <div class="col-span-1 h-11 mt-6 inline-flex" role="group">
-                  <button type="submit" name="addStep" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border rounded-e-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300">
-                    <svg class="w-6 h-6 text-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-                    </svg>
-                  </button>
+                <div class="flex flex-row">
+                  <div class="w-full">
+                    <label for="step" class="block mb-1 text-sm font-medium text-slate-200">Step 1</label>
+                    <input class="w-full h-11 mb-2 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm md:text-base rounded-s-lg focus:border-slate-500 block p-2.5" id="step" name="step" value="<%= recipe.steps %>" placeholder="<%= recipe.steps %>"></input>
+                  </div>
+                  <div class="h-11 mt-6 inline-flex" role="group">
+                    <button type="submit" name="addStep" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border rounded-e-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300">
+                      <svg class="w-3 md:w-6 h-6 text-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               <% } %>
               <% if (recipe.stepCount > 1) { %>
                 <% for (i=0; i<recipe.stepCount; i++) { %>
-                  <div class="col-span-4">
-                    <label for="step" class="block mb-1 text-sm font-medium text-slate-200">Step <%= [i + 1] %></label>
-                    <input class="w-full h-11 mb-2 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm rounded-s-lg focus:border-slate-500 block p-2.5" id="step" name="step" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
-                  </div>
-                  <div class="col-span-1 h-11 mt-6 inline-flex" role="group">
-                    <button type="submit" name="addStep" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300">
-                      <svg class="w-6 h-6 text-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-                      </svg>
-                    </button>
-                    <button type="submit" name="subtractStep" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-slate-600 rounded-e-lg hover:bg-slate-700 hover:text-slate-300">
-                      <svg class="w-6 h-6 text-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/>
-                      </svg>
-                    </button>
+                  <div class="flex flex-row">
+                    <div class="w-full">
+                      <label for="step" class="block mb-1 text-sm font-medium text-slate-200">Step <%= [i + 1] %></label>
+                      <input class="w-full h-11 mb-2 bg-slate-800 border border-r-0 border-slate-600 text-slate-200 text-sm md:text-base rounded-s-lg focus:border-slate-500 block p-2.5" id="step" name="step" value="<%= recipe.steps[i] %>" placeholder="<%= recipe.steps[i] %>"></input>
+                    </div>
+                    <div class="h-11 mt-6 inline-flex" role="group">
+                      <button type="submit" name="addStep" formaction="/recipe/addStep/<%= recipe._id %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300">
+                        <svg class="w-3 md:w-6 h-6 text-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                        </svg>
+                      </button>
+                      <button type="submit" name="subtractStep" formaction="/recipe/subtractStep/<%= recipe._id %>/<%= i %>?_method=PUT" class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 border border-slate-600 rounded-e-lg hover:bg-slate-700 hover:text-slate-300">
+                        <svg class="w-3 md:w-6 h-6 text-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 <%}%>
               <% } %>

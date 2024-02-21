@@ -21,6 +21,10 @@ const BrewSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  recipe: {
+    type: String,
+    required: true
+  },
   firstFerment: {
     type: String,
     required: true

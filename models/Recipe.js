@@ -25,6 +25,10 @@ const RecipeSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
+  quantity: {
+    type: Array,
+    required: true
+  },
   steps: {
     type: Array,
     required: true

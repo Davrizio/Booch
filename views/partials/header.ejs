@@ -164,11 +164,11 @@
                    <input datepicker datepicker-buttons type="text" name="firstFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="MM/DD/YYYY">
                   </div>
                   <div class="col-span-2 sm:col-span-1">
-                    <label for="recipeSelect" class="block mb-2 text-sm font-medium text-slate-200">Pick A Recipe</label>
-                    <select id="recipeSelect" name="recipeSelect" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
+                    <label for="recipe" class="block mb-2 text-sm font-medium text-slate-200">Pick A Recipe</label>
+                    <select id="recipe" name="recipe" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
                         <option selected="">Select Recipe</option>
                         <% for(i=0; i < recipe.length; i++ ) { %>
-                          <option value="<%= recipe[i]._id %>"><%= recipe[i].name %></option>
+                          <option value="<%= recipe[i].name %>"><%= recipe[i].name %></option>
                         <% } %>
                     </select>
                   </div>
@@ -176,10 +176,6 @@
                     <label class="block mt-6 mb-2 text-sm font-medium text-slate-200" for="brew_image">Add A Picture</label>
                     <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="brew_image_help" id="brew_image" name="fileBrew" type="file">
                     <div class="mt-1 text-sm text-slate-400" id="brew_image_help">2mb max. png or jpg</div>
-                  </div>
-                  <div class="col-span-2">
-                      <label for="description" class="block mb-2 text-sm font-medium text-slate-200">Note</label>
-                      <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-slate-200 bg-slate-800 rounded-lg border border-slate-600 focus:ring-slate-300" placeholder="Write a little note"></textarea>                    
                   </div>
               </div>
               <button type="submit" class="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-200">

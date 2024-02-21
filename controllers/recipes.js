@@ -41,7 +41,8 @@ module.exports = {
         ingredientCount: 1,
         stepCount: 1,
         ingredients: [ ],
-        measurements: [ ],
+        measurements: ["M."],
+        quantity: ["Qty."],
         steps: [ ],
         status: "edit",
         user: req.user.id
@@ -54,8 +55,6 @@ module.exports = {
   },
 
   editRecipe: async (req, res) => {
-    console.log(req.body);
-    let result;
     try {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
@@ -64,6 +63,7 @@ module.exports = {
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
+          quantity: req.body.quantity,
           steps: req.body.step,
           status: req.body.status,
           user: req.user.id,
@@ -86,7 +86,7 @@ module.exports = {
           cloudinaryId: result.public_id,
         }
       );
-      console.log("Recipe status has been updated!");
+      console.log("Recipe picture has been updated!");
       res.redirect(`/recipe/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -107,6 +107,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   rateRecipe: async (req, res) => {
     try {
       await Recipe.findOneAndUpdate(
@@ -120,6 +121,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   addIngredient: async (req, res) => {
     let result;
     try {
@@ -130,6 +132,7 @@ module.exports = {
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
+          quantity: req.body.quantity,
           steps: req.body.step,
           status: "edit",
           user: req.user.id,
@@ -141,6 +144,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   addStep: async (req, res) => {
     let result;
     try {
@@ -151,6 +155,7 @@ module.exports = {
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
+          quantity: req.body.quantity,
           steps: req.body.step,
           status: "edit",
           user: req.user.id,
@@ -162,10 +167,12 @@ module.exports = {
       console.log(err);
     }
   },
+
   subtractIngredient: async (req, res) => {
     let ingredientList = req.body.ingredient.filter((el,idx,arr) => idx != req.params.num);
     let measurementList = req.body.measurement.filter((el,idx,arr) => idx != req.params.num);
-    let result;
+    let quantityList = req.body.quantity.filter((el,idx,arr) => idx != req.params.num);
+
     try {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
@@ -174,7 +181,8 @@ module.exports = {
           note: req.body.note,
           ingredients: ingredientList,
           measurements: measurementList,
-          steps: req.body.steps,
+          quantity: quantityList,
+          steps: req.body.step,
           status: "edit",
           user: req.user.id,
           $inc: { ingredientCount: -1 }
@@ -185,9 +193,9 @@ module.exports = {
       res.redirect("back");
     }
   },
+
   subtractStep: async (req, res) => {
-    let stepsList = req.body.steps.filter((el,idx,arr) => idx != req.params.num);
-    let result;
+    let stepsList = req.body.step.filter((el,idx,arr) => idx != req.params.num);
     try {
       await Recipe.findOneAndUpdate(
         { _id: req.params.id },
@@ -196,6 +204,7 @@ module.exports = {
           note: req.body.note,
           ingredients: req.body.ingredient,
           measurements: req.body.measurement,
+          quantity: req.body.quantity,
           steps: stepsList,
           status: "edit",
           $inc: { stepCount: -1 },
@@ -207,6 +216,7 @@ module.exports = {
       res.redirect("back");
     }
   },
+
   deleteRecipe: async (req, res) => {
     try {
       // Find post by id

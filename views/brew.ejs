@@ -3,84 +3,66 @@
     <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
   </div>
   <div class="relative p-4 sm:ml-64">
-    <div class="flex flex-col items-center p-4 mt-14">      
+    <div class="flex flex-col items-center p-4 mt-14">     
       <div class="flex flex-col items-center bg-slate-600 rounded-lg mb-12 shadow-xl md:flex-row md:h-96 md:w-5/6">
+        <button data-modal-target="edit-picture" data-modal-toggle="edit-picture" role="link" class="absolute m-2 place-self-end z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Edit</button>
         <img class="object-cover w-full rounded-t-lg  md:rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none h-96 md:w-48 lg:w-96" src="<%= brew.image %>" alt="brew image">
         <div class="flex flex-col w-full justify-between p-4 space-y-2 leading-normal">
-          <h1 class="text-5xl font-bold tracking-tight text-slate-300"><%= brew.name %></h1>
+          <h1 class="text-4xl font-bold tracking-tight text-slate-300"><%= brew.name %></h1>
           <h5 class="text-xl font-bold tracking-tight text-slate-300">Tea type: <%= brew.tea %></h5>
-          <h5 class="text-xl font-bold tracking-tight text-slate-300">Average temp <%= brew.avgTemp %>°</h5>
-          <p class="h-28 font-normal text-slate-300"><%= brew.note %></p>
+          <h5 class="text-xl font-bold tracking-tight text-slate-300">Average temp: <%= brew.avgTemp %>°</h5>
+          <h5 class="text-xl font-bold tracking-tight text-slate-300">Recipe: <%= brew.recipe %></h5>
+          <% if (brew.note == 'Add Note') { %>
+            <p></p>
+          <% } else { %>
+            <p class="h-32 text-sm md:text-lg font-normal text-slate-300 whitespace-normal break-words overflow-scroll"><%= brew.note %></p>
+          <% } %>
           <div class="flex items-center">
-            <form action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST">
-              <div class="rate">
-                <% let ratedOne = "rate" %>
-                <% let ratedTwo = "rate" %>
-                <% let ratedThree = "rate" %>
-                <% let ratedFour = "rate" %>
-                <% let ratedFive = "rate" %>
-    
-                <% if (brew.rating === 5) { %>
-                  <% ratedFive = "rated" %>
-                  <% ratedFour = "rated" %>
-                  <% ratedThree = "rated" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (brew.rating === 4) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "rated" %>
-                  <% ratedThree = "rated" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (brew.rating === 3) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "" %>
-                  <% ratedThree = "rated" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (brew.rating === 2) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "" %>
-                  <% ratedThree = "" %>
-                  <% ratedTwo = "rated" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <% if (brew.rating === 1) { %>
-                  <% ratedFive = "" %>
-                  <% ratedFour = "" %>
-                  <% ratedThree = "" %>
-                  <% ratedTwo = "" %>
-                  <% ratedOne = "rated" %>
-                <% } %>
-                <button type="submit" value="1" name="rating" class="">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedOne %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="2" name="rating" class="">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedTwo %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="3" name="rating" class="">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedThree %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="4" name="rating" class="">
-                  <svg class="w-6 h-6 ms-2" aria-hidden="true" id="<%= ratedFour %>" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-                <button type="submit" value="5" name="rating" class="">
-                  <svg class="w-6 h-6 ms-2" id="<%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                  </svg>
-                </button>
-              </div>
+            <form action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST" class="flex flex-row-reverse place-self-center mt-2">
+              <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-slate-500";%>
+              <% switch (recipe.rating) {
+                  case 5:
+                    ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-amber-400";
+                    break;
+                  case 4:
+                    ratedOne = ratedTwo = ratedThree = ratedFour = "*:fill-amber-400";
+                    break;
+                  case 3:
+                    ratedOne = ratedTwo = ratedThree = "*:fill-amber-400";
+                    break;
+                  case 2:
+                    ratedOne = ratedTwo = "*:fill-amber-400";
+                    break;
+                  case 1:
+                    ratedOne = "*:fill-amber-400";
+                    break;
+                  default:
+              } %>
+              <button type="submit" value="5" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedFive %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="4" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedFour %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="3" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedThree %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="2" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedTwo %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
+              <button type="submit" value="1" name="rating" class="peer *:peer-hover:fill-amber-400 *:hover:fill-amber-400 <%= ratedOne %>">
+                <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+              </button>
             </form>
           </div>
           <div class="place-self-end">
@@ -97,8 +79,8 @@
         <div class="mb-4">
           <h5 class="text-xl font-medium text-slate-300">Edit Details</h5>
         </div>
-        <form class="grid grid-flow-col md:grid-flow-row grid-rows-12 gap-2 md:grid-rows-6 grid-cols-1 md:grid-cols-2" action="/brew/editBrew/<%= brew._id %>?_method=PUT" method="post">   
-            <div class="row-span-3 col-span-1">
+        <form class="grid grid-flow-col md:grid-flow-row grid-rows-9 gap-2 grid-cols-1 md:grid-rows-6 md:grid-cols-2" action="/brew/editBrew/<%= brew._id %>?_method=PUT" method="post">   
+            <div class="row-span-2 col-span-1">
               <div>
                   <label for="name" class="block mb-2 text-sm font-medium text-slate-300">Name</label>
                   <input type="text" name="name" id="name" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.name %>" placeholder="<%= brew.name %>">
@@ -112,8 +94,8 @@
                 <input type="number" name="avgTemp" id="avgTemp" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.avgTemp %>" placeholder="<%= brew.avgTemp %>">
               </div>
             </div>
-            <div class="flex flex-col row-span-3 col-span-1 place-content-center gap-4">
-              <div class="relative max-w-sm mt-7 mb-3">
+            <div class="flex flex-col row-span-2 col-span-1 gap-4">
+              <div class="relative max-w-sm mb-3 mt-7">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                    <svg class="w-4 h-4 text-slate-200 fill-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
@@ -138,14 +120,18 @@
                 <input datepicker datepicker-buttons data-date="<%= brew.thirdFerment %>" type="text" name="thirdFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Third Fermentation">
               </div>
             </div>
-            <div class="row-span-2 col-span-1">
-              <label for="note" class="block mb-2 text-sm font-medium text-slate-200">Note</label>
-              <textarea id="note" name="note" rows="4" class="block p-2.5 w-full text-sm text-slate-200 bg-slate-800 rounded-lg border border-slate-600 focus:ring-slate-300" value="<%= brew.note %>" placeholder="<%= brew.note %>"><%= brew.note %></textarea>
+            <div class="row-span-1 col-span-1">
+              <label for="recipe" class="block mb-2 text-sm font-medium text-slate-200">Pick A Recipe</label>
+              <select id="recipe" name="recipe" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
+                  <option selected=""><%= brew.recipe %></option>
+                  <% for(i=0; i < recipe.length; i++ ) { %>
+                    <option value="<%= recipe[i].name %>"><%= recipe[i].name %></option>
+                  <% } %>
+              </select>
             </div>
-            <div class="row-span-2 col-span-1">
-              <label class="block mt-6 mb-2 text-sm font-medium text-slate-200" for="user_avatar">Replace Picture</label>
-              <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="user_avatar_help" id="user_avatar" type="file">
-              <div class="mt-1 ml-2 text-sm text-slate-400" id="user_avatar_help">2mb 500x500 png,jpg</div>
+            <div class="row-span-2 col-span-2">
+              <label for="note" class="block mb-2 text-sm font-medium text-slate-200">Note</label>
+              <textarea id="note" name="note" rows="8" class="block p-2.5 w-full text-sm text-slate-200 bg-slate-800 rounded-lg border border-slate-600 focus:ring-slate-300" value="<%= brew.note %>" placeholder="<%= brew.note %>"><%= brew.note %></textarea>
             </div>
             <button type="submit" class="col-span-2 row-span-1 place-self-end group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
               <span class="absolute h-0 w-0 rounded-full bg-slate-800 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
@@ -154,5 +140,35 @@
         </form>
       </div>
     </div>
+    <!-- Edit Picture Modal -->
+    <div id="edit-picture" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <div class="relative bg-slate-700 border-2 border-slate-300 rounded-lg shadow">
+              <div class="flex items-center justify-between p-4 md:p-5 border-b border-b-slate-200 rounded-t">
+                  <h3 class="text-lg font-semibold text-slate-200">
+                    Edit Picture
+                  </h3>
+                  <button type="button" class="text-slate-300 bg-transparent hover:bg-slate-300 hover:text-slate-800 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="edit-picture">
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <form action="/brew/editPicture/<%= brew._id %>" enctype="multipart/form-data" method="post" class="flex flex-col p-4 md:p-5">
+                <div class="mt-2">
+                  <input class="block text-sm text-slate-200 border-2 border-slate-600 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="recipe_iamge_help" id="recipe_image" name="file" type="file">
+                  <div class="mt-1 ml-2 text-sm text-slate-400" id="recipe_image_help">2mb max. png or jpg</div>
+                </div>
+                <button type="submit" class="group relative inline-flex mt-6 h-8 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-200">
+                  <div class="mr-0 w-0 -translate-x-[100%] opacity-0 transition-all duration-200 group-hover:mr-1 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100">
+                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                  </div>
+                  <span>Save</span>
+                </button>
+              </form>
+          </div>
+      </div>
+    </div>  
   </div>
   <%- include('partials/footer') -%>

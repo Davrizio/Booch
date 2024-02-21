@@ -57,15 +57,14 @@
                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
             </svg>
           </div>
-          <div class="m-2 mb-4 h-64 w-72 place-self-center border-2 border-slate-500 rounded-xl">
-            <p class="font-normal p-2 text-slate-300"><%= recipe[i].note%></p>
-          </div>
         </div>
-        <div class="flex flex-col-reverse absolute backface-hidden w-full h-full rotate-y-180 bg-slate-600 border border-slate-200 rounded-lg shadow">
+        <div class="flex flex-col absolute backface-hidden w-full h-full rotate-y-180 bg-slate-600 border border-slate-200 rounded-lg shadow">
+          <div class="flex m-4 h-80 min-w-72 place-self-center border-2 border-slate-500 rounded-xl">
+            <div class="font-normal p-2 text-slate-300 whitespace-normal break-words overflow-scroll"><%= recipe[i].note %></div>
+          </div>
           <a class="place-self-end my-4 mr-3" href="/recipe/<%= recipe[i]._id %>">
-            <button class="relative z-0 h-12 rounded-md bg-slate-500 px-6 text-slate-300 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-md after:bg-slate-400 active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-400">Edit</button>
+            <button class="relative overflow-hidden rounded-md bg-slate-500 px-5 py-2.5 text-slate-300 duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:translate-y-1 active:scale-x-110 active:scale-y-90">Click me</button>
           </a>
-          <%# Ingredients filter %>         
         </div>
       </div>
     </div>

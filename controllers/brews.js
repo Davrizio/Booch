@@ -4,7 +4,6 @@ const Recipe = require("../models/Recipe");
 
 module.exports = {
   getProfile: async (req, res) => {
-    console.log(req.user)
     try {
       const recipe = await Recipe.find({ user: req.user.id })
       const brews = await Brew.find({ user: req.user.id });
@@ -13,6 +12,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   getBrew: async (req, res) => {
     try {
       const recipe = await Recipe.find({ user: req.user.id })
@@ -22,6 +22,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   createBrew: async (req, res) => {
     let result;
     try {
@@ -36,11 +37,12 @@ module.exports = {
         name: req.body.name,
         image: result.secure_url,
         cloudinaryId: result.public_id,
-        note: req.body.note,
+        note: 'Add Note',
         rating: 0,
         firstFerment: req.body.firstFerment,
-        secondFerment: '',
-        thirdFerment: '',
+        secondFerment: 'date',
+        thirdFerment: 'date',
+        recipe: req.body.recipe,
         tea: req.body.tea,
         avgTemp: req.body.avgTemp,
         user: req.user.id
@@ -51,35 +53,44 @@ module.exports = {
       console.log(err);
     }
   },
-  createBrew: async (req, res) => {
-    let result;
+
+  editBrew: async (req, res) => {
     try {
-      if (req.file === undefined) {
-        result = await cloudinary.uploader.upload(
-          "./public/imgs/default_brew.png"
-        );
-      } else {
-        result = await cloudinary.uploader.upload(req.file.path);
-      }
-      await Brew.create({
+      await Brew.findOneAndUpdate({
         name: req.body.name,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
         note: req.body.note,
-        rating: 0,
         firstFerment: req.body.firstFerment,
         secondFerment: req.body.secondFerment,
         thirdFerment: req.body.thirdFerment,
         tea: req.body.tea,
         avgTemp: req.body.avgTemp,
-        user: req.user.id
+        user: req.user.id,
+        recipe: req.body.recipe
       });
-      console.log("Brew card has been added!");
+      console.log("Brew card has been edited!");
       res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
   },
+
+  editPicture: async (req, res) => {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      await Brew.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+        }
+      );
+      console.log("Recipe picture has been updated!");
+      res.redirect(`/brew/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   rateBrew: async (req, res) => {
     console.log("here!");
     try {
@@ -95,6 +106,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   deleteBrew: async (req, res) => {
     try {
       let post = await Brew.findById({ _id: req.params.id });

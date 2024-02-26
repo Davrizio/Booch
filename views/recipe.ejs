@@ -96,7 +96,7 @@
           <form class="flex flex-col gap-2 " action="/recipe/editRecipe/<%= recipe.id %>?_method=PUT" method="post">   
             <div>
               <label for="name" class="block mb-2 text-sm font-medium text-slate-200">Name</label>
-              <input type="text" name="name" id="name" class="bg-slate-800 border border-slate-600 text-slate-200 mb-2 text-sm md:text-base rounded-lg focus:ring-slate2000 focus:border-slate2000 block w-full p-2.5" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
+              <input type="text" name="name" id="name" class="bg-slate-800 border border-slate-600 text-slate-200 mb-2 text-sm md:text-base rounded-lg focus:ring-slate-200 focus:border-slate-200 block w-full p-2.5" value="<%= recipe.name %>" placeholder="<%= recipe.name %>">
             </div>
             <div class="flex flex-col">
               <% if (recipe.ingredientCount === 1) { %>
@@ -251,17 +251,19 @@
             </div>
           <div class="flex flex-col space-y-4">
             <% if (recipe.ingredientCount === 1) { %>
-              <div class="flex flex-row space-x-4">
+              <div class="flex flex-row gap-2">
                 <input id="checkbox" type="checkbox" class="w-6 h-6 mt-0.5 text-slate-400 bg-slate-500 border-slate-300 rounded focus:ring-slate-400 focus:ring-2">
                 <label for="checkbox" class="sr-only">checkbox</label>
+                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.quantity %></h3>
                 <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.measurements %></h3>
                 <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.ingredients %></h3>
               </div>
             <% } else { %>
               <% for (i=0; i<recipe.ingredientCount; i++) { %>
-                <div class="flex flex-row space-x-4">
+                <div class="flex flex-row gap-2">
                   <input id="checkbox" type="checkbox" class="w-6 h-6 mt-0.5 text-slate-400 bg-slate-500 border-slate-300 rounded focus:ring-slate-400 focus:ring-2">
                   <label for="checkbox" class="sr-only">checkbox</label>
+                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.quantity[i] %></h3>
                   <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.measurements[i] %></h3>
                   <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.ingredients[i] %></h3>
                 </div>

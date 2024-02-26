@@ -11,6 +11,13 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const brewRoutes = require("./routes/brews");
 const recipeRoutes = require("./routes/recipes");
+const dayjs = require('dayjs')
+const relativeTime = require('dayjs/plugin/relativeTime')
+
+
+//Use DayJs
+dayjs.extend(relativeTime)
+app.locals.dayjs = dayjs
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -33,6 +40,7 @@ app.get('/flowbite.min.js', function(req, res) {
 })
 
 //Flowbite DatePicker
+
 app.get('/datepicker.js', function(req, res) {
   res.sendFile(__dirname + '/node_modules/flowbite/dist/datepicker.js');
 })

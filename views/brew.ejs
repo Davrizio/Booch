@@ -20,7 +20,7 @@
           <div class="flex items-center">
             <form action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST" class="flex flex-row-reverse place-self-center mt-2">
               <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-slate-500";%>
-              <% switch (recipe.rating) {
+              <% switch (brew.rating) {
                   case 5:
                     ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-amber-400";
                     break;
@@ -87,7 +87,7 @@
               </div>
               <div>
                   <label for="tea" class="block mb-2 text-sm font-medium text-slate-300">Tea</label>
-                  <input type="tea" name="tea" id="tea" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.tea %>" placeholder="<%= brew.tea %>">
+                  <input type="text" name="tea" id="tea" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.tea %>" placeholder="<%= brew.tea %>">
               </div>
               <div>
                 <label for="avgTemp" class="block mb-2 text-sm font-medium text-slate-300">Average Temperature</label>
@@ -101,7 +101,7 @@
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
                 </div>
-                <input datepicker datepicker-buttons data-date="<%= brew.firstFerment %>" type="text" name="firstFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="First Fermentation">
+                <input datepicker datepicker-buttons data-date="MM/DD/YYYY" value="<%= brew.firstFerment %>" type="text" name="firstFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="First Fermentation">
               </div>
               <div class="relative max-w-sm mb-3">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -109,7 +109,7 @@
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
                 </div>
-                <input datepicker datepicker-buttons data-date="<%= brew.secondFerment %>" type="text" name="secondFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Second Fermentation">
+                <input datepicker datepicker-buttons data-date="MM/DD/YYYY" value="<%= brew.secondFerment %>" type="text" name="secondFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Second Fermentation">
               </div>
               <div class="relative max-w-sm">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -117,7 +117,7 @@
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
                 </div>
-                <input datepicker datepicker-buttons data-date="<%= brew.thirdFerment %>" type="text" name="thirdFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Third Fermentation">
+                <input datepicker datepicker-buttons data-date="MM/DD/YYYY" value="<%= brew.thirdFerment %>" type="text" name="thirdFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Third Fermentation">
               </div>
             </div>
             <div class="row-span-1 col-span-1">

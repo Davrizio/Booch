@@ -8,6 +8,13 @@
         <div class="group w-80 h-96 perspective-1000">
           <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
             <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
+              <span class="absolute bg-slate-500 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded me-2 border border-slate-500 ">
+                <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                </svg>
+                <% let firstFermentCountdown =  dayjs(brews[i].firstFerment).add(6, 'day') %>
+                <%= firstFermentCountdown.fromNow() %>
+              </span>
               <img class="object-cover h-48 w-80 rounded-t-xl" src="<%= brews[i].image %>" alt="brew image" />
               <div class="place-self-center flex h-10 mt-2">
                 <h5 class="text-2xl text-center font-bold whitespace-normal break-words overflow-hidden text-slate-300"><%= brews[i].name.toUpperCase() %></h5>
@@ -59,6 +66,7 @@
               <div class="absolute flex flex-col w-full h-full rounded-xl">
                 <div class="flex my-4 h-52 w-72 place-self-center border-2 border-slate-500 rounded-xl">
                   <p class="p-2 font-normal whitespace-normal break-words overflow-scroll text-slate-300"><%= brews[i].note%></p>
+                  <% console.log(brews[i]) %>
                 </div>
                 <span class="place-self-center text-center text-lg font-semibold text-slate-300">Recipe</span>
                 <div class=" my-2 h-10 w-72 place-self-center border-2 border-slate-500 rounded-xl">

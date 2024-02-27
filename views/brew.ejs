@@ -13,9 +13,9 @@
           <h5 class="text-xl font-bold tracking-tight text-slate-300">Average temp: <%= brew.avgTemp %>°</h5>
           <h5 class="text-xl font-bold tracking-tight text-slate-300">Recipe: <%= brew.recipe %></h5>
           <% if (brew.note == 'Add Note') { %>
-            <p></p>
+            <p class="h-28 text-sm md:text-lg font-normal text-slate-300 whitespace-normal break-words overflow-scroll"></p>
           <% } else { %>
-            <p class="h-32 text-sm md:text-lg font-normal text-slate-300 whitespace-normal break-words overflow-scroll"><%= brew.note %></p>
+            <p class="h-28 text-sm md:text-lg font-normal text-slate-300 whitespace-normal break-words overflow-scroll"><%= brew.note %></p>
           <% } %>
           <div class="flex items-center">
             <form action="/brew/rateBrew/<%= brew.id %>?_method=PUT" method="POST" class="flex flex-row-reverse place-self-center mt-2">
@@ -79,30 +79,54 @@
         <div class="mb-4">
           <h5 class="text-xl font-medium text-slate-300">Edit Details</h5>
         </div>
-        <form class="grid grid-flow-col md:grid-flow-row grid-rows-9 gap-2 grid-cols-1 md:grid-rows-6 md:grid-cols-2" action="/brew/editBrew/<%= brew._id %>?_method=PUT" method="post">   
-            <div class="row-span-2 col-span-1">
+        <form class="grid grid-flow-col md:grid-flow-row  gap-2 grid-cols-1  md:grid-cols-2" action="/brew/editBrew/<%= brew._id %>?_method=PUT" method="post">   
+            <div class="col-span-1 space-y-2">
               <div>
-                  <label for="name" class="block mb-2 text-sm font-medium text-slate-300">Name</label>
+                  <label for="name" class="block mb-1 text-sm font-medium text-slate-300">Name</label>
                   <input type="text" name="name" id="name" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.name %>" placeholder="<%= brew.name %>">
               </div>
               <div>
-                  <label for="tea" class="block mb-2 text-sm font-medium text-slate-300">Tea</label>
-                  <input type="text" name="tea" id="tea" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.tea %>" placeholder="<%= brew.tea %>">
+                <label for="tea" class="block mb-1 text-sm font-medium text-slate-300">Tea</label>
+                <input type="text" name="tea" id="tea" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.tea %>" placeholder="<%= brew.tea %>">
+              </div>
+            </div>
+            <div class="col-span-1 space-y-2">
+              <div>
+                <label for="recipe" class="block mb-1 text-sm font-medium text-slate-200">Pick A Recipe</label>
+                <select id="recipe" name="recipe" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
+                    <option selected=""><%= brew.recipe %></option>
+                    <% for(i=0; i < recipe.length; i++ ) { %>
+                      <option value="<%= recipe[i].name %>"><%= recipe[i].name %></option>
+                    <% } %>
+                </select>
               </div>
               <div>
-                <label for="avgTemp" class="block mb-2 text-sm font-medium text-slate-300">Average Temperature</label>
+                <label for="avgTemp" class="block mb-1 text-sm font-medium text-slate-300">Average Temperature</label>
                 <input type="number" name="avgTemp" id="avgTemp" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" value="<%= brew.avgTemp %>" placeholder="<%= brew.avgTemp %>">
               </div>
             </div>
-            <div class="flex flex-col row-span-2 col-span-1 gap-4">
-              <div class="relative max-w-sm mb-3 mt-7">
+            <span class="block text-sm font-medium text-slate-300">First fermentation start and end dates</span>
+            <div date-rangepicker class="col-span-2 flex items-center">
+              <div class="relative w-full max-w-sm mb-3">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                    <svg class="w-4 h-4 text-slate-200 fill-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
                 </div>
-                <input datepicker datepicker-buttons data-date="MM/DD/YYYY" value="<%= brew.firstFerment %>" type="text" name="firstFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="First Fermentation">
+                <input data-date="MM/DD/YYYY" value="<%= brew.firstFerment[0] %>" type="text" name="firstFermentStart" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="First Fermentation">
               </div>
+              <span class="mx-2 mb-2 text-gray-500">to</span>
+              <div class="relative w-full max-w-sm mb-3">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                   <svg class="w-4 h-4 text-slate-200 fill-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                    </svg>
+                </div>
+                <input data-date="MM/DD/YYYY" value="<%= brew.firstFerment[1] %>" type="text" name="firstFermentEnd" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="First Fermentation">
+              </div>
+            </div>
+            <div class="col-span-1">
+              <span class="block mb-2 text-sm font-medium text-slate-300">Second fermentaion end date</span>
               <div class="relative max-w-sm mb-3">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                    <svg class="w-4 h-4 text-slate-200 fill-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -111,6 +135,9 @@
                 </div>
                 <input datepicker datepicker-buttons data-date="MM/DD/YYYY" value="<%= brew.secondFerment %>" type="text" name="secondFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Second Fermentation">
               </div>
+            </div>
+            <div class="col-span-1">
+              <span class="block mb-2 text-sm font-medium text-slate-300">Third fermentaion end date</span>
               <div class="relative max-w-sm">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                    <svg class="w-4 h-4 text-slate-200 fill-slate-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -120,20 +147,11 @@
                 <input datepicker datepicker-buttons data-date="MM/DD/YYYY" value="<%= brew.thirdFerment %>" type="text" name="thirdFerment" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full ps-10 p-2.5" placeholder="Third Fermentation">
               </div>
             </div>
-            <div class="row-span-1 col-span-1">
-              <label for="recipe" class="block mb-2 text-sm font-medium text-slate-200">Pick A Recipe</label>
-              <select id="recipe" name="recipe" class="bg-slate-800 border border-slate-600 text-slate-200 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5">
-                  <option selected=""><%= brew.recipe %></option>
-                  <% for(i=0; i < recipe.length; i++ ) { %>
-                    <option value="<%= recipe[i].name %>"><%= recipe[i].name %></option>
-                  <% } %>
-              </select>
-            </div>
-            <div class="row-span-2 col-span-2">
+            <div class="col-span-2">
               <label for="note" class="block mb-2 text-sm font-medium text-slate-200">Note</label>
               <textarea id="note" name="note" rows="8" class="block p-2.5 w-full text-sm text-slate-200 bg-slate-800 rounded-lg border border-slate-600 focus:ring-slate-300" value="<%= brew.note %>" placeholder="<%= brew.note %>"><%= brew.note %></textarea>
             </div>
-            <button type="submit" class="col-span-2 row-span-1 place-self-end group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
+            <button type="submit" class="col-span-2 mt-4 place-self-end group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
               <span class="absolute h-0 w-0 rounded-full bg-slate-800 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
               <span class="relative">Save</span>
             </button>

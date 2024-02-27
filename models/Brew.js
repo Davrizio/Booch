@@ -26,15 +26,15 @@ const BrewSchema = new mongoose.Schema({
     required: true
   },
   firstFerment: {
-    type: String,
+    type: Array,
     required: true
   },
   secondFerment: {
-    type: String,
+    type: Array,
     required: true
   },
   thirdFerment: {
-    type: String,
+    type: Array,
     required: true
   },
   avgTemp: {

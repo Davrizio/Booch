@@ -11,12 +11,14 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const brewRoutes = require("./routes/brews");
 const recipeRoutes = require("./routes/recipes");
-const dayjs = require('dayjs')
-const relativeTime = require('dayjs/plugin/relativeTime')
+const dayjs = require('dayjs');
+const relativeTime = require('dayjs/plugin/relativeTime');
+const customParseFormat = require('dayjs/plugin/customParseFormat')
 
 
 //Use DayJs
 dayjs.extend(relativeTime)
+dayjs.extend(customParseFormat)
 app.locals.dayjs = dayjs
 
 //Use .env file in config folder

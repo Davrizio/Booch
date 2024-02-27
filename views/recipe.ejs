@@ -5,7 +5,7 @@
 <div class="relative p-4 sm:ml-64">
   <div class="p-4 mt-14">      
     <div class="flex flex-col items-center justify-center rounded">
-      <div class="flex flex-col items-center bg-slate-600 rounded-lg mb-12 shadow-xl md:flex-row md:h-96 md:w-5/6">
+      <div class="flex flex-col items-center bg-slate-700 rounded-lg mb-12 shadow-xl md:flex-row md:h-96 md:w-5/6">
         <button data-modal-target="edit-picture" data-modal-toggle="edit-picture" role="link" class="absolute m-2 place-self-end z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Edit</button>
         <img class="object-cover w-full rounded-t-lg  md:rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none h-96 md:w-48 lg:w-96" src="<%= recipe.image %>" alt="brew image">
         <div class="flex flex-col w-full justify-between p-4 space-y-2 leading-normal">
@@ -277,7 +277,7 @@
             <% if (recipe.stepCount === 1) { %>
               <div class="flex flex-col space-y-1">
                 <span class="text-sm md:text-lg text-slate-400">Step 1</span>
-                <div class="border-2 border-slate-400 bg-slate-500 rounded-lg w-full">
+                <div class="border-2 border-slate-400 bg-slate-600 rounded-lg w-full">
                   <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps %></h3>
                 </div>
               </div>
@@ -285,7 +285,7 @@
               <% for (i=0; i<recipe.stepCount; i++) { %>
                 <div class="flex flex-col space-y-1">
                   <span class="text-sm md:text-lg text-slate-400">Step <%= [i + 1] %></span>
-                  <div class="border-2 border-slate-400 bg-slate-500 rounded-lg w-full">
+                  <div class="border-2 border-slate-400 bg-slate-600 rounded-lg w-full">
                     <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps[i] %></h3>
                   </div>
                 </div>

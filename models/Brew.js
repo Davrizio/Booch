@@ -30,11 +30,11 @@ const BrewSchema = new mongoose.Schema({
     required: true
   },
   secondFerment: {
-    type: Array,
+    type: String,
     required: true
   },
   thirdFerment: {
-    type: Array,
+    type: String,
     required: true
   },
   avgTemp: {

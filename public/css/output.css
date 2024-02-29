@@ -1688,6 +1688,10 @@ input:checked + .toggle-bg {
   width: 24rem;
 }
 
+.w-4\/5 {
+  width: 80%;
+}
+
 .min-w-72 {
   min-width: 18rem;
 }
@@ -4452,6 +4456,10 @@ input:checked + .toggle-bg {
 
   .md\:w-4\/6 {
     width: 66.666667%;
+  }
+
+  .md\:w-4\/5 {
+    width: 80%;
   }
 
   .md\:min-w-full {

@@ -1405,6 +1405,10 @@ input:checked + .toggle-bg {
   margin-top: 2.25rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1678,6 +1682,10 @@ input:checked + .toggle-bg {
 
 .w-11\/12 {
   width: 91.666667%;
+}
+
+.w-96 {
+  width: 24rem;
 }
 
 .min-w-72 {
@@ -3017,6 +3025,10 @@ input:checked + .toggle-bg {
   fill: #64748b;
 }
 
+.fill-slate-300 {
+  fill: #cbd5e1;
+}
+
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
@@ -3232,6 +3244,11 @@ input:checked + .toggle-bg {
   line-height: 1.5rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -3246,6 +3263,18 @@ input:checked + .toggle-bg {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-extralight {
+  font-weight: 200;
 }
 
 .uppercase {
@@ -4336,6 +4365,10 @@ input:checked + .toggle-bg {
     display: none;
   }
 
+  .sm\:w-56 {
+    width: 14rem;
+  }
+
   .sm\:p-6 {
     padding: 1.5rem;
   }
@@ -4381,6 +4414,10 @@ input:checked + .toggle-bg {
     height: 24rem;
   }
 
+  .md\:h-auto {
+    height: auto;
+  }
+
   .md\:w-48 {
     width: 12rem;
   }
@@ -4393,8 +4430,40 @@ input:checked + .toggle-bg {
     width: 1.5rem;
   }
 
+  .md\:w-96 {
+    width: 24rem;
+  }
+
+  .md\:w-80 {
+    width: 20rem;
+  }
+
+  .md\:w-56 {
+    width: 14rem;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-2\/6 {
+    width: 33.333333%;
+  }
+
+  .md\:w-4\/6 {
+    width: 66.666667%;
+  }
+
+  .md\:min-w-full {
+    min-width: 100%;
+  }
+
   .md\:max-w-2xl {
     max-width: 42rem;
+  }
+
+  .md\:max-w-xl {
+    max-width: 36rem;
   }
 
   .md\:grid-flow-row {
@@ -4461,11 +4530,20 @@ input:checked + .toggle-bg {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg\:w-96 {
     width: 24rem;
+  }
+
+  .lg\:w-80 {
+    width: 20rem;
   }
 
   .lg\:px-5 {

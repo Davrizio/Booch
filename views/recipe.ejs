@@ -8,9 +8,9 @@
       <div class="flex flex-col items-center bg-slate-700 rounded-lg mb-12 shadow-xl md:flex-row md:h-96 md:w-5/6">
         <button data-modal-target="edit-picture" data-modal-toggle="edit-picture" role="link" class="absolute m-2 place-self-end z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Edit</button>
         <img class="object-cover w-full rounded-t-lg  md:rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none h-96 md:w-48 lg:w-96" src="<%= recipe.image %>" alt="brew image">
-        <div class="flex flex-col w-full justify-between p-4 space-y-2 leading-normal">
-          <h1 class="text-xl md:text-4xl font-bold tracking-tight text-slate-300"><%= recipe.name %></h1>
-          <p class="h-36 text-sm md:text-lg font-normal text-slate-300 whitespace-normal break-words overflow-scroll"><%= recipe.note %></p>
+        <div class="flex flex-col w-full h-full justify-between p-4 space-y-2 leading-normal">
+          <h1 class="text-xl md:text-4xl font-thin tracking-tight text-slate-300"><%= recipe.name %></h1>
+          <p class="h-36 text-sm md:text-lg font-light text-slate-300 whitespace-normal break-words overflow-scroll"><%= recipe.note %></p>
           <div class="flex items-center">
             <form action="/recipe/rateRecipe/<%= recipe.id %>?_method=PUT" method="POST" class="flex flex-row-reverse place-self-center my-4">
               <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "*:fill-slate-500";%>
@@ -73,14 +73,14 @@
             <form class="col-1" action="/recipe/editRecipeStatus/<%= recipe._id %>?_method=PUT" method="POST">
               <button type="submit" class="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
                 <span class="absolute h-0 w-0 rounded-full bg-slate-800 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
-                <span class="relative">EDIT</span>
+                <span class="relative font-normal">EDIT</span>
               </button>
               <input type="hidden" class="form-control" id="status" name="status" value="edit">
             </form>
             <form action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE" method="post">
               <button type="submit" class="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
                 <span class="absolute h-0 w-0 rounded-full bg-red-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
-                <span class="relative">Delete</span>
+                <span class="relative font-normal">Delete</span>
               </button>
             </form>
           </div>
@@ -103,8 +103,8 @@
                 <div class="flex flex-row">
                   <div class="inline-flex">
                     <div class="flex flex-col">
-                      <label for="quantity" class="block mb-1 text-sm font-medium text-slate-200">Ingredients</label>
-                      <select class="h-11 text-sm md:text-base font-medium text-slate-200 bg-slate-800 border border-e-0 rounded-s-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="quantity">
+                      <label for="quantity" class="block mb-1 text-sm font-normal text-slate-200">Ingredients</label>
+                      <select class="h-11 text-sm md:text-base font-normal text-slate-200 bg-slate-800 border border-e-0 rounded-s-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="quantity">
                         <option class="disabled selected"><%= recipe.quantity %></option>
                         <option>1/8</option>
                         <option>1/4</option>
@@ -117,7 +117,7 @@
                         <%}%>
                       </select>
                     </div>
-                    <select class="h-11 mt-6 text-sm md:text-base font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="measurement">
+                    <select class="h-11 mt-6 text-sm md:text-base font-normal text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="measurement">
                       <option class="disabled selected"><%= recipe.measurements %></option>
                       <option>Tsp.</option>
                       <option>Tb.</option>
@@ -150,7 +150,7 @@
                   <div class="flex flex-row">
                     <div class="inline-flex">
                       <div class="flex flex-col">
-                        <label for="quantity" class="block mb-1 text-sm font-medium text-slate-200">Ingredients</label>
+                        <label for="quantity" class="block mb-1 text-sm font-normaal text-slate-200">Ingredients</label>
                         <select class="h-11 text-sm md:text-base font-medium text-slate-200 bg-slate-800 border border-e-0 rounded-s-lg border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="quantity">
                           <option class="disabled selected"><%= recipe.quantity[i] %></option>
                           <option>1/8</option>
@@ -164,7 +164,7 @@
                           <%}%>
                         </select>
                       </div>
-                      <select class="h-11 mt-6 text-sm md:text-base font-medium text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="measurement">
+                      <select class="h-11 mt-6 text-sm md:text-base font-normal text-slate-200 bg-slate-800 border border-r-0 border-slate-600 hover:bg-slate-700 hover:text-slate-300" name="measurement">
                         <option class="disabled selected"><%= recipe.measurements[i] %></option>
                         <option>Tsp.</option>
                         <option>Tb.</option>
@@ -239,7 +239,7 @@
             </div>
             <button type="submit" class="col-span-2 place-self-end group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-300">
               <span class="absolute h-0 w-0 rounded-full bg-slate-800 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span>
-              <span class="relative">Save</span>
+              <span class="relative font-normal">Save</span>
             </button>
             <input type="hidden" class="form-control" id="status" name="status" value="done">
           </form>
@@ -247,46 +247,46 @@
           <!--Recipe View -->
           <% if (recipe.status === "done") { %>
             <div class="mb-4">
-              <span class="text-lg md:text-xl font-bold text-slate-300">Ingredients</span>
+              <span class="text-lg md:text-xl font-medium text-slate-300">Ingredients</span>
             </div>
           <div class="flex flex-col space-y-4">
             <% if (recipe.ingredientCount === 1) { %>
               <div class="flex flex-row gap-2">
                 <input id="checkbox" type="checkbox" class="w-6 h-6 mt-0.5 text-slate-400 bg-slate-500 border-slate-300 rounded focus:ring-slate-400 focus:ring-2">
                 <label for="checkbox" class="sr-only">checkbox</label>
-                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.quantity %></h3>
-                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.measurements %></h3>
-                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.ingredients %></h3>
+                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300 font-light"><%= recipe.quantity %></h3>
+                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300 font-light"><%= recipe.measurements %></h3>
+                <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300 font-light"><%= recipe.ingredients %></h3>
               </div>
             <% } else { %>
               <% for (i=0; i<recipe.ingredientCount; i++) { %>
                 <div class="flex flex-row gap-2">
                   <input id="checkbox" type="checkbox" class="w-6 h-6 mt-0.5 text-slate-400 bg-slate-500 border-slate-300 rounded focus:ring-slate-400 focus:ring-2">
                   <label for="checkbox" class="sr-only">checkbox</label>
-                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.quantity[i] %></h3>
-                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.measurements[i] %></h3>
-                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300"><%= recipe.ingredients[i] %></h3>
+                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300 font-light"><%= recipe.quantity[i] %></h3>
+                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300 font-light"><%= recipe.measurements[i] %></h3>
+                  <h3 class="mt-1 md:mt-0 text-sm md:text-lg text-slate-300 font-light"><%= recipe.ingredients[i] %></h3>
                 </div>
               <% } %>
             <% } %>
           </div>
           <div class="mt-8 mb-2">
-            <span class="text-lg md:text-xl font-bold text-slate-300">Steps</span>
+            <span class="text-lg md:text-xl font-medium text-slate-300">Steps</span>
           </div>
           <div class="flex flex-col space-y-4">
             <% if (recipe.stepCount === 1) { %>
               <div class="flex flex-col space-y-1">
-                <span class="text-sm md:text-lg text-slate-400">Step 1</span>
-                <div class="border-2 border-slate-400 bg-slate-600 rounded-lg w-full">
-                  <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps %></h3>
+                <span class="text-sm md:text-base font-medium text-slate-400">Step 1</span>
+                <div class="border-2 border-slate-500 bg-slate-600 rounded-lg w-full">
+                  <h3 class="text-sm md:text-lg font-light text-slate-300 p-2"><%= recipe.steps %></h3>
                 </div>
               </div>
             <% } else {%>
               <% for (i=0; i<recipe.stepCount; i++) { %>
                 <div class="flex flex-col space-y-1">
-                  <span class="text-sm md:text-lg text-slate-400">Step <%= [i + 1] %></span>
-                  <div class="border-2 border-slate-400 bg-slate-600 rounded-lg w-full">
-                    <h3 class="text-sm md:text-lg text-slate-300 p-2"><%= recipe.steps[i] %></h3>
+                  <span class="text-sm md:text-base font-medium text-slate-400">Step <%= [i + 1] %></span>
+                  <div class="border-2 border-slate-500 bg-slate-600 rounded-lg w-full">
+                    <h3 class="text-sm md:text-lg text-slate-300 font-light p-2"><%= recipe.steps[i] %></h3>
                   </div>
                 </div>
               <% } %>
@@ -301,7 +301,7 @@
     <div class="relative p-4 w-full max-w-md max-h-full">
         <div class="relative bg-slate-700 border-2 border-slate-300 rounded-lg shadow">
             <div class="flex items-center justify-between p-4 md:p-5 border-b border-b-slate-200 rounded-t">
-                <h3 class="text-lg font-semibold text-slate-200">
+                <h3 class="text-lg font-light text-slate-200">
                   Edit Picture
                 </h3>
                 <button type="button" class="text-slate-300 bg-transparent hover:bg-slate-300 hover:text-slate-800 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="edit-picture">
@@ -320,7 +320,7 @@
                 <div class="mr-0 w-0 -translate-x-[100%] opacity-0 transition-all duration-200 group-hover:mr-1 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100">
                   <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                 </div>
-                <span>Save</span>
+                <span class="font-normal">Save</span>
               </button>
             </form>
         </div>

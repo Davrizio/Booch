@@ -3,9 +3,9 @@
   <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
 </div>
 <div class="p-4 sm:ml-64">
-    <div class="flex flex-row gap-4 p-4 mt-14">      
+    <div class="flex flex-row gap-4 p-4 mt-14"> 
       <% for(var i=0; i<brews.length; i++) { %>
-        <% if (dayjs(brews[i].createdAt, "day").isBefore(dayjs().subtract(60, "day")) === false) { %>
+        <% if (dayjs(brews[i].createdAt, "day").isBefore(dayjs().subtract(60, "day")) === true) { %>
         <div class="group w-80 h-96 perspective-1000">
           <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
             <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
@@ -74,7 +74,7 @@
                 </svg>
               </div>
               <div class="mb-2 ml-6">
-                <h5 class="text-xl font-light tracking-tight text-slate-300">Tea type: <%= brews[i].tea %></h5>
+                <h5 class="text-xl font-light tracking-tight text-slate-300">Tea type:TEST <%= brews[i].tea %></h5>
               </div>
               <div class="ml-6">
                 <h5 class="text-xl font-light tracking-tight text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>

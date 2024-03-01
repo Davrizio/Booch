@@ -13,6 +13,16 @@ module.exports = {
     }
   },
 
+  getPastBrews: async (req, res) => {
+    try {
+      const recipe = await Recipe.find({ user: req.user.id })
+      const brews = await Brew.find({ user: req.user.id });
+      res.render("pastBrews.ejs", { brews: brews, recipe: recipe, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   getBrew: async (req, res) => {
     try {
       const recipe = await Recipe.find({ user: req.user.id })

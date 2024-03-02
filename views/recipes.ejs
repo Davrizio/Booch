@@ -10,7 +10,7 @@
         <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
           <% if (recipe[i].status === 'edit') { %>
             <div class="flex flex-col relative items-center justify-center h-48 w-80 rounded-t-xl">
-              <span class="absolute text-2xl z-10 font-light text-center text-slate-200">Hit Edit And Add Some Details!</span>
+              <span class="absolute text-2xl z-10 font-light tracking-tight text-pretty text-center text-slate-200">Hit More Info And Add Some Details!</span>
               <div class="bg-slate-900 opacity-30 blur-sm h-full rounded-t-xl">
                 <img class="relative h-48 w-80 object-cover rounded-t-xl" src="<%= recipe[i].image%>" alt="brew image" />
               </div>
@@ -19,7 +19,7 @@
             <img class="relative object-cover h-48 w-80 rounded-t-xl" src="<%= recipe[i].image%>" alt="brew image" />
           <% } %>
           <div class="place-self-center flex my-4 p-2 h-28">
-            <h5 class="text-3xl text-center font-extralight whitespace-normal break-words overflow-hidden text-slate-300"><%= recipe[i].name%></h5>
+            <h5 class="text-3xl text-center font-extralight tracking-wide break-words overflow-hidden text-slate-300"><%= recipe[i].name%></h5>
           </div>
           <div class="flex flex-row place-self-center">
             <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-500";%>

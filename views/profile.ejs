@@ -35,7 +35,7 @@
               <% } %>
               <img class="object-cover h-48 w-80 rounded-t-xl" src="<%= brews[i].image %>" alt="brew image" />
               <div class="place-self-center flex h-10 mt-2">
-                <h5 class="text-2xl text-center font-extralight whitespace-normal break-words overflow-hidden text-slate-300"><%= brews[i].name.toUpperCase() %></h5>
+                <h5 class="text-2xl text-center font-extralight tracking-wide break-words overflow-hidden text-slate-300"><%= brews[i].name.toUpperCase() %></h5>
               </div>
               <div class="flex flex-row place-self-center my-4">
                 <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-500";%>
@@ -74,10 +74,10 @@
                 </svg>
               </div>
               <div class="mb-2 ml-6">
-                <h5 class="text-xl font-light tracking-tight text-slate-300">Tea type: <%= brews[i].tea %></h5>
+                <h5 class="text-xl font-light text-slate-300">Tea type: <%= brews[i].tea %></h5>
               </div>
               <div class="ml-6">
-                <h5 class="text-xl font-light tracking-tight text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>
+                <h5 class="text-xl font-light text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>
               </div>
             </div>
             <div class="absolute backface-hidden w-full h-full rotate-y-180 rounded-xl shadow bg-slate-600 border-slate-200 border-2">

@@ -4,9 +4,9 @@
   </div>
   <div class="relative p-4 sm:ml-64">
     <div class="flex flex-col items-center p-4 mt-14">     
-      <div class="flex flex-col bg-slate-700 rounded-lg mb-12 md:min-w-full shadow-xl md:flex-row">
+      <div class="flex flex-col h-96 bg-slate-700 rounded-lg mb-12 md:min-w-full shadow-xl md:flex-row">
         <button data-modal-target="edit-picture" data-modal-toggle="edit-picture" role="link" class="absolute m-2 place-self-end z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 text-slate-300 text-lg after:bg-slate-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100">Edit</button>
-        <img class="object-cover h-96 md:h-auto md:w-2/6 rounded-t-lg  md:rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none" src="<%= brew.image %>" alt="brew image">
+        <img class="object-cover h-96 md:w-2/6 rounded-t-lg  md:rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none" src="<%= brew.image %>" alt="brew image">
         <div class="flex flex-col w-full md:w-4/6 justify-between px-2 md:pr-0 md:pl-4 pb-4 space-y-2 leading-normal">
           <div class="flex flex-col md:flex-row mt-2 md:mt-0 md:place-content-end w-full">
             <span class="bg-slate-600 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 border border-slate-500">
@@ -17,27 +17,27 @@
             </span>
             <span class="bg-slate-600 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 border border-slate-500">
               <% if (dayjs().isAfter(dayjs(brew.firstFerment[1], 'MM/DD/YYYY'), 'day') === true) { %>
-                1st Ferment <%= brew.firstFerment[1] %>
+                1st <%= brew.firstFerment[1] %>
               <% } else { %> 
-                1st Ferment <%= dayjs(brew.firstFerment[1], 'MM/DD/YYYY').fromNow() %>
+                1st <%= dayjs(brew.firstFerment[1], 'MM/DD/YYYY').fromNow() %>
               <% } %>
             </span>
             <span class="justify-self-end bg-slate-600 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 border border-slate-500">
-              <% if (brew.secondFerment == '') { %>
-               2nd Ferment -----
-              <% } else if (dayjs().isAfter(dayjs(brew.secondFerment, 'MM/DD/YYYY'), 'day') === true) { %>
-                2nd Ferment <%= brew.secondFerment %>
+              <% if (brew.secondFerment[0] == '') { %>
+               2nd -----
+              <% } else if (dayjs().isAfter(dayjs(brew.secondFerment[0], 'MM/DD/YYYY'), 'day') === true) { %>
+                2nd <%= brew.secondFerment[0] %>
               <% } else { %>
-              2nd Ferment <%= dayjs(brew.secondFerment, 'MM/DD/YYYY').fromNow() %>
+              2nd <%= dayjs(brew.secondFerment[0], 'MM/DD/YYYY').fromNow() %>
               <% } %>
             </span>
             <span class="bg-slate-600 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 md:rounded-tr-lg border border-slate-500 border-r-slate-500 md:border-r-slate-600">
-              <% if (brew.thirdFerment == '') { %>
-                3rd Ferment -----
-              <% } else if (dayjs().isAfter(dayjs(brew.thirdFerment, 'MM/DD/YYYY'), 'day') === true) { %>
-                 3rd Ferment <%= brew.thirdFerment %>
+              <% if (brew.thirdFerment[0] == '') { %>
+                3rd -----
+              <% } else if (dayjs().isAfter(dayjs(brew.thirdFerment[0], 'MM/DD/YYYY'), 'day') === true) { %>
+                 3rd <%= brew.thirdFerment[0] %>
               <% } else { %>
-                3rd Ferment <%= dayjs(brew.thirdFerment, 'MM/DD/YYYY').fromNow() %>
+                3rd <%= dayjs(brew.thirdFerment[0], 'MM/DD/YYYY').fromNow() %>
               <% } %>
             </span>
           </div>

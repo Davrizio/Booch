@@ -1,11 +1,11 @@
 <%- include('partials/header') -%>
-<div class="absolute h-full w-full bg-slate-400">
+<div class="h-screen w-screen top-0 left-0 fixed bg-slate-400">
   <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
 </div>
 <div class="p-4 sm:ml-64">
-    <div class="flex flex-row gap-4 p-4 mt-14">      
+    <div class="flex flex-col items-center md:flex-row gap-4 p-4 mt-14">      
       <% for(var i=0; i<brews.length; i++) { %>
-        <% if (dayjs(brews[i].createdAt, "day").isBefore(dayjs().subtract(60, "day")) === false) { %>
+        <% if (dayjs(brews[i].createdAt).isBefore(dayjs().subtract(60, 'day')) === false) { %>
         <div class="group w-80 h-96 perspective-1000">
           <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
             <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
@@ -14,10 +14,10 @@
                   <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
                   </svg>
-                  1st ferment is <%= dayjs(brews[i].firstFerment[1], 'MM/DD/YYYY').fromNow() %>
+                  1st ferment done <%= dayjs(brews[i].firstFerment[1], 'MM/DD/YYYY').fromNow() %>
                 </span>
               <% } %>
-              <% if (dayjs().isAfter(dayjs(brews[i].secondFerment, 'MM/DD/YYYY'), 'day') === false && brews[i].secondFerment !== '') { %>
+              <% if (dayjs().isAfter(dayjs(brews[i].secondFerment[0], 'MM/DD/YYYY'), 'day') === false && brews[i].secondFerment[0] !== '') { %>
                 <span class="absolute bg-slate-700 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded rounded-tl-xl me-2 border border-slate-700 bg-opacity-85">
                   <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -25,12 +25,12 @@
                   2nd ferment done <%= dayjs(brews[i].secondFerment, 'MM/DD/YYYY').fromNow() %>
                 </span>
               <% } %>
-              <% if (dayjs().isAfter(dayjs(brews[i].thirdFerment, 'MM/DD/YYYY'), 'day') === false && brews[i].thirdFerment !== '') { %>
+              <% if (dayjs().isAfter(dayjs(brews[i].thirdFerment[0], 'MM/DD/YYYY'), 'day') === false && brews[i].thirdFerment[0] !== '') { %>
                 <span class="absolute bg-slate-700 text-slate-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded rounded-tl-xl me-2 border border-slate-700 bg-opacity-85">
                   <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
                   </svg>
-                  3rd ferment is <%= dayjs(brews[i].thirdFerment, 'MM/DD/YYYY').fromNow() %>
+                  3rd ferment done <%= dayjs(brews[i].thirdFerment[0], 'MM/DD/YYYY').fromNow() %>
                 </span>
               <% } %>
               <img class="object-cover h-48 w-80 rounded-t-xl" src="<%= brews[i].image %>" alt="brew image" />
@@ -74,19 +74,19 @@
                 </svg>
               </div>
               <div class="mb-2 ml-6">
-                <h5 class="text-xl font-light text-slate-300">Tea type: <%= brews[i].tea %></h5>
+                <h5 class="text-lg tracking-tight font-light text-slate-300">Tea type: <%= brews[i].tea %></h5>
               </div>
               <div class="ml-6">
-                <h5 class="text-xl font-light text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>
+                <h5 class="text-lg tracking-tight font-light text-slate-300">Average temp <%= brews[i].avgTemp %>°</h5>
               </div>
             </div>
             <div class="absolute backface-hidden w-full h-full rotate-y-180 rounded-xl shadow bg-slate-600 border-slate-200 border-2">
-              <div class="absolute flex flex-col w-full h-full rounded-xl">
-                <div class="flex my-4 h-52 w-72 place-self-center border-2 border-slate-500 rounded-xl">
+              <div class="absolute flex flex-col p-2 w-full h-full rounded-xl">
+                <div class="flex my-4 h-72 w-full m-2 place-self-center border-2 border-slate-500 rounded-xl">
                   <p class="p-2 font-light whitespace-normal break-words overflow-scroll text-slate-300"><%= brews[i].note%></p>
                 </div>
                 <span class="place-self-center text-center text-lg font-normal text-slate-300">Recipe</span>
-                <div class="flex place-content-center w-72 place-self-center border-2 border-slate-500 rounded-xl">
+                <div class="flex place-content-center w-full place-self-center border-2 border-slate-500 rounded-xl">
                   <p class="font-light m-1 overflow-ellipsis text-center text-slate-300"><%= brews[i].recipe%></p>
                 </div>
                 <a class="place-self-end mt-3 mr-2" href="/brew/<%= brews[i]._id%>">

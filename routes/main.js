@@ -17,6 +17,7 @@ router.get("/pastBrews", ensureAuth, brewsController.getPastBrews);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.post("/login/editUser/:id", authController.editUser);
+router.post("/login/editUserPicture/:id", authController.editUserPicture);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);

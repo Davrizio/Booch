@@ -38,7 +38,7 @@ module.exports = {
     try {
       if (req.file === undefined) {
         result = await cloudinary.uploader.upload(
-          "./public/imgs/default_brew.png"
+          "./public/imgs/default_image.png"
         );
       } else {
         result = await cloudinary.uploader.upload(req.file.path);
@@ -50,8 +50,8 @@ module.exports = {
         note: 'Add Note',
         rating: 0,
         firstFerment: [req.body.firstFermentStart,req.body.firstFermentEnd],
-        secondFerment: [],
-        thirdFerment: [],
+        secondFerment: [''],
+        thirdFerment: [''],
         recipe: req.body.recipe,
         tea: req.body.tea,
         avgTemp: req.body.avgTemp,
@@ -66,12 +66,14 @@ module.exports = {
 
   editBrew: async (req, res) => {
     try {
-      await Brew.findOneAndUpdate({
+      await Brew.findOneAndUpdate(
+        { _id: req.params.id },
+        {
         name: req.body.name,
         note: req.body.note,
         firstFerment: [req.body.firstFermentStart, req.body.firstFermentEnd],
-        secondFerment: req.body.secondFerment,
-        thirdFerment: req.body.thirdFerment,
+        secondFerment: [req.body.secondFerment],
+        thirdFerment: [req.body.thirdFerment],
         tea: req.body.tea,
         avgTemp: req.body.avgTemp,
         user: req.user.id,
@@ -110,7 +112,7 @@ module.exports = {
           rating: req.body.rating
         }
       );
-      console.log("Likes +1");
+      console.log("Stars Updated");
       res.redirect(`/brew/${req.params.id}`);
     } catch (err) {
       console.log(err);

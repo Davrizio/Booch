@@ -133,7 +133,6 @@ postSignup: async (req, res, next) => {
 },
 
 editUser: async (req, res, next) => {
-  (console.log(req.body))
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -152,28 +151,33 @@ editUser: async (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  let result;
-
-  if (req.file === undefined) {
-    result = await cloudinary.uploader.upload(
-      "./public/imgs/default_user.png"
-    );
-  } else {
-    result = await cloudinary.uploader.upload(req.file.path);
-  };
-
   await User.findOneAndUpdate(
     { _id: req.params.id },
     {
       userName: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      image: result.secure_url,
-      cloudinaryId: result.public_id,
     }
   );
   console.log("User has been updated!");
   res.redirect("/profile");
-}
+},
+
+editUserPicture: async (req, res) => {
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    await User.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        image: result.secure_url,
+        cloudinaryId: result.public_id,
+      }
+    );
+    console.log("user picture has been updated!");
+    res.redirect(`/brew/${req.params.id}`);
+  } catch (err) {
+    console.log(err);
+  }
+},
 
 }

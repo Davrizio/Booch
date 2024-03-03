@@ -1,9 +1,9 @@
 <%- include('partials/header') -%>
-<div class="absolute h-full w-full bg-slate-400">
+<div class="h-screen w-screen top-0 left-0 fixed bg-slate-400">
   <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
 </div>
 <div class="p-4 sm:ml-64">
-  <div class="flex flex-row gap-4 p-4 mt-14">
+  <div class="flex flex-col items-center md:flex-row gap-4 p-4 mt-14">
     <% for(i=0; i<recipe.length; i++) {%>
     <div class="group w-80 h-96 perspective-1000">
       <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="flex flex-col absolute backface-hidden w-full h-full rotate-y-180 bg-slate-600 border border-slate-200 rounded-lg shadow">
-          <div class="flex m-4 h-80 min-w-72 place-self-center border-2 border-slate-500 rounded-xl">
+          <div class="flex m-2 h-72 place-self-center border-2 border-slate-500 rounded-xl">
             <div class="font-normal p-2 text-slate-300 whitespace-normal break-words overflow-scroll"><%= recipe[i].note %></div>
           </div>
           <a class="place-self-end my-4 mr-3" href="/recipe/<%= recipe[i]._id %>">

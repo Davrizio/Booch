@@ -25,9 +25,9 @@ module.exports = {
   createRecipe: async (req, res) => {
     let result;
     try {
-      if (req.body.fileRecipe === undefined) {
+      if (req.body.file === undefined) {
         result = await cloudinary.uploader.upload(
-          "./public/imgs/default_recipe.png"
+          "./public/imgs/default_image.png"
         );
       } else {
         result = await cloudinary.uploader.upload(req.file.path);

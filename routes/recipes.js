@@ -6,11 +6,7 @@ const { ensureAuth } = require("../middleware/auth");
 
 router.get("/:id", ensureAuth, recipesController.getRecipe);
 
-router.post(
-  "/createRecipe",
-  upload.single("file"),
-  recipesController.createRecipe
-);
+router.post("/createRecipe", upload.single("file"), recipesController.createRecipe);
 
 router.put("/rateRecipe/:id", recipesController.rateRecipe);
 

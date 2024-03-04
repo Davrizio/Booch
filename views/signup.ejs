@@ -20,7 +20,7 @@
           <div class="p-2 mb-4">
             <h5 class="text-5xl font-light text-slate-200">Signup</h5>
           </div>
-          <form class="space-y-6" action="/signup" method="POST">
+          <form class="space-y-6" action="/signup" enctype="multipart/form-data" method="POST">
             <div>
               <label for="email" class="block mb-2 text-sm font-normal text-slate-200">Your email</label>
               <input type="email" name="email" id="email" class="bg-slate-800 text-slate-200 border-slate-600 text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" required>
@@ -37,10 +37,10 @@
                 <label for="confirmPassword" class="block mb-2 text-sm font-normal text-slate-200">Confirm password</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" placeholder="••••••••" class="bg-slate-800 text-slate-200 border-slate-600 sm:text-sm rounded-lg focus:ring-slate-300 focus:border-slate-300 block w-full p-2.5" required>
             </div>
-            <div class="col-span-2">
-                <label class="block mb-4 text-sm font-normal text-slate-200" for="user_avatar">Add photo</label>
-                <input class="block text-sm text-slate-200 border-slate-600 border-2 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="user_avatar_help" id="file" name="file" type="file">
-                <div class="mt-1 text-sm text-slate-400" id="brew_image_help">2mb max. png or jpg</div>
+            <div>
+                <label class="block mb-2 text-sm font-normal text-slate-200" for="user_avatar">Add photo</label>
+                <input class="block w-full text-sm text-slate-200 border-slate-600 border-2 rounded-lg cursor-pointer bg-slate-800 focus:ring-slate-300" aria-describedby="user_avatar_help" id="file" name="file" type="file">
+                <div class="mt-1 ml-2 text-sm text-slate-400" id="brew_image_help">2mb max. png or jpg</div>
             </div>
             <button type="submit" class="group relative inline-flex place-self-end h-10 items-center justify-center overflow-hidden rounded-md bg-slate-500 px-6 font-medium text-slate-200">
               <div class="mr-0 w-0 -translate-x-[100%] opacity-0 transition-all duration-200 group-hover:mr-1 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100">

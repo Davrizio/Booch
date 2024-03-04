@@ -7,7 +7,6 @@ module.exports = {
     try {
       const recipe = await Recipe.find({ user: req.user.id });
       res.render("recipes.ejs", { recipe: recipe, user: req.user });
-      console.log(recipe)
     } catch (err) {
       console.log(err);
     }
@@ -16,16 +15,17 @@ module.exports = {
     try {
       const recipe = await Recipe.findById(req.params.id);
       res.render("recipe.ejs", { recipe: recipe, user: req.user });
-      console.log(recipe);
     } catch (err) {
       console.log(err);
     }
   },
 
   createRecipe: async (req, res) => {
+    console.log(req.file)
+    console.log(req.body)
     let result;
     try {
-      if (req.body.file === undefined) {
+      if (req.file === undefined) {
         result = await cloudinary.uploader.upload(
           "./public/imgs/default_image.png"
         );
@@ -40,10 +40,10 @@ module.exports = {
         rating: 0,
         ingredientCount: 1,
         stepCount: 1,
-        ingredients: [ ],
+        ingredients: [],
         measurements: ["M."],
         quantity: ["Qty."],
-        steps: [ ],
+        steps: [],
         status: "edit",
         user: req.user.id
       });

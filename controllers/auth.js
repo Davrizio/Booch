@@ -2,7 +2,6 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 const cloudinary = require("../middleware/cloudinary");
-const bcrypt = require("bcrypt");
 
 module.exports = {
  getLogin: (req, res) => {
@@ -102,7 +101,7 @@ postSignup: async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     image: result.secure_url,
-    cloudinaryId: result.public_id,
+    cloudinaryId: result.public_id
   });
 
   User.findOne(
@@ -133,6 +132,7 @@ postSignup: async (req, res, next) => {
 },
 
 editUser: async (req, res, next) => {
+  (console.log(req.file))
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -160,7 +160,7 @@ editUser: async (req, res, next) => {
     }
   );
   console.log("User has been updated!");
-  res.redirect("/profile");
+  res.redirect("back");
 },
 
 editUserPicture: async (req, res) => {
@@ -173,8 +173,8 @@ editUserPicture: async (req, res) => {
         cloudinaryId: result.public_id,
       }
     );
-    console.log("user picture has been updated!");
-    res.redirect(`/brew/${req.params.id}`);
+    console.log("User picture has been updated!");
+    res.redirect("back");
   } catch (err) {
     console.log(err);
   }

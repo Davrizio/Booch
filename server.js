@@ -42,7 +42,6 @@ app.get('/flowbite.min.js', function(req, res) {
 })
 
 //Flowbite DatePicker
-
 app.get('/datepicker.js', function(req, res) {
   res.sendFile(__dirname + '/node_modules/flowbite/dist/datepicker.js');
 })

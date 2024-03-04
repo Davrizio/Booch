@@ -3,71 +3,71 @@
   <div class="absolute inset-0 bg-slate-100 bg-[size:20px_20px] opacity-20 blur-[100px]"></div>
 </div>
 <div class="p-4 sm:ml-64">
-  <div class="flex flex-col items-center md:flex-row gap-4 p-4 mt-14">
+  <div class="flex flex-col items-center md:flex-row md:flex-wrap gap-4 p-4 mt-14">
     <% for(i=0; i<recipe.length; i++) {%>
-    <div class="group w-80 h-96 perspective-1000">
-      <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
-        <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
-          <% if (recipe[i].status === 'edit') { %>
-            <div class="flex flex-col relative items-center justify-center h-48 w-80 rounded-t-xl">
-              <span class="absolute text-2xl z-10 font-light tracking-tight text-pretty text-center text-slate-200">Hit More Info And Add Some Details!</span>
-              <div class="bg-slate-900 opacity-30 blur-sm h-full rounded-t-xl">
-                <img class="relative h-48 w-80 object-cover rounded-t-xl" src="<%= recipe[i].image%>" alt="brew image" />
+      <div class="group flex-shrink-0 w-80 h-96 perspective-1000">
+        <div class="relative w-full h-full transition-all duration-700 transform-style-3d bg-slate-600 border-slate-400 border rounded-xl group-hover:rotate-y-180"> 
+          <div class="flex flex-col absolute w-full h-full backface-hidden rounded-xl shadow-xl">
+            <% if (recipe[i].status === 'edit') { %>
+              <div class="flex flex-col relative items-center justify-center h-48 w-80 rounded-t-xl">
+                <span class="absolute text-2xl z-10 font-light tracking-tight text-pretty text-center text-slate-200">Hit More Info And Add Some Details!</span>
+                <div class="bg-slate-900 opacity-30 blur-sm h-full rounded-t-xl">
+                  <img class="relative h-48 w-80 object-cover rounded-t-xl" src="<%= recipe[i].image%>" alt="brew image" />
+                </div>
               </div>
+            <% } else { %>
+              <img class="relative object-cover h-48 w-80 rounded-t-xl" src="<%= recipe[i].image%>" alt="brew image" />
+            <% } %>
+            <div class="place-self-center flex my-4 p-2 h-28">
+              <h5 class="text-3xl text-center font-extralight tracking-wide break-words overflow-hidden text-slate-300"><%= recipe[i].name%></h5>
             </div>
-          <% } else { %>
-            <img class="relative object-cover h-48 w-80 rounded-t-xl" src="<%= recipe[i].image%>" alt="brew image" />
-          <% } %>
-          <div class="place-self-center flex my-4 p-2 h-28">
-            <h5 class="text-3xl text-center font-extralight tracking-wide break-words overflow-hidden text-slate-300"><%= recipe[i].name%></h5>
+            <div class="flex flex-row place-self-center">
+              <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-500";%>
+              <% switch (recipe[i].rating) {
+                  case 5:
+                    ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-amber-400";
+                    break;
+                  case 4:
+                    ratedOne = ratedTwo = ratedThree = ratedFour = "fill-amber-400";
+                    break;
+                  case 3:
+                    ratedOne = ratedTwo = ratedThree = "fill-amber-400";
+                    break;
+                  case 2:
+                    ratedOne = ratedTwo = "fill-amber-400";
+                    break;
+                  case 1:
+                    ratedOne = "fill-amber-400";
+                    break;
+                  default:
+              } %>
+              <svg class="w-6 h-6 ms-2 <%= ratedOne %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+              <svg class="w-6 h-6 ms-2 <%= ratedTwo %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+              <svg class="w-6 h-6 ms-2 <%= ratedThree %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+              <svg class="w-6 h-6 ms-2 <%= ratedFour %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+              <svg class="w-6 h-6 ms-2 <%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+            </div>
           </div>
-          <div class="flex flex-row place-self-center">
-            <% let ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-slate-500";%>
-            <% switch (recipe[i].rating) {
-                case 5:
-                  ratedOne = ratedTwo = ratedThree = ratedFour = ratedFive = "fill-amber-400";
-                  break;
-                case 4:
-                  ratedOne = ratedTwo = ratedThree = ratedFour = "fill-amber-400";
-                  break;
-                case 3:
-                  ratedOne = ratedTwo = ratedThree = "fill-amber-400";
-                  break;
-                case 2:
-                  ratedOne = ratedTwo = "fill-amber-400";
-                  break;
-                case 1:
-                  ratedOne = "fill-amber-400";
-                  break;
-                default:
-            } %>
-            <svg class="w-6 h-6 ms-2 <%= ratedOne %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 ms-2 <%= ratedTwo %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 ms-2 <%= ratedThree %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 ms-2 <%= ratedFour %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 ms-2 <%= ratedFive %>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
+          <div class="flex flex-col absolute backface-hidden w-full h-full rotate-y-180 bg-slate-600 border border-slate-200 rounded-lg shadow">
+            <div class="flex m-4 h-72 w-72 place-self-center border-2 border-slate-500 rounded-xl">
+              <div class="font-normal p-2 text-slate-300 whitespace-normal break-words overflow-scroll"><%= recipe[i].note %></div>
+            </div>
+            <a class="place-self-end my-4 mr-3" href="/recipe/<%= recipe[i]._id %>">
+              <button class="relative overflow-hidden font-normal rounded-md bg-slate-500 px-5 py-2.5 text-slate-300 transition active:scale-95">More Info</button>
+            </a>
           </div>
-        </div>
-        <div class="flex flex-col absolute backface-hidden w-full h-full rotate-y-180 bg-slate-600 border border-slate-200 rounded-lg shadow">
-          <div class="flex m-2 h-72 place-self-center border-2 border-slate-500 rounded-xl">
-            <div class="font-normal p-2 text-slate-300 whitespace-normal break-words overflow-scroll"><%= recipe[i].note %></div>
-          </div>
-          <a class="place-self-end my-4 mr-3" href="/recipe/<%= recipe[i]._id %>">
-            <button class="relative overflow-hidden font-normal rounded-md bg-slate-500 px-5 py-2.5 text-slate-300 duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:translate-y-1 active:scale-x-110 active:scale-y-90">More Info</button>
-          </a>
         </div>
       </div>
-    </div>
     <% } %>
   </div>
 </div>

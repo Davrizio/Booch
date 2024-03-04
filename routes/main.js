@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middleware/multer");
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
 const brewsController = require("../controllers/brews");
@@ -17,9 +18,9 @@ router.get("/pastBrews", ensureAuth, brewsController.getPastBrews);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.post("/login/editUser/:id", authController.editUser);
-router.post("/login/editUserPicture/:id", authController.editUserPicture);
+router.post("/login/editUserPicture/:id", upload.single("file"), authController.editUserPicture);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
-router.post("/signup", authController.postSignup);
+router.post("/signup", upload.single("file"), authController.postSignup);
 
 module.exports = router;

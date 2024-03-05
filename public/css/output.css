@@ -3247,6 +3247,16 @@ input:checked + .toggle-bg {
   line-height: 1rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -4410,6 +4420,10 @@ input:checked + .toggle-bg {
     margin-top: 0px;
   }
 
+  .md\:h-96 {
+    height: 24rem;
+  }
+
   .md\:w-2\/6 {
     width: 33.333333%;
   }
@@ -4511,6 +4525,11 @@ input:checked + .toggle-bg {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-8xl {
+    font-size: 6rem;
+    line-height: 1;
   }
 }
 

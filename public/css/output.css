@@ -1656,6 +1656,10 @@ input:checked + .toggle-bg {
   width: 100vw;
 }
 
+.w-48 {
+  width: 12rem;
+}
+
 .min-w-fit {
   min-width: -moz-fit-content;
   min-width: fit-content;
@@ -4438,6 +4442,10 @@ input:checked + .toggle-bg {
 
   .md\:w-6 {
     width: 1.5rem;
+  }
+
+  .md\:w-96 {
+    width: 24rem;
   }
 
   .md\:min-w-full {

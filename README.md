@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="#"><img src="https://github.com/Davrizio/booch/blob/main/public/imgs/logo.png" alt="Hustle!" width="200"></a>
+  <img src="https://github.com/Davrizio/booch/blob/main/public/imgs/logo.png" alt="Hustle!" width="200">
   <br>
   Booch
   <br>

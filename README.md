@@ -3,11 +3,11 @@
   <br>
   <a href="#"><img src="https://github.com/Davrizio/booch/blob/main/public/imgs/logo.png" alt="Hustle!" width="200"></a>
   <br>
-  Hustle!
+  Booch
   <br>
 </h1>
 
-<h4 align="center">Track all stages of Kombucha fermentation and catalog favorite 2nd fermentation recipes</h4>
+<h4 align="center">Track all stages of Kombucha fermentation and catalog favorite 2nd fermentation recipes.</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
